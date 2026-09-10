@@ -49,10 +49,10 @@ Done when: all 4 buildings are playable and each unlocks the next.
 
 ## Phase 4: Players and safety
 
-- [ ] ProfilePicker, Onboarding, and AvatarBuilder (reused later in Me). Remove the TEMP Guest auto-create. Read: SCREENS §Profile picker and §Onboarding, DESIGN §8.
-- [ ] Help Centre. Read: SCREENS §Help Centre, PRODUCT §7.
-- [ ] Me screen and Credits. Read: SCREENS §Me and §Credits.
-- [ ] Demo mode. Read: PRODUCT §6.
+- [x] ProfilePicker, Onboarding, and AvatarBuilder (reused later in Me). Remove the TEMP Guest auto-create. Read: SCREENS §Profile picker and §Onboarding, DESIGN §8.
+- [x] Help Centre. Read: SCREENS §Help Centre, PRODUCT §7.
+- [x] Me screen and Credits. Read: SCREENS §Me and §Credits.
+- [x] Demo mode. Read: PRODUCT §6.
 
 ## Phase 5: Community
 
