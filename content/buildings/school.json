@@ -1,0 +1,62 @@
+{
+  "id": "school",
+  "title": "School",
+  "sprite": "school",
+  "right": "Right to Education",
+  "tagline": "Help Meera get her seat in class.",
+  "tone": "normal",
+  "cast": [
+    { "id": "meera", "name": "Meera", "role": "kid", "avatar": { "skin": "#744126", "hair": "braids", "hairColor": "#1B1B1B" } },
+    { "id": "amma", "name": "Amma", "role": "adult", "avatar": { "skin": "#8D5230", "hair": "bunHair", "hairColor": "#1B1B1B" } },
+    { "id": "clerk", "name": "Clerk", "role": "adult", "avatar": { "skin": "#E2A67E", "hair": "shortHair", "hairColor": "#3B2416", "accessory": "mustache" } },
+    { "id": "kaur", "name": "Mrs. Kaur", "role": "adult", "avatar": { "skin": "#D4935F", "hair": "straightHair", "hairColor": "#6A3E23", "accessory": "glasses" } }
+  ],
+  "story": {
+    "start": "s1",
+    "nodes": [
+      { "id": "s1", "bg": "school", "props": ["school"], "cast": ["meera", "amma"], "speaker": "narrator", "text": "Meera and her Amma have just moved to a new town. Today, Meera wants to join the government school.", "next": "s2" },
+      { "id": "s2", "speaker": "meera", "moods": { "meera": "happy" }, "text": "I'm so excited, Amma! New friends, new books!", "next": "s3" },
+      { "id": "s3", "cast": ["amma", "clerk"], "speaker": "clerk", "text": "Admission? The session started months ago. And where is her birth certificate?", "next": "s4" },
+      { "id": "s4", "speaker": "amma", "moods": { "amma": "worried" }, "text": "We lost it when we moved. We only have her old report card.", "next": "s5" },
+      { "id": "s5", "speaker": "clerk", "moods": { "clerk": "angry", "amma": "worried" }, "text": "No certificate, no admission. Or pay a ₹5,000 'donation' and I'll see what I can do.", "next": "s6" },
+      { "id": "s6", "cast": ["meera", "amma"], "speaker": "narrator", "moods": { "meera": "worried", "amma": "worried" }, "text": "Meera looks at Amma. They don't have ₹5,000. What should Meera do?", "choices": [
+        { "label": "Go home. Maybe next year.", "sprite": "house", "to": "b1", "kind": "bad" },
+        { "label": "Borrow money and pay the 'donation'.", "sprite": "money", "to": "c1", "kind": "bad" },
+        { "label": "Say \"Every child has the right to school\" and ask to meet the headteacher.", "sprite": "megaphone", "to": "g1", "kind": "good" }
+      ] },
+      { "id": "b1", "speaker": "narrator", "moods": { "meera": "sad", "amma": "sad" }, "text": "Meera stays home. Months pass. Other children are learning to read chapter books, and Meera is missing out.", "next": "b2" },
+      { "id": "b2", "speaker": "mitthu", "text": "Hmm, is that fair? School is Meera's right. Let's try again!", "end": "retry" },
+      { "id": "c1", "speaker": "narrator", "moods": { "meera": "worried", "amma": "sad" }, "text": "Amma borrows money from a moneylender. Now the family owes a big debt.", "next": "c2" },
+      { "id": "c2", "speaker": "mitthu", "text": "Wait! A school is not allowed to ask for a 'donation' for admission. Try again!", "end": "retry" },
+      { "id": "g1", "cast": ["meera", "kaur"], "speaker": "meera", "moods": { "meera": "proud" }, "text": "Every child has the right to go to school. Can we please meet the headteacher?", "next": "g2" },
+      { "id": "g2", "speaker": "kaur", "moods": { "kaur": "happy" }, "text": "You're absolutely right, Meera. A school can't refuse you because of a missing birth certificate, and it can't ask for any donation.", "next": "g3" },
+      { "id": "g3", "speaker": "kaur", "moods": { "kaur": "happy" }, "text": "You can join Class 5 today, even in the middle of the year. We'll help your family get a new birth certificate later.", "next": "g4" },
+      { "id": "g4", "speaker": "meera", "moods": { "meera": "happy", "kaur": "happy" }, "text": "Yay! Amma, I start today!", "next": "g5" },
+      { "id": "g5", "speaker": "narrator", "moods": { "meera": "happy", "kaur": "happy" }, "text": "Meera spoke up and got her seat in class. Knowing your rights helps!", "end": "good" }
+    ]
+  },
+  "card": {
+    "id": "education",
+    "title": "Right to Education",
+    "sprite": "books",
+    "color": "peacock",
+    "kid": "Every child aged 6 to 14 can go to a government school for free. A school can't turn you away for a missing birth certificate or ask for a 'donation'. Teachers are not allowed to hit or insult you.",
+    "teen": "The RTE Act, 2009 makes free and compulsory elementary education a right for every child aged 6 to 14. Schools can't charge capitation fees or screen children for admission, can't deny admission for lack of age proof, and must admit a child even after the session has started. Physical punishment and mental harassment are banned. Private unaided schools must reserve 25% of entry-level seats for children from weaker and disadvantaged groups.",
+    "ifItHappens": "Talk to the headteacher or the School Management Committee. You can also call 1098.",
+    "law": "RTE Act 2009, Article 21A",
+    "source": "Right of Children to Free and Compulsory Education Act, 2009 (Sections 12, 13, 14, 15, 17); Constitution of India, Article 21A"
+  },
+  "game": {
+    "type": "quiz",
+    "title": "School Rights Quiz",
+    "questions": [
+      { "id": "q1", "q": "Under the RTE Act, school is free and compulsory for children of which ages?", "options": ["6 to 14 years", "5 to 10 years", "10 to 18 years", "Only till Class 2"], "answer": 0, "explain": "The RTE Act covers every child aged 6 to 14." },
+      { "id": "q2", "q": "A school asks for a 'donation' before giving admission. Is that allowed?", "options": ["Yes, if the school is popular", "No, schools can't charge capitation fees", "Yes, but only for boys", "Only if parents agree"], "answer": 1, "explain": "Capitation fees and 'donations' for admission are banned under the RTE Act." },
+      { "id": "q3", "q": "Riya doesn't have a birth certificate. Can the school refuse her admission?", "options": ["Yes, always", "Only if she is new in town", "No, missing age proof can't stop admission", "Only in private schools"], "answer": 2, "explain": "No child can be denied admission for lack of age proof." },
+      { "id": "q4", "q": "A teacher hits a student for coming late. Is that allowed?", "options": ["Yes, it teaches discipline", "No, physical punishment is banned", "Only with a ruler", "Only in Class 8 and above"], "answer": 1, "explain": "The RTE Act bans physical punishment and mental harassment of children." },
+      { "id": "q5", "q": "The school still refuses admission. Who can Meera's family go to?", "options": ["Nobody, just stay home", "The headteacher or School Management Committee", "Only a private tutor", "The school canteen"], "answer": 1, "explain": "The headteacher and School Management Committee must help. You can also call 1098." },
+      { "id": "q6", "band": "teen", "q": "Private unaided schools must reserve what share of entry-level seats for children from weaker and disadvantaged groups?", "options": ["5%", "10%", "25%", "50%"], "answer": 2, "explain": "Section 12(1)(c) of the RTE Act requires 25% of entry-level seats." },
+      { "id": "q7", "band": "teen", "q": "Which Article of the Constitution makes education a fundamental right?", "options": ["Article 14", "Article 21A", "Article 32", "Article 51A"], "answer": 1, "explain": "Article 21A was added in 2002 and makes education a fundamental right for ages 6 to 14." }
+    ]
+  }
+}

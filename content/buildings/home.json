@@ -1,0 +1,65 @@
+{
+  "id": "home",
+  "title": "Home",
+  "sprite": "house",
+  "right": "Right to Be Safe",
+  "tagline": "Anya is asked to keep a secret that feels wrong.",
+  "tone": "gentle",
+  "cast": [
+    { "id": "anya", "name": "Anya", "role": "kid", "avatar": { "skin": "#EFC3A4", "hair": "curlyBob", "hairColor": "#3B2416" } },
+    { "id": "vikram", "name": "Vikram Bhaiya", "role": "adult", "avatar": { "skin": "#D4935F", "hair": "shortHair", "hairColor": "#1B1B1B" } },
+    { "id": "zoya", "name": "Zoya", "role": "kid", "avatar": { "skin": "#C07A4A", "hair": "straightHair", "hairColor": "#1B1B1B", "headwear": "hijab" } },
+    { "id": "mummy", "name": "Mummy", "role": "adult", "avatar": { "skin": "#E2A67E", "hair": "bunHair", "hairColor": "#1B1B1B" } }
+  ],
+  "story": {
+    "start": "h1",
+    "nodes": [
+      { "id": "h1", "bg": "street", "props": ["tree"], "cast": ["anya"], "speaker": "narrator", "moods": { "anya": "happy" }, "text": "Anya is 9. She loves playing in the park near her building.", "next": "h2" },
+      { "id": "h2", "cast": ["anya", "vikram"], "speaker": "vikram", "moods": { "anya": "happy" }, "text": "Hey Anya! Here's a big chocolate for you. You're my special friend.", "next": "h3" },
+      { "id": "h3", "speaker": "vikram", "moods": { "anya": "worried" }, "text": "Let's play a secret game at my place. Never tell your parents, okay? Or you'll be in big trouble.", "next": "h4" },
+      { "id": "h4", "speaker": "narrator", "moods": { "anya": "worried" }, "text": "Anya's tummy feels funny. The 'secret game' makes her feel scared and confused.", "next": "h5" },
+      { "id": "h5", "cast": ["anya"], "speaker": "narrator", "moods": { "anya": "worried" }, "text": "What should Anya do?", "choices": [
+        { "label": "Keep the secret. She doesn't want to get in trouble.", "sprite": "zipper", "to": "b1", "kind": "bad" },
+        { "label": "Tell only her best friend Zoya.", "sprite": "friends", "to": "c1", "kind": "okay" },
+        { "label": "Tell Mummy, even though she was told not to.", "sprite": "heart", "to": "g1", "kind": "good" }
+      ] },
+      { "id": "b1", "speaker": "narrator", "moods": { "anya": "sad" }, "text": "Anya keeps the secret. She feels worried every day and stops going to the park.", "next": "b2" },
+      { "id": "b2", "speaker": "mitthu", "text": "Secrets that make you feel scared are never okay to keep. You won't get in trouble for telling. Try again!", "end": "retry" },
+      { "id": "c1", "cast": ["anya", "zoya"], "speaker": "zoya", "moods": { "anya": "worried", "zoya": "worried" }, "text": "That sounds scary, Anya. But I don't know what to do. I'm only 9 too!", "next": "c2" },
+      { "id": "c2", "speaker": "mitthu", "text": "Telling a friend is a good start! But a trusted adult can keep you safe. Try again!", "end": "retry" },
+      { "id": "g1", "bg": "home", "props": ["house"], "cast": ["anya", "mummy"], "speaker": "anya", "moods": { "anya": "worried" }, "text": "Mummy, Vikram Bhaiya told me to keep a secret. It made me feel scared.", "next": "g2" },
+      { "id": "g2", "speaker": "mummy", "moods": { "anya": "worried" }, "text": "Thank you for telling me, Anya. You're so brave. This is NOT your fault, and you are not in trouble.", "next": "g3" },
+      { "id": "g3", "speaker": "mummy", "text": "Grown-ups should never ask children to keep scary secrets. I'll keep you safe, and we'll get help.", "next": "g4" },
+      { "id": "g4", "speaker": "anya", "moods": { "anya": "happy", "mummy": "happy" }, "text": "I feel lighter now.", "next": "g5" },
+      { "id": "g5", "speaker": "narrator", "moods": { "anya": "happy", "mummy": "happy" }, "text": "Anya told a trusted adult. That is always the right thing to do.", "end": "good" }
+    ]
+  },
+  "card": {
+    "id": "safety",
+    "title": "Right to Be Safe",
+    "sprite": "shield",
+    "color": "leaf",
+    "kid": "Your body belongs to you. Nobody should touch you in a way that feels unsafe, or ask you to keep a scary secret. If it happens, tell a trusted adult. It is never your fault.",
+    "teen": "The POCSO Act, 2012 protects every child under 18, girls and boys, from sexual abuse and harassment, including online. Special courts hear these cases, a child's identity must be kept secret, and the child's statement can be recorded at a place where they feel comfortable, with a trusted adult present.",
+    "ifItHappens": "Tell a trusted adult right away, or call 1098 any time. It's free.",
+    "law": "POCSO Act 2012",
+    "source": "Protection of Children from Sexual Offences Act, 2012 (Sections 23, 24, 28, 33)"
+  },
+  "game": {
+    "type": "sort",
+    "title": "Surprise or Unsafe Secret?",
+    "prompt": "A surprise is fun and ends soon. An unsafe secret makes you feel scared. Sort each one.",
+    "bins": [
+      { "id": "surprise", "label": "Surprise (okay to keep)", "sprite": "gift", "color": "leaf" },
+      { "id": "unsafe", "label": "Unsafe secret (tell an adult)", "sprite": "stop", "color": "rani" }
+    ],
+    "items": [
+      { "id": "i1", "text": "\"Don't tell Didi, we're planning her birthday party!\"", "bin": "surprise", "explain": "A surprise party ends with everyone happy. That's a fun surprise." },
+      { "id": "i2", "text": "\"Don't tell your parents I gave you this phone.\"", "bin": "unsafe", "explain": "An adult asking you to hide gifts from your parents is a warning sign." },
+      { "id": "i3", "text": "\"This is our special secret game. If you tell, you'll get in trouble.\"", "bin": "unsafe", "explain": "Threats to keep a secret mean you should tell a trusted adult right away." },
+      { "id": "i4", "text": "\"Let's hide Papa's Diwali gift until the big day.\"", "bin": "surprise", "explain": "It's a surprise that will be shared soon. Totally fine!" },
+      { "id": "i5", "text": "\"Send me a photo of yourself and don't tell anyone.\"", "bin": "unsafe", "explain": "Never send photos to someone who asks you to keep it secret. Tell an adult." },
+      { "id": "i6", "text": "\"Keep the cake hidden till Dadi comes home!\"", "bin": "surprise", "explain": "A happy surprise for Dadi. Nobody is scared or hurt." }
+    ]
+  }
+}

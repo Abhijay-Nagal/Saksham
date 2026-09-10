@@ -1,0 +1,64 @@
+{
+  "id": "panchayat",
+  "title": "Panchayat",
+  "sprite": "classical-building",
+  "right": "Right to Say No to Child Marriage",
+  "tagline": "Pooja wants to study, but a wedding is being planned.",
+  "tone": "normal",
+  "cast": [
+    { "id": "pooja", "name": "Pooja", "role": "kid", "avatar": { "skin": "#5A321D", "hair": "straightHair", "hairColor": "#1B1B1B", "headwear": "dupatta" } },
+    { "id": "papa", "name": "Papa", "role": "adult", "avatar": { "skin": "#8D5230", "hair": "shortHair", "hairColor": "#B9B4AE", "accessory": "mustache" } },
+    { "id": "sunny", "name": "Sunny", "role": "kid", "avatar": { "skin": "#C07A4A", "hair": "shortHair", "hairColor": "#1B1B1B", "headwear": "patka" } },
+    { "id": "sunita", "name": "Sunita Didi", "role": "adult", "avatar": { "skin": "#A8663C", "hair": "bunHair", "hairColor": "#1B1B1B" } }
+  ],
+  "story": {
+    "start": "p1",
+    "nodes": [
+      { "id": "p1", "bg": "home", "props": ["house"], "cast": ["pooja", "papa"], "speaker": "narrator", "moods": { "pooja": "proud" }, "text": "Pooja is 15. She just topped her class in the Class 9 exams.", "next": "p2" },
+      { "id": "p2", "speaker": "papa", "moods": { "papa": "happy" }, "text": "Pooja, we have found a good boy for you. The wedding will be after Diwali.", "next": "p3" },
+      { "id": "p3", "speaker": "pooja", "moods": { "pooja": "sad" }, "text": "But Papa, I want to finish school and become a nurse!", "next": "p4" },
+      { "id": "p4", "speaker": "papa", "moods": { "pooja": "sad" }, "text": "Everyone in our village marries young. It's decided.", "next": "p5" },
+      { "id": "p5", "bg": "panchayat", "props": ["classical-building"], "cast": ["pooja", "sunny"], "speaker": "sunny", "moods": { "sunny": "worried", "pooja": "sad" }, "text": "Pooja, you're only 15! What will you do?", "next": "p6" },
+      { "id": "p6", "speaker": "narrator", "moods": { "pooja": "worried", "sunny": "worried" }, "text": "What should Pooja do?", "choices": [
+        { "label": "Agree quietly. Papa has already decided.", "sprite": "zipper", "to": "b1", "kind": "bad" },
+        { "label": "Run away from home alone at night.", "sprite": "moon", "to": "c1", "kind": "bad" },
+        { "label": "Tell Sunita Didi at the Anganwadi and call 1098.", "sprite": "telephone", "to": "g1", "kind": "good" }
+      ] },
+      { "id": "b1", "speaker": "narrator", "moods": { "pooja": "sad", "sunny": "sad" }, "text": "Pooja leaves school. Her dream of becoming a nurse starts to fade.", "next": "b2" },
+      { "id": "b2", "speaker": "mitthu", "text": "Pooja is 15, not 18. Is this wedding even allowed? Try again!", "end": "retry" },
+      { "id": "c1", "speaker": "narrator", "moods": { "pooja": "worried", "sunny": "worried" }, "text": "Running away alone at night is very dangerous, and Pooja has nowhere safe to go.", "next": "c2" },
+      { "id": "c2", "speaker": "mitthu", "text": "There's a safer way to get help. Try again!", "end": "retry" },
+      { "id": "g1", "cast": ["pooja", "sunita"], "speaker": "pooja", "moods": { "pooja": "worried" }, "text": "Didi, my family is planning my wedding. I'm only 15.", "next": "g2" },
+      { "id": "g2", "speaker": "sunita", "text": "You did the right thing, Pooja. A girl must be 18 and a boy must be 21 to marry. Anything earlier is a child marriage, and it's a crime.", "next": "g3" },
+      { "id": "g3", "speaker": "sunita", "moods": { "pooja": "normal" }, "text": "Let's call 1098 together. The Child Marriage Prohibition Officer will talk to your family.", "next": "g4" },
+      { "id": "g4", "bg": "home", "props": ["house"], "cast": ["papa", "sunita"], "speaker": "papa", "moods": { "papa": "worried" }, "text": "We didn't know this was against the law. We only wanted the best for her.", "next": "g5" },
+      { "id": "g5", "speaker": "sunita", "moods": { "sunita": "happy" }, "text": "The best thing for Pooja is to finish her studies. Let her fly!", "next": "g6" },
+      { "id": "g6", "cast": ["pooja", "papa"], "speaker": "pooja", "moods": { "pooja": "happy", "papa": "happy" }, "text": "Thank you, Papa! I'll make you proud.", "next": "g7" },
+      { "id": "g7", "speaker": "narrator", "moods": { "pooja": "happy", "papa": "happy" }, "text": "Pooja asked for help, and the wedding was stopped. She's back in school, one step closer to becoming a nurse.", "end": "good" }
+    ]
+  },
+  "card": {
+    "id": "no-child-marriage",
+    "title": "Right to Say No to Child Marriage",
+    "sprite": "graduation-cap",
+    "color": "marigold",
+    "kid": "Girls must be at least 18 and boys at least 21 to get married. If anyone plans a wedding for a child, it's against the law. You can say no and ask for help.",
+    "teen": "Under the Prohibition of Child Marriage Act, 2006, anyone who performs, arranges or promotes a child marriage can be jailed for up to 2 years and fined up to ₹1 lakh. States appoint Child Marriage Prohibition Officers to stop these marriages. If a child marriage has already happened, the person who was married as a child can ask a court to cancel it, up to 2 years after becoming an adult.",
+    "ifItHappens": "Call 1098, or tell a teacher, an Anganwadi worker or the Child Marriage Prohibition Officer.",
+    "law": "Prohibition of Child Marriage Act 2006",
+    "source": "Prohibition of Child Marriage Act, 2006 (Sections 2, 3, 10, 11, 16)"
+  },
+  "game": {
+    "type": "quiz",
+    "title": "Child Marriage Quiz",
+    "questions": [
+      { "id": "q1", "q": "What is the minimum legal age of marriage for girls in India?", "options": ["14", "16", "18", "21"], "answer": 2, "explain": "Girls must be at least 18." },
+      { "id": "q2", "q": "What is the minimum legal age of marriage for boys in India?", "options": ["16", "18", "20", "21"], "answer": 3, "explain": "Boys must be at least 21." },
+      { "id": "q3", "q": "Which number can you call to stop a child marriage?", "options": ["1098", "100", "139", "181"], "answer": 0, "explain": "1098 is Childline, free and open day and night." },
+      { "id": "q4", "q": "Both families agree to marry their 15-year-old children. Is it allowed?", "options": ["Yes, if both families agree", "Yes, if the panchayat agrees", "No, it's still a child marriage", "Only in villages"], "answer": 2, "explain": "Family agreement doesn't matter. Below 18 for girls or 21 for boys is a child marriage." },
+      { "id": "q5", "q": "Which of these could be a sign that a child marriage is being planned?", "options": ["A 14-year-old is suddenly taken out of school and wedding shopping begins", "A cousin gets a new school bag", "A family plans a birthday party", "A student joins a sports team"], "answer": 0, "explain": "Being pulled out of school with wedding plans is a big warning sign. Tell a trusted adult or call 1098." },
+      { "id": "q6", "band": "teen", "q": "Which official is appointed to stop child marriages?", "options": ["Sarpanch", "Child Marriage Prohibition Officer", "School principal", "Postmaster"], "answer": 1, "explain": "The Act asks states to appoint Child Marriage Prohibition Officers." },
+      { "id": "q7", "band": "teen", "q": "Someone married as a child can ask a court to cancel the marriage until how long after becoming an adult?", "options": ["1 month", "6 months", "2 years", "10 years"], "answer": 2, "explain": "A child marriage is voidable at the option of the person married as a child, within 2 years of reaching adulthood." }
+    ]
+  }
+}

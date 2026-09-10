@@ -1,0 +1,38 @@
+{
+  "headline": "You're not in trouble. Asking for help is brave.",
+  "subline": "If something feels wrong, you can talk to someone right now.",
+  "helplines": [
+    { "number": "1098", "name": "Childline", "desc": "For any child who needs help. Free, any time, day or night.", "primary": true },
+    { "number": "112", "name": "Emergency", "desc": "If you or someone else is in danger right now.", "primary": true },
+    { "number": "15100", "name": "Free Legal Aid (NALSA)", "desc": "Free help from lawyers. Children get legal aid for free.", "primary": false },
+    { "number": "1930", "name": "Cyber Crime Helpline", "desc": "If someone is bullying, threatening or tricking you online.", "primary": false }
+  ],
+  "tellAnAdult": {
+    "title": "How to tell a trusted adult",
+    "steps": [
+      "Pick someone you trust: a parent, teacher, school counsellor, Anganwadi didi or a relative.",
+      "Find a quiet moment when they can listen.",
+      "Say it simply: \"Something happened that made me feel unsafe. I need help.\"",
+      "If they don't listen, tell another adult. Keep telling until someone helps."
+    ]
+  },
+  "yourRights": {
+    "title": "Your rights when you ask for help",
+    "points": [
+      "It is never your fault.",
+      "Your name and identity must be kept secret.",
+      "You can talk where you feel comfortable, with a parent or trusted person next to you.",
+      "Children can get a lawyer for free."
+    ]
+  },
+  "moreHelp": {
+    "title": "More places that help children",
+    "items": [
+      { "name": "NCPCR", "desc": "National Commission for Protection of Child Rights. Takes complaints about any child rights problem, including online through its e-Baal Nidan portal." },
+      { "name": "Child Welfare Committee (CWC)", "desc": "Every district has one. It protects children who need care and safety." },
+      { "name": "District Legal Services Authority (DLSA)", "desc": "Gives free legal help in your district." }
+    ]
+  },
+  "hideLabel": "Hide this screen",
+  "disclaimer": "Saksham is a learning app. It does not contact anyone for you. In an emergency, call 112."
+}

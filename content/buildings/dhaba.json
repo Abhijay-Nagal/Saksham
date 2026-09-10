@@ -1,0 +1,67 @@
+{
+  "id": "dhaba",
+  "title": "Dhaba",
+  "sprite": "cooking",
+  "right": "Freedom from Child Labour",
+  "tagline": "Raju's uncle wants him to work instead of study.",
+  "tone": "normal",
+  "cast": [
+    { "id": "raju", "name": "Raju", "role": "kid", "avatar": { "skin": "#A8663C", "hair": "shortHair", "hairColor": "#1B1B1B" } },
+    { "id": "chacha", "name": "Chacha", "role": "adult", "avatar": { "skin": "#C07A4A", "hair": "shortHair", "hairColor": "#3B2416", "accessory": "mustache" } },
+    { "id": "gupta", "name": "Gupta ji", "role": "elder", "avatar": { "skin": "#EFC3A4", "hair": "halfShavedHead", "hairColor": "#B9B4AE", "accessory": "mustache" } },
+    { "id": "fernandes", "name": "Ms. Fernandes", "role": "adult", "avatar": { "skin": "#5A321D", "hair": "curlyBob", "hairColor": "#1B1B1B", "accessory": "glasses" } }
+  ],
+  "story": {
+    "start": "d1",
+    "nodes": [
+      { "id": "d1", "bg": "street", "props": ["cooking", "tea"], "cast": ["raju", "chacha"], "speaker": "narrator", "text": "It's Monday morning. Raju, who is 12, is packing his school bag.", "next": "d2" },
+      { "id": "d2", "speaker": "chacha", "text": "Raju, forget school today. Gupta ji's dhaba needs a helper. You'll earn ₹50 a day!", "next": "d3" },
+      { "id": "d3", "speaker": "raju", "moods": { "raju": "worried" }, "text": "But Chacha, I have a maths test today.", "next": "d4" },
+      { "id": "d4", "speaker": "chacha", "moods": { "chacha": "angry", "raju": "worried" }, "text": "Maths won't fill our stomachs. Come on, decide.", "next": "d5" },
+      { "id": "d5", "speaker": "narrator", "moods": { "raju": "worried" }, "text": "What should Raju do?", "choices": [
+        { "label": "Go to the dhaba. The money will help.", "sprite": "money", "to": "b1", "kind": "bad" },
+        { "label": "Keep quiet and go. It's not his place to argue.", "sprite": "zipper", "to": "c1", "kind": "bad" },
+        { "label": "Say \"I'm too young to work\" and tell his teacher.", "sprite": "megaphone", "to": "g1", "kind": "good" }
+      ] },
+      { "id": "b1", "bg": "dhaba", "props": ["cooking", "fire"], "cast": ["raju", "gupta"], "speaker": "gupta", "moods": { "gupta": "angry", "raju": "sad" }, "text": "Faster, boy! Wash these plates. You'll work till 10 tonight.", "next": "b2" },
+      { "id": "b2", "speaker": "narrator", "moods": { "raju": "sad" }, "text": "Raju is tired. His hand hurts from the hot stove, and he misses his test.", "next": "b3" },
+      { "id": "b3", "speaker": "mitthu", "text": "Is that fair for a 12-year-old? Let's try again!", "end": "retry" },
+      { "id": "c1", "bg": "dhaba", "props": ["cooking", "fire"], "cast": ["raju"], "speaker": "narrator", "moods": { "raju": "sad" }, "text": "Raju goes quietly. Days become weeks. Soon he stops going to school at all.", "next": "c2" },
+      { "id": "c2", "speaker": "mitthu", "text": "Staying quiet didn't help Raju. Who could he tell? Try again!", "end": "retry" },
+      { "id": "g1", "bg": "school", "props": ["school"], "cast": ["raju", "fernandes"], "speaker": "raju", "moods": { "raju": "proud" }, "text": "Ma'am, my Chacha wants me to work at a dhaba instead of coming to school.", "next": "g2" },
+      { "id": "g2", "speaker": "fernandes", "text": "Thank you for telling me, Raju. Children under 14 can't be made to work in any shop or dhaba. It's against the law.", "next": "g3" },
+      { "id": "g3", "speaker": "fernandes", "moods": { "fernandes": "happy" }, "text": "I'll talk to your Chacha. There's help for families too, like free meals at school.", "next": "g4" },
+      { "id": "g4", "bg": "street", "props": ["cooking", "tea"], "cast": ["chacha", "fernandes"], "speaker": "chacha", "moods": { "chacha": "worried" }, "text": "I didn't know it was against the law. Gupta ji could be fined for hiring him!", "next": "g5" },
+      { "id": "g5", "cast": ["raju", "chacha"], "speaker": "raju", "moods": { "raju": "happy", "chacha": "happy" }, "text": "So I can go to school? Yay!", "next": "g6" },
+      { "id": "g6", "speaker": "narrator", "moods": { "raju": "happy", "chacha": "happy" }, "text": "Raju spoke up, and now he's back in class. Children should learn and play, not work.", "end": "good" }
+    ]
+  },
+  "card": {
+    "id": "no-child-labour",
+    "title": "Right to Be Free from Child Labour",
+    "sprite": "stop",
+    "color": "rani",
+    "kid": "Children under 14 can't be made to work in shops, dhabas, factories or as house help. Helping your own family after school is okay, as long as it's safe and you still have time to study and play.",
+    "teen": "The Child and Adolescent Labour Act (amended in 2016) bans employing children under 14 in any job. The only exceptions are helping a family business after school hours in non-hazardous work, or working as a child artist under strict conditions. Adolescents aged 14 to 18 can't work in hazardous jobs like mines or work with fire, chemicals or explosives. Employers can be jailed for up to 2 years and fined up to ₹50,000.",
+    "ifItHappens": "Tell a teacher or call 1098. Adults can also report child labour on the government's PENCIL portal.",
+    "law": "Child and Adolescent Labour Act 1986 (amended 2016), Article 24",
+    "source": "Child and Adolescent Labour (Prohibition and Regulation) Act, 1986, as amended in 2016 (Sections 3, 3A, 14); Constitution of India, Article 24"
+  },
+  "game": {
+    "type": "sort",
+    "title": "Allowed or Not Allowed?",
+    "prompt": "Drag each card into the right bin.",
+    "bins": [
+      { "id": "allowed", "label": "Allowed", "sprite": "check", "color": "leaf" },
+      { "id": "not-allowed", "label": "Not allowed", "sprite": "stop", "color": "rani" }
+    ],
+    "items": [
+      { "id": "i1", "text": "A 10-year-old washing dishes at a roadside dhaba all day.", "bin": "not-allowed", "explain": "No child under 14 can be employed in a dhaba or shop." },
+      { "id": "i2", "text": "A 12-year-old helping at her parents' own shop after school, with time left for homework.", "bin": "allowed", "explain": "Helping your family's business after school is allowed if it's safe and doesn't hurt your studies." },
+      { "id": "i3", "text": "A 13-year-old packing firecrackers in a factory.", "bin": "not-allowed", "explain": "Firecracker work is dangerous and banned for all children." },
+      { "id": "i4", "text": "A 15-year-old working in a mine.", "bin": "not-allowed", "explain": "Adolescents aged 14 to 18 can't do hazardous work like mining." },
+      { "id": "i5", "text": "An 11-year-old working full-time as house help in someone else's home.", "bin": "not-allowed", "explain": "Domestic work for others is employment, and it's banned for children under 14." },
+      { "id": "i6", "text": "A 16-year-old working at a bookshop during the summer holidays.", "bin": "allowed", "explain": "Adolescents can do safe, non-hazardous work with proper conditions." }
+    ]
+  }
+}

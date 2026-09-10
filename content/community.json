@@ -1,0 +1,72 @@
+{
+  "_note": "All community data is SAMPLE data for the prototype. The UI must label it 'Sample' in small text. Kids can never type free text that other kids see.",
+  "pledges": [
+    { "id": "p1", "text": "I will speak up if I see a child working instead of studying.", "sprite": "megaphone" },
+    { "id": "p2", "text": "I will tell a trusted adult if something feels unsafe.", "sprite": "heart" },
+    { "id": "p3", "text": "I will help a friend who is being bullied.", "sprite": "friends" },
+    { "id": "p4", "text": "I will remind my family that every child should go to school.", "sprite": "books" },
+    { "id": "p5", "text": "I will say no to child marriage.", "sprite": "graduation-cap" },
+    { "id": "p6", "text": "I will never share my photos with strangers online.", "sprite": "shield" }
+  ],
+  "wall": [
+    { "name": "Aarav", "place": "Class 6, Pune", "pledge": "p1", "avatar": { "skin": "#D4935F", "hair": "shortHair", "hairColor": "#1B1B1B" } },
+    { "name": "Nandini", "place": "Class 8, Chennai", "pledge": "p5", "avatar": { "skin": "#5A321D", "hair": "braids", "hairColor": "#1B1B1B" } },
+    { "name": "Harpreet", "place": "Class 7, Amritsar", "pledge": "p3", "avatar": { "skin": "#E2A67E", "hair": "shortHair", "hairColor": "#1B1B1B", "headwear": "patka" } },
+    { "name": "Lalremruati", "place": "Class 9, Aizawl", "pledge": "p6", "avatar": { "skin": "#F6D7C3", "hair": "straightHair", "hairColor": "#1B1B1B" } },
+    { "name": "Imran", "place": "Class 5, Lucknow", "pledge": "p2", "avatar": { "skin": "#A8663C", "hair": "curlyShortHair", "hairColor": "#1B1B1B", "accessory": "glasses" } },
+    { "name": "Ayesha", "place": "Class 7, Hyderabad", "pledge": "p4", "avatar": { "skin": "#C07A4A", "hair": "straightHair", "hairColor": "#1B1B1B", "headwear": "hijab" } },
+    { "name": "Tenzin", "place": "Class 6, Gangtok", "pledge": "p1", "avatar": { "skin": "#EFC3A4", "hair": "bowlCutHair", "hairColor": "#1B1B1B" } },
+    { "name": "Kavya", "place": "Class 10, Kochi", "pledge": "p5", "avatar": { "skin": "#744126", "hair": "wavyBob", "hairColor": "#3B2416" } },
+    { "name": "Rohan", "place": "Class 8, Ranchi", "pledge": "p2", "avatar": { "skin": "#432416", "hair": "shavedHead", "hairColor": "#1B1B1B" } },
+    { "name": "Priya", "place": "Class 5, Jaipur", "pledge": "p3", "avatar": { "skin": "#D4935F", "hair": "bunHair", "hairColor": "#6A3E23" } },
+    { "name": "Dev", "place": "Class 9, Guwahati", "pledge": "p6", "avatar": { "skin": "#E2A67E", "hair": "froBun", "hairColor": "#1B1B1B" } },
+    { "name": "Sana", "place": "Class 6, Srinagar", "pledge": "p4", "avatar": { "skin": "#F6D7C3", "hair": "curlyBob", "hairColor": "#8E3B1F" } }
+  ],
+  "classChallenge": {
+    "title": "Class 7B's Rights Mission",
+    "goal": "Earn 500 stars together this month",
+    "target": 500,
+    "current": 342,
+    "note": "Everyone's stars add up. No one is ranked against each other."
+  },
+  "askExpert": {
+    "intro": "Have a question about your rights? A trained volunteer from a partner legal aid organisation answers privately.",
+    "safetyNote": "Don't write your full name, address, school or phone number.",
+    "topics": ["School", "Work", "Safety", "Marriage", "Online", "Something else"],
+    "submittedMessage": "Your question is sent. Only a verified volunteer can see it. Answers usually come within 2 days.",
+    "answered": [
+      { "q": "Can a school refuse admission if I don't have a birth certificate?", "a": "No. Under the RTE Act, no child can be denied admission because they don't have age proof. The school can use other documents or a declaration from your parents.", "topic": "School" },
+      { "q": "My friend is 13 and works full-time at a shop. Is that legal?", "a": "No. Children under 14 can't be employed in shops. You can tell a teacher, or an adult can call 1098 or report it on the PENCIL portal.", "topic": "Work" },
+      { "q": "My cousin is 16 and her family wants her to marry. What can we do?", "a": "That would be a child marriage, which is a crime. Call 1098 or tell a teacher or Anganwadi worker. A Child Marriage Prohibition Officer can stop it.", "topic": "Marriage" },
+      { "q": "Someone online keeps asking for my photos. What should I do?", "a": "Don't send anything, and block them. Tell a trusted adult. You can also report it to the Cyber Crime Helpline, 1930.", "topic": "Online" },
+      { "q": "Do I have to pay a lawyer if I need legal help?", "a": "No. Children can get free legal help from the Legal Services Authority in their district. The national legal aid helpline is 15100.", "topic": "Something else" },
+      { "q": "Is a teacher allowed to hit me if I don't do my homework?", "a": "No. The RTE Act bans physical punishment and mental harassment in school. Tell your parents or the headteacher.", "topic": "School" }
+    ]
+  },
+  "resources": [
+    { "name": "Childline 1098", "desc": "24-hour free phone help for children.", "sprite": "telephone" },
+    { "name": "NCPCR", "desc": "National body that protects child rights and takes complaints.", "sprite": "scales" },
+    { "name": "NALSA and DLSA", "desc": "Free legal aid for children, nationally and in every district.", "sprite": "scales" },
+    { "name": "Child Welfare Committee", "desc": "District committee that protects children who need care.", "sprite": "shield" }
+  ],
+  "teacherDashboard": {
+    "_note": "STRETCH ONLY. Sample class data for /teacher.",
+    "className": "Class 7B",
+    "students": [
+      { "name": "Aarav", "school": 3, "dhaba": 2, "home": 3, "panchayat": 1 },
+      { "name": "Nandini", "school": 3, "dhaba": 3, "home": 2, "panchayat": 3 },
+      { "name": "Harpreet", "school": 2, "dhaba": 1, "home": 0, "panchayat": 0 },
+      { "name": "Imran", "school": 3, "dhaba": 3, "home": 3, "panchayat": 2 },
+      { "name": "Ayesha", "school": 1, "dhaba": 0, "home": 0, "panchayat": 0 },
+      { "name": "Tenzin", "school": 3, "dhaba": 2, "home": 2, "panchayat": 2 },
+      { "name": "Kavya", "school": 2, "dhaba": 2, "home": 1, "panchayat": 0 },
+      { "name": "Rohan", "school": 3, "dhaba": 3, "home": 3, "panchayat": 3 },
+      { "name": "Priya", "school": 2, "dhaba": 1, "home": 1, "panchayat": 0 },
+      { "name": "Dev", "school": 3, "dhaba": 3, "home": 2, "panchayat": 1 }
+    ],
+    "commonMistakes": [
+      { "building": "dhaba", "item": "i2", "note": "Most students thought helping at a family shop after school is banned." },
+      { "building": "panchayat", "item": "q2", "note": "Many students confused the minimum marriage age for boys (21) with 18." }
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "appName": "Saksham",
+  "mascotName": "Mitthu",
+  "buildingOrder": ["school", "dhaba", "home", "panchayat"],
+  "map": {
+    "width": 1000,
+    "height": 1400,
+    "path": "M480 40 C 420 90, 320 110, 320 180 S 680 290, 680 390 S 320 500, 320 600 S 680 710, 680 810 S 320 920, 320 1020 S 620 1130, 620 1230",
+    "spots": [
+      { "id": "school", "x": 320, "y": 180, "status": "playable", "title": "School", "sprite": "school" },
+      { "id": "dhaba", "x": 680, "y": 390, "status": "playable", "title": "Dhaba", "sprite": "cooking" },
+      { "id": "home", "x": 320, "y": 600, "status": "playable", "title": "Home", "sprite": "house" },
+      { "id": "panchayat", "x": 680, "y": 810, "status": "playable", "title": "Panchayat", "sprite": "classical-building" },
+      { "id": "playground", "x": 320, "y": 1020, "status": "locked-teaser", "title": "Playground", "sprite": "kite", "teaser": "Coming soon: your right to play, rest and have a name and identity." },
+      { "id": "cyber", "x": 620, "y": 1230, "status": "locked-teaser", "title": "Cyber Adda", "sprite": "mobile-phone", "teaser": "Coming soon: staying safe online and what to do about cyberbullying." },
+      { "id": "help", "x": 860, "y": 130, "status": "help", "title": "Help Centre", "sprite": "handshake" }
+    ],
+    "trees": [
+      { "x": 90, "y": 330, "sprite": "tree" }, { "x": 900, "y": 560, "sprite": "palm" },
+      { "x": 120, "y": 800, "sprite": "tree" }, { "x": 880, "y": 1000, "sprite": "tree" },
+      { "x": 110, "y": 1250, "sprite": "palm" }, { "x": 520, "y": 700, "sprite": "tree" }
+    ],
+    "kites": [ { "x": 820, "y": 300 }, { "x": 150, "y": 1080 } ],
+    "clouds": [ { "y": 60, "speed": 42 }, { "y": 420, "speed": 60 }, { "y": 760, "speed": 52 }, { "y": 1120, "speed": 70 } ],
+    "marigolds": [ { "x": 200, "y": 110 }, { "x": 900, "y": 420 }, { "x": 500, "y": 880 }, { "x": 60, "y": 1150 }, { "x": 760, "y": 1340 } ]
+  },
+  "avatarPalette": {
+    "skins": ["#F6D7C3", "#EFC3A4", "#E2A67E", "#D4935F", "#C07A4A", "#A8663C", "#8D5230", "#744126", "#5A321D", "#432416"],
+    "hairColors": ["#1B1B1B", "#3B2416", "#6A3E23", "#8E3B1F", "#B9B4AE"],
+    "hairs": ["shortHair", "straightHair", "braids", "bunHair", "curlyBob", "curlyShortHair", "froBun", "wavyBob", "bangs", "bowlCutHair", "shavedHead", "halfShavedHead", "mohawk"],
+    "headwear": ["patka", "hijab", "dupatta"]
+  },
+  "moodMap": {
+    "normal": { "eyes": "normal", "mouth": "awkwardSmile" },
+    "happy": { "eyes": "cheery", "mouth": "teethSmile" },
+    "sad": { "eyes": "sad", "mouth": "openSad" },
+    "angry": { "eyes": "angry", "mouth": "unimpressed" },
+    "worried": { "eyes": "confused", "mouth": "awkwardSmile" },
+    "proud": { "eyes": "starstruck", "mouth": "openedSmile" }
+  },
+  "badges": [
+    { "id": "first-voice", "title": "First Voice", "sprite": "megaphone", "how": "Finish your first story." },
+    { "id": "card-collector", "title": "Card Collector", "sprite": "books", "how": "Collect 3 Haq Cards." },
+    { "id": "sharp-eyes", "title": "Sharp Eyes", "sprite": "marigold", "how": "Find all 5 hidden marigolds in town." },
+    { "id": "fair-play", "title": "Fair Play", "sprite": "check", "how": "Sort every card correctly in a sorting game." },
+    { "id": "quiz-whiz", "title": "Quiz Whiz", "sprite": "star", "how": "Get every question right in a quiz." },
+    { "id": "haq-champion", "title": "Haq Champion", "sprite": "trophy", "how": "Complete all four buildings." }
+  ],
+  "mitthuFacts": [
+    "School is free for every child aged 6 to 14. That's the law!",
+    "You have the right to play. Yes, really!",
+    "1098 is free to call, day or night.",
+    "A surprise is fun. A scary secret is not. Always tell a trusted adult.",
+    "Girls must be 18 and boys 21 to get married.",
+    "Children under 14 can't be made to work in shops or dhabas.",
+    "Your voice matters. Mitthu says: speak up!",
+    "India promised to protect children's rights when it signed the UN Convention on the Rights of the Child in 1992.",
+    "Teachers are not allowed to hit students.",
+    "If you need a lawyer, children can get legal help for free.",
+    "Your body belongs to you.",
+    "Standing up for a friend is brave too!"
+  ],
+  "stars": {
+    "rule": "1 star for finishing the story. +1 if the game score is 60% or more. +1 if the game score is 90% or more AND the story was solved with no retries.",
+    "unlockRule": "Finishing a building unlocks the next one in buildingOrder. School is always unlocked."
+  }
+}
