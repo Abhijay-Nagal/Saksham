@@ -90,7 +90,7 @@ export function TopBar() {
             className="star-pill"
             tone="marigold"
           />
-          <Pill sprite="marigold" value={marigolds} label="Marigolds found" className="hidden sm:inline-flex" />
+          <Pill sprite="marigold" value={marigolds} label="Marigolds found" className="marigold-pill hidden sm:inline-flex" />
           <Button
             variant="help"
             onClick={() => navigate('/help')}

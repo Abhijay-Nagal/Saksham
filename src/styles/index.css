@@ -141,9 +141,18 @@
 
 /* ---------- Ambient keyframes (CSS, cheap) ---------- */
 
+/* Clouds start off the left edge of the map and drift past the right edge. */
 @keyframes drift {
-  from { transform: translateX(-20vw); }
-  to { transform: translateX(120vw); }
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(100vw + 260px)); }
+}
+
+@keyframes fly {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(30vw, -30px); }
+  50% { transform: translate(60vw, 10px); }
+  75% { transform: translate(90vw, -20px); }
+  100% { transform: translate(calc(100vw + 120px), 0); }
 }
 
 @keyframes bob {

@@ -22,10 +22,10 @@ Done when: the build passes, every route renders, sprites show, and the shell wo
 
 ## Phase 1: UI kit and the living town
 
-- [ ] UI components: Button, IconButton, Pill, Panel, Sheet, Toast (plus a provider), Chip, ProgressBar. Read: DESIGN §6.
-- [ ] `src/lib/fx.ts`: `confetti(el)` (canvas-confetti in palette colours), `flyTo(fromEl, toEl, sprite, count)`, `sparkle(el)`. All are no-ops under calm. Read: DESIGN §7 tier 4.
-- [ ] Avatar component (DiceBear, mood mapping, memoised) and Mitthu component (bob, hop, bubble). Read: DESIGN §8 (not the headwear part).
-- [ ] Town map: layers, ambient loops, scroll parallax and path draw, spot tiles with all states, BuildingSheet, every scenery tap reply, marigolds plus the Sharp Eyes badge, and auto-scroll to the recommended building. Read: SCREENS §Town, DESIGN §7. Check against `docs/reference/style-tile.html` by grepping `.world`, `.bld` and `.cloud`.
+- [x] UI components: Button, IconButton, Pill, Panel, Sheet, Toast (plus a provider), Chip, ProgressBar. Read: DESIGN §6.
+- [x] `src/lib/fx.ts`: `confetti(el)` (canvas-confetti in palette colours), `flyTo(fromEl, toEl, sprite, count)`, `sparkle(el)`. All are no-ops under calm. Read: DESIGN §7 tier 4.
+- [x] Avatar component (DiceBear, mood mapping, memoised) and Mitthu component (bob, hop, bubble). Read: DESIGN §8 (not the headwear part).
+- [x] Town map: layers, ambient loops, scroll parallax and path draw, spot tiles with all states, BuildingSheet, every scenery tap reply, marigolds plus the Sharp Eyes badge, and auto-scroll to the recommended building. Read: SCREENS §Town, DESIGN §7. Check against `docs/reference/style-tile.html` by grepping `.world`, `.bld` and `.cloud`.
 
 Done when: the town feels like style tile v2 at 1366×768 and 390×844, and nothing janks while scrolling.
 
