@@ -132,7 +132,8 @@
     "credits": "Credits",
     "editAvatar": "Edit avatar",
     "starsCount": "{n} stars",
-    "cardsCount": "{n} / {total} cards"
+    "cardsCount": "{n} / {total} cards",
+    "forTeachers": "For teachers"
   },
   "demo": {
     "on": "Demo mode on: all buildings unlocked."

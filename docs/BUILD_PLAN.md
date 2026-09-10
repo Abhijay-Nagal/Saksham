@@ -69,7 +69,7 @@ Done when: all 4 buildings are playable and each unlocks the next.
 ## Phase 7: Stretch (in order, stop anytime)
 
 - [x] Headwear overlays, builder row, and `/dev/avatars`. Read: DESIGN §8 (headwear).
-- [ ] Teacher dashboard. Read: SCREENS §Teacher dashboard.
+- [x] Teacher dashboard. Read: SCREENS §Teacher dashboard.
 - [ ] Time-of-day sky (morning, day, evening and night palettes from the clock; night gets stars and glowing windows).
 
 ## Session notes

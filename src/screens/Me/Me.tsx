@@ -179,6 +179,12 @@ export function Me() {
         <Link to="/credits" className="text-body inline-flex min-h-12 items-center font-bold text-peacock underline">
           {t('me.credits')}
         </Link>
+        <Link
+          to="/teacher"
+          className="text-body inline-flex min-h-12 items-center font-bold text-peacock underline"
+        >
+          {t('me.forTeachers')}
+        </Link>
       </div>
 
       <Sheet
