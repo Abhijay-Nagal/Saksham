@@ -56,7 +56,7 @@ Done when: all 4 buildings are playable and each unlocks the next.
 
 ## Phase 5: Community
 
-- [ ] Community with 4 tabs. Read: SCREENS §Community, PRODUCT §7.
+- [x] Community with 4 tabs. Read: SCREENS §Community, PRODUCT §7.
 
 ## Phase 6: Polish and demo (MILESTONE B)
 

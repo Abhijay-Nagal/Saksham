@@ -96,7 +96,17 @@
     "classMission": "Class Mission",
     "askExpert": "Ask an Expert",
     "resources": "Places that help",
-    "sample": "Sample"
+    "sample": "Sample",
+    "pledgeAdded": "Pledge added to the wall!",
+    "alreadyTaken": "Already taken",
+    "pickTopic": "Pick a topic",
+    "yourQuestion": "Your question",
+    "sendPrivately": "Send privately",
+    "yourQuestions": "Your questions",
+    "questionsPrivate": "Only you can see these. They stay on this device.",
+    "answered": "Already answered",
+    "starsTogether": "{n} / {total} stars together",
+    "yourShare": "Your {n} stars are part of this. Everyone helps."
   },
   "me": {
     "title": "Me",

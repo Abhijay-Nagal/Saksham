@@ -69,7 +69,7 @@ export function Avatar({ spec, mood = 'normal', size = 96, className, framed, na
       draggable={false}
       className={cn(
         'select-none object-contain',
-        framed && 'rounded-full bg-sky sticker',
+        framed && 'rounded-full bg-sky p-1 sticker',
         className,
       )}
       style={sized ? { width: size, height: size } : undefined}
