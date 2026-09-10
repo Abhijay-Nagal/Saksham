@@ -57,7 +57,7 @@ Colour rules:
 - The page background is `paper` and panels are white. The town and story stage backgrounds are `sky`.
 - `marigold` is the primary action fill, always with `ink` text. Never use marigold as text on paper; it fails contrast.
 - `peacock` is for help and trust UI, with white text.
-- `rani` is for curtains, Haq Card fronts, and "not allowed" bins. White text on rani or leaf must be 22px bold or larger.
+- `rani` is for curtains, card fronts, and "not allowed" bins. White text on rani or leaf must be 22px bold or larger.
 - Success is `leaf` / `leaf-soft`. Wrong is `rani` / `rani-soft`. Always pair colour with an icon; colour is never the only signal.
 - Never use raw hex in components. The only exceptions are avatar data from content and the SVG scenery fills listed in §7.
 
@@ -79,7 +79,7 @@ Colour rules:
 ## 5. Layout and responsive
 
 - Breakpoints: mobile under 768px, desktop from 768px. The demo target is 1366×768; also verify 1920×1080 and 390×844.
-- **Desktop shell**: a sticky top bar with the logo and Mitthu on the left, nav tabs (Town, Haq Book, Community, Me) in the centre, and the stars pill, Demo chip and Need help button on the right.
+- **Desktop shell**: a sticky top bar with the logo and Mitthu on the left, nav tabs (Town, Book, Community, Me) in the centre, and the stars pill, Demo chip and Need help button on the right.
 - **Mobile shell**: a slim top bar (logo, stars, Help) and a bottom tab bar with 4 tabs.
 - **Play route**: immersive. It hides the nav and shows only the exit ✕, the phase progress (Story, Card, Game, Done) and the Help button.
 - Content is max 1100px wide, centred. The town map and theatre stage are max 1000px.
@@ -103,7 +103,7 @@ These live in `src/components/ui/`, one per file, all using tokens.
   - `locked`: greyscale, 🔒, and a shake when tapped.
   - `teaser`: greyscale with a "Soon" ribbon.
   - `help`: peacock fill with no animation.
-- **HaqCard**: 3:4 ratio.
+- **Card**: 3:4 ratio.
   - Front: coloured fill, a shimmer sweeping every 3.5s, a big sprite, and the title.
   - Back: white, with the band text, "If it happens", a law chip, and a micro source line.
   - It tilts toward the cursor (max 18° Y, 14° X), flips on tap with a 700ms spring rotateY, and is keyboard operable.
@@ -139,7 +139,7 @@ Tier 3, tap replies (everything in the town):
 
 Tier 4, rewards:
 - Correct answer: tile pop, `sound.correct()`, and a ⭐ flying to the stars pill.
-- Results: stars appear one by one (300ms apart, spring from scale 0 with a rotation), confetti bursts in the palette colours, and the card thumbnail flies to the Haq Book tab.
+- Results: stars appear one by one (300ms apart, spring from scale 0 with a rotation), confetti bursts in the palette colours, and the card thumbnail flies to the Book tab.
 - Back in town after a building: that tile bounces, sparkles orbit it, and the next tile's lock pops off (lock scales to 0 and rotates, then the tile turns `current`).
 - Card reveal: a dim overlay (ink at 70%), a rotating sunburst behind the card (conic-gradient rays of marigold, 20s spin), and the card flying in from scale 0.2 with a 360° spin.
 

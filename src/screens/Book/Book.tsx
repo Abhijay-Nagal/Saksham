@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
-import type { HaqCard as HaqCardData } from '@content/types'
+import type { Card as CardData } from '@content/types'
 import { allBuildings, t, world } from '@/lib/content'
 import { useActiveProfile } from '@/lib/store'
-import { HaqCard, HaqCardThumb } from '@/components/ui/HaqCard'
+import { Card, CardThumb } from '@/components/ui/Card'
 import { Sheet } from '@/components/ui/Sheet'
 import { Sprite } from '@/components/ui/Sprite'
 
@@ -12,7 +12,7 @@ const TEASERS = world.map.spots.filter((s) => s.status === 'locked-teaser')
 
 export function Book() {
   const profile = useActiveProfile()
-  const [open, setOpen] = useState<HaqCardData | null>(null)
+  const [open, setOpen] = useState<CardData | null>(null)
 
   const owned = profile?.cards ?? []
   const cards = allBuildings.map((b) => ({ card: b.card, title: b.title }))
@@ -21,14 +21,14 @@ export function Book() {
   return (
     <div className="mx-auto max-w-[900px]">
       <div className="mb-1 flex flex-wrap items-baseline gap-x-4 gap-y-1">
-        <h1 className="text-h1">{t('haqBook.title')}</h1>
+        <h1 className="text-h1">{t('book.title')}</h1>
         <p className="text-body font-bold text-ink-soft">
-          {t('haqBook.count', { n: ownedCount, total: cards.length })}
+          {t('book.count', { n: ownedCount, total: cards.length })}
         </p>
       </div>
 
       {ownedCount === 0 && (
-        <p className="text-body mb-4 text-ink-soft">{t('haqBook.empty')}</p>
+        <p className="text-body mb-4 text-ink-soft">{t('book.empty')}</p>
       )}
 
       <div className="mt-4 grid grid-cols-2 justify-items-center gap-4 sm:grid-cols-3 md:grid-cols-4">
@@ -46,7 +46,7 @@ export function Book() {
                   ?
                 </span>
                 <p className="text-body font-extrabold text-ink-soft">{title}</p>
-                <p className="text-small font-bold text-ink-soft/70">{t('haqBook.lockedCard')}</p>
+                <p className="text-small font-bold text-ink-soft/70">{t('book.lockedCard')}</p>
               </div>
             )
           }
@@ -62,7 +62,7 @@ export function Book() {
               aria-label={`${card.title}, open card`}
               className="w-full max-w-[180px] rounded-card transition-transform duration-200 ease-spring md:hover:-translate-y-1 md:hover:-rotate-2"
             >
-              <HaqCardThumb card={card} width={180} className="w-full" />
+              <CardThumb card={card} width={180} className="w-full" />
             </motion.button>
           )
         })}
@@ -83,7 +83,7 @@ export function Book() {
       <Sheet open={!!open} onClose={() => setOpen(null)} className="md:max-w-[420px]">
         {open && profile && (
           <div className="flex justify-center pt-2">
-            <HaqCard card={open} band={profile.band} width={280} />
+            <Card card={open} band={profile.band} width={280} />
           </div>
         )}
       </Sheet>

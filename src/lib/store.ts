@@ -69,7 +69,7 @@ export interface AppState {
     patch: Partial<Pick<Profile, 'name' | 'avatar' | 'band' | 'headwearColor'>>,
   ) => void
 
-  /** Cards land in the Haq Book the moment they are revealed, not at results. */
+  /** Cards land in the book the moment they are revealed, not at results. */
   collectCard: (cardId: string) => string[]
   recordResult: (result: PlayResult) => { stars: Stars; unlocked: string | null; newBadges: string[] }
   findMarigold: (index: number) => { found: boolean; newBadges: string[] }
@@ -154,7 +154,7 @@ function computeBadges(
   if (p.marigolds.length >= world.map.marigolds.length) earned.add('sharp-eyes')
   if (flags.perfectSort) earned.add('fair-play')
   if (flags.perfectQuiz) earned.add('quiz-whiz')
-  if (completedCount >= world.buildingOrder.length) earned.add('haq-champion')
+  if (completedCount >= world.buildingOrder.length) earned.add('champion')
 
   return [...earned]
 }

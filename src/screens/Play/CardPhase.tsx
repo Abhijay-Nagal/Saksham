@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
-import type { AgeBand, HaqCard as HaqCardData } from '@content/types'
+import type { AgeBand, Card as CardData } from '@content/types'
 import { t } from '@/lib/content'
 import { sound } from '@/lib/sound'
 import { useStore } from '@/lib/store'
 import { Button } from '@/components/ui/Button'
-import { HaqCard } from '@/components/ui/HaqCard'
+import { Card } from '@/components/ui/Card'
 
 interface CardPhaseProps {
-  card: HaqCardData
+  card: CardData
   band: AgeBand
   onContinue: () => void
 }
@@ -60,7 +60,7 @@ export function CardPhase({ card, band, onContinue }: CardPhaseProps) {
         transition={{ type: 'spring', stiffness: 120, damping: 16, duration: 0.9 }}
         className="relative z-10"
       >
-        <HaqCard
+        <Card
           card={card}
           band={band}
           width={288}

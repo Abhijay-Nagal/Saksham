@@ -10,7 +10,7 @@ import { useToast } from '@/components/ui/Toast'
 
 const TABS = [
   { to: '/town', key: 'nav.town', sprite: 'school' },
-  { to: '/book', key: 'nav.haqBook', sprite: 'books' },
+  { to: '/book', key: 'nav.book', sprite: 'books' },
   { to: '/community', key: 'nav.community', sprite: 'friends' },
   { to: '/me', key: 'nav.me', sprite: 'star' },
 ]

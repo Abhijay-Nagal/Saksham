@@ -40,11 +40,11 @@
   },
   "badges": [
     { "id": "first-voice", "title": "First Voice", "sprite": "megaphone", "how": "Finish your first story." },
-    { "id": "card-collector", "title": "Card Collector", "sprite": "books", "how": "Collect 3 Haq Cards." },
+    { "id": "card-collector", "title": "Card Collector", "sprite": "books", "how": "Collect 3 cards." },
     { "id": "sharp-eyes", "title": "Sharp Eyes", "sprite": "marigold", "how": "Find all 5 hidden marigolds in town." },
     { "id": "fair-play", "title": "Fair Play", "sprite": "check", "how": "Sort every card correctly in a sorting game." },
     { "id": "quiz-whiz", "title": "Quiz Whiz", "sprite": "star", "how": "Get every question right in a quiz." },
-    { "id": "haq-champion", "title": "Haq Champion", "sprite": "trophy", "how": "Complete all four buildings." }
+    { "id": "champion", "title": "Champion", "sprite": "trophy", "how": "Complete all four buildings." }
   ],
   "mitthuFacts": [
     "School is free for every child aged 6 to 14. That's the law!",

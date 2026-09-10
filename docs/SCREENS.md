@@ -13,7 +13,7 @@ HashRouter (`react-router` v7). Every route except `/play/:id` sits inside the A
 | `/onboarding` | Onboarding |
 | `/town` | Town map (home) |
 | `/play/:buildingId` | Play flow: story, card, game, results (one route, internal phase state) |
-| `/book` | Haq Book |
+| `/book` | Book |
 | `/help` | Help Centre |
 | `/community` | Community |
 | `/me` | Me |
@@ -139,15 +139,15 @@ Flow:
 
 - `results.title` plus a mood-happy avatar of the player.
 - Three star slots fill one by one (DESIGN §7 tier 4), with `results.stars`.
-- The card thumbnail flies to the Haq Book tab or icon. Badges unlocked now show as toasts.
+- The card thumbnail flies to the Book tab or icon. Badges unlocked now show as toasts.
 - Buttons: `results.backToTown` (primary) goes to `/town` with the celebration state, and `results.tryAgain` restarts the game phase only.
 - Gentle tone: a soft sparkle instead of confetti, plus the `results.gentleNote` Panel linking to `/help`.
 
-## Haq Book
+## Book
 
 - An album grid: 4 building cards plus 2 teaser silhouettes ("Coming soon"), and a progress label "n / 4 cards".
-- An owned card shows its front with tilt. Tap opens a modal with a large flippable HaqCard.
-- An unowned card is a dashed silhouette with "?" and `haqBook.lockedCard`.
+- An owned card shows its front with tilt. Tap opens a modal with a large flippable Card.
+- An unowned card is a dashed silhouette with "?" and `book.lockedCard`.
 
 ## Help Centre
 

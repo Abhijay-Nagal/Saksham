@@ -33,7 +33,7 @@ Done when: the town feels like style tile v2 at 1366×768 and 390×844, and noth
 
 - [x] `src/engines/story/`: `useStory` reducer (current node; carried-over bg, props, cast and moods; retry target; retries count), Theatre (valance, curtains, backdrops, puppets, Mitthu popup), DialogueBox (typewriter, read aloud, aria-live), and Choices. Read: SCREENS §Play: story, DESIGN §6 (DialogueBox, ChoiceButton), `content/buildings/school.json`.
 - [x] `/play/:buildingId` phase machine (story, card, game, results) with the play header and phase progress.
-- [x] HaqCard component and card reveal phase. Read: SCREENS §Play: card reveal, DESIGN §6 (HaqCard).
+- [x] Card component and card reveal phase. Read: SCREENS §Play: card reveal, DESIGN §6 (Card).
 - [x] `src/engines/games/QuizGame` with band filtering and the hint round. Read: SCREENS §Play: quiz, PRODUCT §4.
 - [x] Results phase, the stars rule, saving progress, badges, unlocking, and the town return celebration. Read: SCREENS §Play: results and §Town (return celebration), PRODUCT §4.
 
@@ -43,7 +43,7 @@ Done when: School plays from the town through to results and back, and stars and
 
 - [x] `src/engines/games/SortGame` (drag plus the tap alternative). Read: SCREENS §Play: sort, DESIGN §12.
 - [x] Wire Dhaba, Home and Panchayat. This should be content only; if one needs code changes, fix the engine, not the content. Check the Home gentle tone. Read: PRODUCT §7 (gentle).
-- [x] Haq Book screen. Read: SCREENS §Haq Book.
+- [x] Book screen. Read: SCREENS §Book.
 
 Done when: all 4 buildings are playable and each unlocks the next.
 
@@ -81,8 +81,8 @@ Append at the end of every phase and before stopping. Three to six lines: what's
 - Two React bugs found by driving the app headless, both fixed: duplicate `key` on sibling DialogueBox/Choices stranded a second dialogue in the DOM; and an unstable `onFinish` re-ran the end-of-story effect, whose guard then cleared its own timers so the card phase never fired. Watch for that pattern in new effects.
 - Dev tooling: Playwright chromium lives in the scratchpad (NOT a project dependency) and drives the app for screenshots. Scripts: `shot.mjs`, `loop.mjs`.
 - Puppets are DiceBear heads on an SVG cloth body, sized in `cqh` against the stage (`container-type: size`). The stage is capped at `max-w-[min(1000px,104vh)]` so the whole play screen fits 1366x768.
-- Next: Phase 3 — wire Dhaba, Home and Panchayat, then the Haq Book screen.
-- **Session 2 (Phases 3-7) done. Every phase and every stretch goal is ticked.** All four buildings play; profiles, onboarding, avatar builder, Help Centre, Me, Credits, Haq Book, Community and the teacher dashboard are built; curtain page transitions are in.
+- Next: Phase 3 — wire Dhaba, Home and Panchayat, then the Book screen.
+- **Session 2 (Phases 3-7) done. Every phase and every stretch goal is ticked.** All four buildings play; profiles, onboarding, avatar builder, Help Centre, Me, Credits, Book, Community and the teacher dashboard are built; curtain page transitions are in.
 - Verified by driving the real app headless (Playwright, in the scratchpad — NOT a project dependency): the full demo path, all four buildings end to end, 390x844 and 1920x1080, a keyboard pass, and a calm/reduced-motion pass. No console errors anywhere; no horizontal overflow; no tap target under 44px; every `t()` key resolves.
 - The play screen is height-fitted on desktop (`md:h-dvh` + a flex column; the theatre carries `md:aspect-[1.69/1]` so its width follows the space the dialogue and choices leave). This is why the story fits 1366x768 with three choices showing. Don't reintroduce a fixed `max-w` on the stage.
 - The town is a size container; tiles, scenery and Mitthu scale in `cqw`, which is what stops the map crowding on a phone.

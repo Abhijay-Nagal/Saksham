@@ -15,9 +15,9 @@ Read one section at a time. Sections are `## ` headers; find them with `grep -n 
 In scope (build this):
 - Profiles on a shared device (no login, no email, first name only), onboarding, and an avatar builder.
 - The town map with 4 playable buildings (School, Dhaba, Home, Panchayat), 2 locked "coming soon" teasers (Playground, Cyber Adda), and the Help Centre.
-- The core loop per building: story, then Haq Card, then mini-game, then results.
+- The core loop per building: story, then a rights card, then mini-game, then results.
 - Two game engines only: quiz and sort.
-- Haq Book (card album), Me (badges, settings), Help Centre, Community (sample data), Credits.
+- Book (card album), Me (badges, settings), Help Centre, Community (sample data), Credits.
 - Demo mode (unlock everything).
 
 Out of scope (do NOT build): backend, login, real chat, real expert messaging, analytics, multi-language switching, PWA/offline caching, and tests.
@@ -28,9 +28,9 @@ Stretch goals, only after Phase 6, in this order: headwear overlays, teacher das
 
 1. Tap a building on the town map. A sheet opens with the right's name, the tagline and a Play button.
 2. **Story**: a puppet-theatre scene. The player reads or listens, then makes a choice. Bad choices play a consequence, and Mitthu asks them to try again from the choice. The good choice leads to the good ending.
-3. **Haq Card reveal**: a collectible card explaining the right. The text shown depends on the age band.
+3. **Card reveal**: a collectible card explaining the right. The text shown depends on the age band.
 4. **Mini-game**: a quiz or sort game from the building's JSON.
-5. **Results**: stars, the card goes into the Haq Book, badges are checked, and the next building unlocks. Back in town, the building "lights up".
+5. **Results**: stars, the card goes into the Book, badges are checked, and the next building unlocks. Back in town, the building "lights up".
 
 ## 4. Rules
 
@@ -57,7 +57,7 @@ Zustand store persisted to localStorage under the key `saksham-v1`:
 interface Profile {
   id: string; name: string; avatar: AvatarSpec; band: AgeBand; createdAt: number;
   buildings: Record<string, { stars: 0|1|2|3; bestScore: number; completed: boolean }>;
-  cards: string[];        // HaqCard ids
+  cards: string[];        // Card ids
   badges: string[];
   marigolds: number[];    // indexes into world.map.marigolds
   pledges: string[];      // pledge ids taken
@@ -93,7 +93,7 @@ The 90-second judge demo, in order:
 1. Profile picker, then create a player (avatar builder with the skin range).
 2. The town (scroll, tap a tree and Mitthu).
 3. School: the curtain opens and a story choice is made (show one wrong choice, then the right one).
-4. Haq Card reveal and flip.
+4. Card reveal and flip.
 5. Quiz with two answers.
 6. Results: stars fly and the Dhaba unlocks in town.
 7. The Help Centre, showing the calm contrast.

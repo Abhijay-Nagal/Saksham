@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { Link } from 'react-router'
-import type { AgeBand, HaqCard as HaqCardData } from '@content/types'
+import type { AgeBand, Card as CardData } from '@content/types'
 import { cn } from '@/lib/cn'
 import { t } from '@/lib/content'
 import { sound } from '@/lib/sound'
@@ -8,15 +8,15 @@ import { speech } from '@/lib/speech'
 import { Sprite } from './Sprite'
 import { IconButton } from './IconButton'
 
-const FILLS: Record<HaqCardData['color'], string> = {
+const FILLS: Record<CardData['color'], string> = {
   peacock: 'bg-peacock text-white',
   rani: 'bg-rani text-white',
   leaf: 'bg-leaf text-white',
   marigold: 'bg-marigold text-ink',
 }
 
-interface HaqCardProps {
-  card: HaqCardData
+interface CardProps {
+  card: CardData
   band: AgeBand
   /** Controlled flip; omit to let the card own its state. */
   flipped?: boolean
@@ -41,7 +41,7 @@ interface HaqCardProps {
  * interactive bits on the back opt back in. That keeps links and buttons out
  * of a button, which would be invalid.
  */
-export function HaqCard({
+export function Card({
   card,
   band,
   flipped,
@@ -51,7 +51,7 @@ export function HaqCard({
   className,
   interactiveBack = true,
   showFlipHint = true,
-}: HaqCardProps) {
+}: CardProps) {
   const [ownFlipped, setOwnFlipped] = useState(false)
   const [tellMore, setTellMore] = useState(false)
   const [angle, setAngle] = useState({ x: 0, y: 0 })
@@ -180,13 +180,13 @@ export function HaqCard({
   )
 }
 
-/** A small non-flipping front, used in the Haq Book grid. */
-export function HaqCardThumb({
+/** A small non-flipping front, used in the book grid. */
+export function CardThumb({
   card,
   width = 180,
   className,
 }: {
-  card: HaqCardData
+  card: CardData
   width?: number
   className?: string
 }) {

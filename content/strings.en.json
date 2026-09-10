@@ -1,7 +1,7 @@
 {
   "nav": {
     "town": "Town",
-    "haqBook": "Haq Book",
+    "book": "Book",
     "community": "Community",
     "me": "Me",
     "help": "Need help?"
@@ -58,7 +58,7 @@
     "tryAgain": "Try again"
   },
   "card": {
-    "newCard": "New Haq Card!",
+    "newCard": "New card!",
     "flip": "Tap to flip",
     "tellMeMore": "Tell me more",
     "continue": "Play the game",
@@ -87,7 +87,7 @@
   "results": {
     "title": "Building complete!",
     "stars": "You earned {n} stars",
-    "cardEarned": "Haq Card added to your Haq Book",
+    "cardEarned": "Card added to your book",
     "backToTown": "Back to town",
     "tryAgain": "Try the game again",
     "gentleNote": "If anything like this is happening to you, tap Need help. You're not alone.",
@@ -96,9 +96,9 @@
     "badge": "Badge unlocked: {badge}!",
     "starsOne": "You earned 1 star"
   },
-  "haqBook": {
-    "title": "Your Haq Book",
-    "empty": "Finish a building to collect your first Haq Card.",
+  "book": {
+    "title": "Your book",
+    "empty": "Finish a building to collect your first card.",
     "lockedCard": "Locked",
     "count": "{n} / {total} cards"
   },
@@ -153,7 +153,7 @@
     "title": "Assets",
     "built": "Built for Smart India Hackathon (SIH1281)",
     "sources": "Legal sources",
-    "sourcesNote": "Every Haq Card cites the law it comes from."
+    "sourcesNote": "Every card cites the law it comes from."
   },
   "help": {
     "call": "Call {number}"

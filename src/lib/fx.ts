@@ -82,7 +82,7 @@ function spriteNode(sprite: string, size: number): HTMLElement {
 
 /**
  * Fly `count` sprites from one element to another — a star into the stars pill,
- * a marigold into the flower pill, a card into the Haq Book tab.
+ * a marigold into the flower pill, a card into the book tab.
  * Duration 850ms (DESIGN 7).
  */
 export function flyTo(

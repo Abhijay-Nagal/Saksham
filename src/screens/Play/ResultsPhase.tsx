@@ -11,7 +11,7 @@ import { Avatar } from '@/components/avatar/Avatar'
 import { Button } from '@/components/ui/Button'
 import { Panel } from '@/components/ui/Panel'
 import { Sprite } from '@/components/ui/Sprite'
-import { HaqCardThumb } from '@/components/ui/HaqCard'
+import { CardThumb } from '@/components/ui/Card'
 import { useToast } from '@/components/ui/Toast'
 
 interface ResultsPhaseProps {
@@ -59,7 +59,7 @@ export function ResultsPhase({
       ),
     )
 
-    // The card thumbnail flies to the Haq Book tab.
+    // The card thumbnail flies to the book tab.
     timers.push(
       window.setTimeout(
         () => {
@@ -137,7 +137,7 @@ export function ResultsPhase({
       </p>
 
       <div ref={cardRef} className="mt-6 flex flex-col items-center gap-2">
-        <HaqCardThumb card={building.card} width={150} />
+        <CardThumb card={building.card} width={150} />
         <p className="text-small font-bold text-ink-soft">{t('results.cardEarned')}</p>
       </div>
 

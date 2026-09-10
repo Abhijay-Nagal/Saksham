@@ -52,7 +52,7 @@ export interface Choice {
   kind: 'good' | 'bad' | 'okay'; // for analytics/feedback only; never shown as a label
 }
 
-export interface HaqCard {
+export interface Card {
   id: string;
   title: string;
   sprite: string;
@@ -112,7 +112,7 @@ export interface Building {
   tone: 'normal' | 'gentle'; // gentle = soft sparkle instead of confetti, no loud sounds
   cast: CastMember[];
   story: { start: string; nodes: StoryNode[] };
-  card: HaqCard;
+  card: Card;
   game: MiniGame;
 }
 
