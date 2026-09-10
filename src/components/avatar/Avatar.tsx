@@ -21,6 +21,10 @@ export function avatarDataUri(spec: AvatarSpec, mood: Mood = 'normal'): string {
 
   // The style definition types these as narrow unions; content.ts widens them
   // to string, and content is validated against the same variant names.
+  //
+  // `accessoriesVariant` must be *absent* when there is no accessory: the
+  // validator rejects the whole options object if the key is present but
+  // undefined, so it is spread in conditionally rather than set to undefined.
   const options = {
     seed: 'saksham',
     skinColor: [spec.skin.replace('#', '')],
@@ -28,8 +32,8 @@ export function avatarDataUri(spec: AvatarSpec, mood: Mood = 'normal'): string {
     hairColor: [spec.hairColor.replace('#', '')],
     eyesVariant: [face.eyes],
     mouthVariant: [face.mouth],
-    accessoriesVariant: accessory ? [accessory] : undefined,
     accessoriesProbability: accessory ? 100 : 0,
+    ...(accessory ? { accessoriesVariant: [accessory] } : {}),
   } as unknown as ConstructorParameters<typeof DiceBearAvatar<typeof style>>[1]
 
   const svg = new DiceBearAvatar(style, options).toString()
@@ -43,7 +47,8 @@ export function avatarDataUri(spec: AvatarSpec, mood: Mood = 'normal'): string {
 interface AvatarProps {
   spec: AvatarSpec
   mood?: Mood
-  size?: number
+  /** Pixel size. Omit to let CSS size the image (stage puppets do this). */
+  size?: number | null
   className?: string
   /** Round sky-filled sticker frame, used in profile tiles and Me. */
   framed?: boolean
@@ -51,6 +56,7 @@ interface AvatarProps {
 }
 
 export function Avatar({ spec, mood = 'normal', size = 96, className, framed, name }: AvatarProps) {
+  const sized = typeof size === 'number'
   const src = useMemo(() => avatarDataUri(spec, mood), [spec, mood])
 
   return (
@@ -58,15 +64,15 @@ export function Avatar({ spec, mood = 'normal', size = 96, className, framed, na
       src={src}
       alt={name ? `${name}'s avatar` : ''}
       aria-hidden={name ? undefined : true}
-      width={size}
-      height={size}
+      width={sized ? size : undefined}
+      height={sized ? size : undefined}
       draggable={false}
       className={cn(
         'select-none object-contain',
         framed && 'rounded-full bg-sky sticker',
         className,
       )}
-      style={{ width: size, height: size }}
+      style={sized ? { width: size, height: size } : undefined}
     />
   )
 }

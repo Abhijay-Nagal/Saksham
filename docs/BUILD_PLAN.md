@@ -31,17 +31,17 @@ Done when: the town feels like style tile v2 at 1366×768 and 390×844, and noth
 
 ## Phase 2: Story engine and School end to end (MILESTONE A)
 
-- [ ] `src/engines/story/`: `useStory` reducer (current node; carried-over bg, props, cast and moods; retry target; retries count), Theatre (valance, curtains, backdrops, puppets, Mitthu popup), DialogueBox (typewriter, read aloud, aria-live), and Choices. Read: SCREENS §Play: story, DESIGN §6 (DialogueBox, ChoiceButton), `content/buildings/school.json`.
-- [ ] `/play/:buildingId` phase machine (story, card, game, results) with the play header and phase progress.
-- [ ] HaqCard component and card reveal phase. Read: SCREENS §Play: card reveal, DESIGN §6 (HaqCard).
-- [ ] `src/engines/games/QuizGame` with band filtering and the hint round. Read: SCREENS §Play: quiz, PRODUCT §4.
-- [ ] Results phase, the stars rule, saving progress, badges, unlocking, and the town return celebration. Read: SCREENS §Play: results and §Town (return celebration), PRODUCT §4.
+- [x] `src/engines/story/`: `useStory` reducer (current node; carried-over bg, props, cast and moods; retry target; retries count), Theatre (valance, curtains, backdrops, puppets, Mitthu popup), DialogueBox (typewriter, read aloud, aria-live), and Choices. Read: SCREENS §Play: story, DESIGN §6 (DialogueBox, ChoiceButton), `content/buildings/school.json`.
+- [x] `/play/:buildingId` phase machine (story, card, game, results) with the play header and phase progress.
+- [x] HaqCard component and card reveal phase. Read: SCREENS §Play: card reveal, DESIGN §6 (HaqCard).
+- [x] `src/engines/games/QuizGame` with band filtering and the hint round. Read: SCREENS §Play: quiz, PRODUCT §4.
+- [x] Results phase, the stars rule, saving progress, badges, unlocking, and the town return celebration. Read: SCREENS §Play: results and §Town (return celebration), PRODUCT §4.
 
 Done when: School plays from the town through to results and back, and stars and unlocks survive a reload. **Write Session notes and commit. This is the end of Session 1.**
 
 ## Phase 3: All buildings
 
-- [ ] `src/engines/games/SortGame` (drag plus the tap alternative). Read: SCREENS §Play: sort, DESIGN §12.
+- [x] `src/engines/games/SortGame` (drag plus the tap alternative). Read: SCREENS §Play: sort, DESIGN §12.
 - [ ] Wire Dhaba, Home and Panchayat. This should be content only; if one needs code changes, fix the engine, not the content. Check the Home gentle tone. Read: PRODUCT §7 (gentle).
 - [ ] Haq Book screen. Read: SCREENS §Haq Book.
 
@@ -76,4 +76,9 @@ Done when: all 4 buildings are playable and each unlocks the next.
 
 Append at the end of every phase and before stopping. Three to six lines: what's done, what's broken or hacky, and the exact next task. The next session reads only this section and the unchecked boxes.
 
-- (empty)
+- **Session 1 (Phases 0-2 + SortGame) done.** School plays end to end: town -> story -> card -> quiz -> results -> town celebration. Build is green, no console errors.
+- Sprites: 39/41 fetched. `zipper` and `pledge` 404 upstream (folder names differ); they fall back to native emoji, which looks fine. Not worth chasing.
+- Two React bugs found by driving the app headless, both fixed: duplicate `key` on sibling DialogueBox/Choices stranded a second dialogue in the DOM; and an unstable `onFinish` re-ran the end-of-story effect, whose guard then cleared its own timers so the card phase never fired. Watch for that pattern in new effects.
+- Dev tooling: Playwright chromium lives in the scratchpad (NOT a project dependency) and drives the app for screenshots. Scripts: `shot.mjs`, `loop.mjs`.
+- Puppets are DiceBear heads on an SVG cloth body, sized in `cqh` against the stage (`container-type: size`). The stage is capped at `max-w-[min(1000px,104vh)]` so the whole play screen fits 1366x768.
+- Next: Phase 3 — wire Dhaba, Home and Panchayat, then the Haq Book screen.

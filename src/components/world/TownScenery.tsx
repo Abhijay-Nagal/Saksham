@@ -137,7 +137,7 @@ export function Sun() {
         setPop(true)
         window.setTimeout(() => setPop(false), 400)
       }}
-      className="absolute top-6 right-8 z-[4]"
+      className="absolute top-6 left-8 z-[4]"
     >
       <span className={cn('anim-sun inline-block', pop && 'scale-125')} style={{ transition: 'transform 300ms var(--ease-spring)' }}>
         <Sprite name="sun" size={78} />

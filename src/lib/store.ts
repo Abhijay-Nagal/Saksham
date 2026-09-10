@@ -58,6 +58,8 @@ export interface AppState {
   deleteProfile: (id: string) => void
   updateProfile: (patch: Partial<Pick<Profile, 'name' | 'avatar' | 'band'>>) => void
 
+  /** Cards land in the Haq Book the moment they are revealed, not at results. */
+  collectCard: (cardId: string) => string[]
   recordResult: (result: PlayResult) => { stars: Stars; unlocked: string | null; newBadges: string[] }
   findMarigold: (index: number) => { found: boolean; newBadges: string[] }
   takePledge: (pledgeId: string) => string[]
@@ -184,6 +186,19 @@ export const useStore = create<AppState>()(
         set((s) => ({
           profiles: s.profiles.map((p) => (p.id === s.activeProfileId ? { ...p, ...patch } : p)),
         })),
+
+      collectCard: (cardId) => {
+        const state = get()
+        const profile = state.profiles.find((p) => p.id === state.activeProfileId)
+        if (!profile || profile.cards.includes(cardId)) return []
+
+        const next: Profile = { ...profile, cards: [...profile.cards, cardId] }
+        next.badges = computeBadges(next)
+        const newBadges = next.badges.filter((b) => !profile.badges.includes(b))
+
+        set((s) => ({ profiles: s.profiles.map((p) => (p.id === next.id ? next : p)) }))
+        return newBadges
+      },
 
       recordResult: ({ buildingId, cardId, score, retries, gameType }) => {
         const state = get()

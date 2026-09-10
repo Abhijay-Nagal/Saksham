@@ -48,7 +48,7 @@ export function ProgressBar({
         {mitthu && (
           <div
             className="absolute -top-6 transition-[left] duration-500 ease-spring"
-            style={{ left: `calc(${pct}% - 16px)` }}
+            style={{ left: `clamp(0px, calc(${pct}% - 16px), calc(100% - 32px))` }}
           >
             <Sprite name="parrot" size={32} className="anim-bob" />
           </div>

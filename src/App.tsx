@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { HashRouter, Navigate, Route, Routes, useLocation } from 'react-router'
 import { ToastProvider } from '@/components/ui/Toast'
 import { Shell } from '@/components/shell/Shell'
-import { DEFAULT_AVATAR, useActiveProfile, useSettings, useStore } from '@/lib/store'
+import { useActiveProfile, useSettings, useStore } from '@/lib/store'
 import { sound } from '@/lib/sound'
 import { speech } from '@/lib/speech'
 
@@ -106,21 +106,6 @@ function useAudioUnlock() {
   }, [])
 }
 
-/**
- * TEMP (removed in Phase 4, once Onboarding exists): make sure there is always
- * a player so every screen is reachable during the build.
- */
-function useTempGuest() {
-  useEffect(() => {
-    const state = useStore.getState()
-    if (state.profiles.length === 0) {
-      state.createProfile({ name: 'Guest', avatar: DEFAULT_AVATAR, band: 'young' })
-    } else if (!state.activeProfileId) {
-      state.setActiveProfile(state.profiles[0].id)
-    }
-  }, [])
-}
-
 /** Scroll to the top when the route changes; the town manages its own scroll. */
 function useScrollReset() {
   const { pathname } = useLocation()
@@ -131,7 +116,6 @@ function useScrollReset() {
 }
 
 function AppRoutes() {
-  useTempGuest()
   useCalmMode()
   useHiddenPause()
   useDemoCode()

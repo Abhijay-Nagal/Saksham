@@ -54,7 +54,7 @@ export function BuildingTile({ spot, state, stars, onSelect, celebrate }: Buildi
           : { duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }
       }
     >
-      {state === 'done' && stars > 0 && (
+      {stars > 0 && (
         <div className="absolute -top-5 left-1/2 -translate-x-1/2 text-[17px] whitespace-nowrap">
           {'⭐'.repeat(stars)}
         </div>

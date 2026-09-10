@@ -1,6 +1,16 @@
 {
-  "nav": { "town": "Town", "haqBook": "Haq Book", "community": "Community", "me": "Me", "help": "Need help?" },
-  "profiles": { "title": "Who's playing?", "add": "New player", "hint": "Pick your face to continue." },
+  "nav": {
+    "town": "Town",
+    "haqBook": "Haq Book",
+    "community": "Community",
+    "me": "Me",
+    "help": "Need help?"
+  },
+  "profiles": {
+    "title": "Who's playing?",
+    "add": "New player",
+    "hint": "Pick your face to continue."
+  },
   "onboarding": {
     "mitthuHello": "Namaste! I'm Mitthu. I help kids learn their rights and speak up. Let's make your player!",
     "askName": "What should I call you?",
@@ -21,14 +31,95 @@
     "marigoldFound": "You found a hidden marigold!",
     "allMarigolds": "Badge unlocked: Sharp Eyes!"
   },
-  "building": { "play": "Play", "replay": "Play again", "youWillLearn": "You'll learn about", "close": "Back to town" },
-  "story": { "tapToContinue": "Tap to continue", "readAloud": "Read aloud", "whatShould": "Choose what happens", "skip": "Skip" },
-  "card": { "newCard": "New Haq Card!", "flip": "Tap to flip", "tellMeMore": "Tell me more", "continue": "Play the game" },
-  "quiz": { "check": "Check answer", "next": "Next question", "correct": "Correct!", "wrong": "Not quite.", "hintRound": "Mitthu's hint round: let's try the tricky ones again." },
-  "sort": { "dragHint": "Drag or tap a card, then tap a bin.", "correct": "Nice sorting!", "wrong": "Hmm, look again." },
-  "results": { "title": "Building complete!", "stars": "You earned {n} stars", "cardEarned": "Haq Card added to your Haq Book", "backToTown": "Back to town", "tryAgain": "Try the game again", "gentleNote": "If anything like this is happening to you, tap Need help. You're not alone." },
-  "haqBook": { "title": "Your Haq Book", "empty": "Finish a building to collect your first Haq Card.", "lockedCard": "Locked" },
-  "community": { "title": "Community", "pledgeWall": "Pledge Wall", "takePledge": "Take a pledge", "classMission": "Class Mission", "askExpert": "Ask an Expert", "resources": "Places that help", "sample": "Sample" },
-  "me": { "title": "Me", "badges": "Badges", "settings": "Settings", "sound": "Sound", "narration": "Read stories aloud", "calmMotion": "Calm motion", "switchPlayer": "Switch player", "credits": "Credits" },
-  "demo": { "on": "Demo mode on: all buildings unlocked." }
+  "building": {
+    "play": "Play",
+    "replay": "Play again",
+    "youWillLearn": "You'll learn about",
+    "close": "Back to town",
+    "gentleNote": "This story is about staying safe. You can stop anytime."
+  },
+  "story": {
+    "tapToContinue": "Tap to continue",
+    "readAloud": "Read aloud",
+    "whatShould": "Choose what happens",
+    "skip": "Skip",
+    "tryAgain": "Try again"
+  },
+  "card": {
+    "newCard": "New Haq Card!",
+    "flip": "Tap to flip",
+    "tellMeMore": "Tell me more",
+    "continue": "Play the game",
+    "ifItHappens": "If it happens",
+    "needHelp": "Need help?",
+    "lawLabel": "The law"
+  },
+  "quiz": {
+    "check": "Check answer",
+    "next": "Next question",
+    "correct": "Correct!",
+    "wrong": "Not quite.",
+    "hintRound": "Mitthu's hint round: let's try the tricky ones again.",
+    "questionOf": "Question {n} of {total}",
+    "score": "You got {n} of {total} right.",
+    "startHintRound": "Let's try those again",
+    "skipHintRound": "No thanks, continue"
+  },
+  "sort": {
+    "dragHint": "Drag or tap a card, then tap a bin.",
+    "correct": "Nice sorting!",
+    "wrong": "Hmm, look again.",
+    "itemOf": "Card {n} of {total}",
+    "gotIt": "Got it"
+  },
+  "results": {
+    "title": "Building complete!",
+    "stars": "You earned {n} stars",
+    "cardEarned": "Haq Card added to your Haq Book",
+    "backToTown": "Back to town",
+    "tryAgain": "Try the game again",
+    "gentleNote": "If anything like this is happening to you, tap Need help. You're not alone.",
+    "perfect": "Perfect!",
+    "unlocked": "{building} is now open in town!",
+    "badge": "Badge unlocked: {badge}!",
+    "starsOne": "You earned 1 star"
+  },
+  "haqBook": {
+    "title": "Your Haq Book",
+    "empty": "Finish a building to collect your first Haq Card.",
+    "lockedCard": "Locked"
+  },
+  "community": {
+    "title": "Community",
+    "pledgeWall": "Pledge Wall",
+    "takePledge": "Take a pledge",
+    "classMission": "Class Mission",
+    "askExpert": "Ask an Expert",
+    "resources": "Places that help",
+    "sample": "Sample"
+  },
+  "me": {
+    "title": "Me",
+    "badges": "Badges",
+    "settings": "Settings",
+    "sound": "Sound",
+    "narration": "Read stories aloud",
+    "calmMotion": "Calm motion",
+    "switchPlayer": "Switch player",
+    "credits": "Credits"
+  },
+  "demo": {
+    "on": "Demo mode on: all buildings unlocked."
+  },
+  "play": {
+    "exit": "Leave the story",
+    "story": "Story",
+    "cardPhase": "Card",
+    "game": "Game",
+    "done": "Done",
+    "leaveTitle": "Leave this story?",
+    "leaveBody": "Your progress in this story will not be saved.",
+    "leaveStay": "Keep playing",
+    "leaveGo": "Leave"
+  }
 }
