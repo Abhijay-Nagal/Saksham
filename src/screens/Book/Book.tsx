@@ -15,8 +15,8 @@ export function Book() {
   const [open, setOpen] = useState<HaqCardData | null>(null)
 
   const owned = profile?.cards ?? []
-  const cards = allBuildings.map((b) => b.card)
-  const ownedCount = cards.filter((c) => owned.includes(c.id)).length
+  const cards = allBuildings.map((b) => ({ card: b.card, title: b.title }))
+  const ownedCount = cards.filter((c) => owned.includes(c.card.id)).length
 
   return (
     <div className="mx-auto max-w-[900px]">
@@ -32,20 +32,21 @@ export function Book() {
       )}
 
       <div className="mt-4 grid grid-cols-2 justify-items-center gap-4 sm:grid-cols-3 md:grid-cols-4">
-        {cards.map((card, i) => {
+        {cards.map(({ card, title }, i) => {
           const has = owned.includes(card.id)
 
           if (!has) {
             return (
               <div
                 key={card.id}
-                className="flex w-full max-w-[180px] flex-col items-center justify-center gap-2 rounded-card border-[2.5px] border-dashed border-ink-soft/50 bg-white/60 p-3 text-center"
+                className="flex w-full max-w-[180px] flex-col items-center justify-center gap-1.5 rounded-card border-[2.5px] border-dashed border-ink-soft/50 bg-white/60 p-3 text-center"
                 style={{ aspectRatio: '3 / 4' }}
               >
-                <span aria-hidden className="text-[38px] opacity-30">
+                <span aria-hidden className="text-[38px] leading-none opacity-30">
                   ?
                 </span>
-                <p className="text-small font-bold text-ink-soft">{t('haqBook.lockedCard')}</p>
+                <p className="text-body font-extrabold text-ink-soft">{title}</p>
+                <p className="text-small font-bold text-ink-soft/70">{t('haqBook.lockedCard')}</p>
               </div>
             )
           }

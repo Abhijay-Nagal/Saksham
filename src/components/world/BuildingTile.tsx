@@ -56,11 +56,13 @@ export function BuildingTile({ spot, state, stars, onSelect, celebrate, lit }: B
           : { duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }
       }
     >
-      {stars > 0 && (
-        <div className="absolute -top-[3%] left-1/2 -translate-x-1/2 text-[clamp(11px,1.7cqw,17px)] whitespace-nowrap">
-          {'⭐'.repeat(stars)}
-        </div>
-      )}
+      {/* In flow, so the row always clears the tile at every map size. */}
+      <div
+        aria-hidden
+        className="mb-0.5 text-[clamp(11px,1.7cqw,17px)] leading-none whitespace-nowrap"
+      >
+        {stars > 0 ? '⭐'.repeat(stars) : ' '}
+      </div>
 
       <button
         ref={buttonRef}
