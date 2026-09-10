@@ -24,6 +24,24 @@ node scripts/fetch-sprites.mjs
 
 ## Deploy
 
+Pushing to `main` builds and deploys automatically via GitHub Actions
+(`.github/workflows/deploy.yml`):
+
+1. **CI** (every push and PR): `npm ci`, then `npm run build` — the same
+   typecheck-and-bundle gate used locally. A PR that fails this never reaches
+   `main`.
+2. **CD** (push to `main` only): the built `dist/` is uploaded as a Pages
+   artifact and published to GitHub Pages, using the repo's built-in
+   `GITHUB_TOKEN` — no secrets to configure.
+
+Live at: `https://<owner>.github.io/<repo>/`
+
+One-time setup on GitHub, after the first push: **Settings > Pages > Build and
+deployment > Source: GitHub Actions**. After that every push to `main`
+redeploys on its own.
+
+To deploy anywhere else instead (manual, or a different host):
+
 ```bash
 npm run build
 npx vercel --prod        # or drag dist/ into Vercel or Netlify
@@ -31,7 +49,8 @@ npx vercel --prod        # or drag dist/ into Vercel or Netlify
 
 The app uses a `HashRouter`, so URLs look like `/#/town` and no server rewrite
 rules are needed. It is a fully static bundle and works from any static host,
-or straight off the filesystem.
+or straight off the filesystem — including a GitHub Pages *project* subpath,
+since `vite.config.ts` builds with a relative `base: './'`.
 
 ## Demoing it
 
