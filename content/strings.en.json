@@ -28,7 +28,13 @@
     "skin": "Skin",
     "hair": "Hair",
     "hairColour": "Hair colour",
-    "glasses": "Glasses"
+    "glasses": "Glasses",
+    "headwear": "Headwear",
+    "headwearNone": "None",
+    "headwearColour": "Headwear colour",
+    "patka": "Patka",
+    "hijab": "Hijab",
+    "dupatta": "Dupatta"
   },
   "town": {
     "welcome": "Welcome back, {name}!",

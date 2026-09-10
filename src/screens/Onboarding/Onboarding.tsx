@@ -9,6 +9,7 @@ import { sound } from '@/lib/sound'
 import { useStore } from '@/lib/store'
 import { Avatar } from '@/components/avatar/Avatar'
 import { AvatarBuilder, randomSpec } from '@/components/avatar/AvatarBuilder'
+import type { HeadwearColor } from '@/components/avatar/Headwear'
 import { Mitthu } from '@/components/avatar/Mitthu'
 import { Button } from '@/components/ui/Button'
 import { Panel } from '@/components/ui/Panel'
@@ -26,6 +27,7 @@ export function Onboarding() {
   const [nameError, setNameError] = useState(false)
   const [spec, setSpec] = useState<AvatarSpec>(() => randomSpec())
   const [band, setBand] = useState<AgeBand | null>(null)
+  const [headwearColor, setHeadwearColor] = useState<HeadwearColor>('peacock')
   const readyRef = useRef<HTMLDivElement>(null)
 
   // The last step is a small celebration.
@@ -49,7 +51,7 @@ export function Onboarding() {
   }
 
   function finish() {
-    createProfile({ name: name.trim(), avatar: spec, band: band ?? 'young' })
+    createProfile({ name: name.trim(), avatar: spec, band: band ?? 'young', headwearColor })
     sound.unlockChime()
     navigate('/town', { replace: true })
   }
@@ -132,7 +134,12 @@ export function Onboarding() {
             {step === 2 && (
               <div className="flex flex-col gap-5">
                 <h1 className="text-h1 text-center">{t('onboarding.makeAvatar')}</h1>
-                <AvatarBuilder spec={spec} onChange={setSpec} />
+                <AvatarBuilder
+                  spec={spec}
+                  onChange={setSpec}
+                  headwearColor={headwearColor}
+                  onHeadwearColorChange={setHeadwearColor}
+                />
               </div>
             )}
 
@@ -176,7 +183,14 @@ export function Onboarding() {
                   animate={{ scale: 1, rotate: 0 }}
                   transition={{ type: 'spring', stiffness: 220, damping: 14 }}
                 >
-                  <Avatar spec={spec} mood="proud" size={190} framed name={name.trim()} />
+                  <Avatar
+                    spec={spec}
+                    mood="proud"
+                    size={190}
+                    framed
+                    name={name.trim()}
+                    headwearColor={headwearColor}
+                  />
                 </motion.div>
                 <h1 className="text-display">{t('onboarding.greeting', { name: name.trim() })}</h1>
                 <p className="text-body max-w-[46ch] text-ink-soft">

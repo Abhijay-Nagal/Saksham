@@ -1,16 +1,29 @@
 import { useMemo } from 'react'
 import { motion } from 'motion/react'
-import type { AvatarSpec, HairVariant } from '@content/types'
+import type { AvatarSpec, HairVariant, Headwear as HeadwearKind } from '@content/types'
 import { cn } from '@/lib/cn'
 import { t, world } from '@/lib/content'
 import { sound } from '@/lib/sound'
 import { Button } from '@/components/ui/Button'
 import { Avatar } from './Avatar'
+import { HEADWEAR_COLORS } from './Headwear'
+import type { HeadwearColor } from './Headwear'
 
 interface AvatarBuilderProps {
   spec: AvatarSpec
   onChange: (spec: AvatarSpec) => void
+  headwearColor?: HeadwearColor
+  onHeadwearColorChange?: (color: HeadwearColor) => void
 }
+
+const HEADWEAR: { kind?: HeadwearKind; key: string }[] = [
+  { kind: undefined, key: 'onboarding.headwearNone' },
+  { kind: 'patka', key: 'onboarding.patka' },
+  { kind: 'hijab', key: 'onboarding.hijab' },
+  { kind: 'dupatta', key: 'onboarding.dupatta' },
+]
+
+const HEADWEAR_COLOR_KEYS = Object.keys(HEADWEAR_COLORS) as HeadwearColor[]
 
 const { skins, hairColors, hairs } = world.avatarPalette
 /** "Surprise me" never picks the grey, which reads as an elder. */
@@ -60,12 +73,21 @@ function Swatch({
  * The avatar maker: skin row, hair chips with live previews, hair colour row,
  * a glasses toggle and "Surprise me" (SCREENS Onboarding, step 2).
  */
-export function AvatarBuilder({ spec, onChange }: AvatarBuilderProps) {
+export function AvatarBuilder({
+  spec,
+  onChange,
+  headwearColor = 'peacock',
+  onHeadwearColorChange,
+}: AvatarBuilderProps) {
   const set = (patch: Partial<AvatarSpec>) => onChange({ ...spec, ...patch })
 
   // Hair chips preview the current skin and hair colour, so the choice is real.
   const hairPreviews = useMemo(
-    () => hairs.map((h) => ({ hair: h as HairVariant, spec: { ...spec, hair: h as HairVariant } })),
+    () =>
+      hairs.map((h) => ({
+        hair: h as HairVariant,
+        spec: { ...spec, hair: h as HairVariant, headwear: undefined },
+      })),
     [spec],
   )
 
@@ -86,6 +108,7 @@ export function AvatarBuilder({ spec, onChange }: AvatarBuilderProps) {
             framed
             className="anim-bob-soft"
             name="Your"
+            headwearColor={headwearColor}
           />
         </motion.div>
       </div>
@@ -144,6 +167,57 @@ export function AvatarBuilder({ spec, onChange }: AvatarBuilderProps) {
             ))}
           </div>
         </fieldset>
+
+        <fieldset>
+          <legend className="text-small mb-2 font-extrabold text-ink-soft">
+            {t('onboarding.headwear')}
+          </legend>
+          <div className="flex flex-wrap gap-2">
+            {HEADWEAR.map(({ kind, key }) => (
+              <button
+                key={key}
+                type="button"
+                aria-pressed={spec.headwear === kind}
+                onClick={() => {
+                  sound.tap()
+                  set({ headwear: kind })
+                }}
+                className={cn(
+                  'flex min-h-12 items-center gap-2 rounded-chip border-2 border-ink px-2.5 text-[16px] font-bold transition-transform duration-150 ease-spring',
+                  spec.headwear === kind ? 'bg-marigold shadow-pop-sm' : 'bg-white text-ink-soft',
+                )}
+              >
+                <span className="grid size-9 place-items-center overflow-hidden rounded-full bg-sky">
+                  <Avatar
+                    spec={{ ...spec, headwear: kind }}
+                    size={34}
+                    headwearColor={headwearColor}
+                  />
+                </span>
+                {t(key)}
+              </button>
+            ))}
+          </div>
+        </fieldset>
+
+        {spec.headwear && onHeadwearColorChange && (
+          <fieldset>
+            <legend className="text-small mb-2 font-extrabold text-ink-soft">
+              {t('onboarding.headwearColour')}
+            </legend>
+            <div className="flex flex-wrap gap-2">
+              {HEADWEAR_COLOR_KEYS.map((c) => (
+                <Swatch
+                  key={c}
+                  color={HEADWEAR_COLORS[c].fill}
+                  label={c}
+                  selected={headwearColor === c}
+                  onClick={() => onHeadwearColorChange(c)}
+                />
+              ))}
+            </div>
+          </fieldset>
+        )}
 
         <div className="flex flex-wrap items-center gap-3">
           <Button

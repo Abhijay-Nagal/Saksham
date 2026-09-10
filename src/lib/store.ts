@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { AgeBand, AvatarSpec } from '@content/types'
+import type { HeadwearColor } from '@/components/avatar/Headwear'
 import { world } from './content'
 
 export type Stars = 0 | 1 | 2 | 3
@@ -21,6 +22,9 @@ export interface Profile {
   id: string
   name: string
   avatar: AvatarSpec
+  /** Tint for `avatar.headwear`. Kept here because AvatarSpec is a content
+      contract and must not gain fields. */
+  headwearColor?: HeadwearColor
   band: AgeBand
   createdAt: number
   buildings: Record<string, BuildingProgress>
@@ -53,10 +57,17 @@ export interface AppState {
   activeProfileId: string | null
   settings: Settings
 
-  createProfile: (input: { name: string; avatar: AvatarSpec; band: AgeBand }) => string
+  createProfile: (input: {
+    name: string
+    avatar: AvatarSpec
+    band: AgeBand
+    headwearColor?: HeadwearColor
+  }) => string
   setActiveProfile: (id: string | null) => void
   deleteProfile: (id: string) => void
-  updateProfile: (patch: Partial<Pick<Profile, 'name' | 'avatar' | 'band'>>) => void
+  updateProfile: (
+    patch: Partial<Pick<Profile, 'name' | 'avatar' | 'band' | 'headwearColor'>>,
+  ) => void
 
   /** Cards land in the Haq Book the moment they are revealed, not at results. */
   collectCard: (cardId: string) => string[]
@@ -155,12 +166,13 @@ export const useStore = create<AppState>()(
       activeProfileId: null,
       settings: { sound: true, narration: false, calmMotion: false, demo: false },
 
-      createProfile: ({ name, avatar, band }) => {
+      createProfile: ({ name, avatar, band, headwearColor }) => {
         const id = newId()
         const profile: Profile = {
           id,
           name: name.trim(),
           avatar,
+          headwearColor,
           band,
           createdAt: Date.now(),
           buildings: {},

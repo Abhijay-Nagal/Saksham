@@ -133,7 +133,13 @@ function PledgeWall() {
               >
                 <Panel tone="marigold-soft" className="p-4">
                   <div className="flex items-center gap-3">
-                    <Avatar spec={profile.avatar} mood="proud" size={48} framed />
+                    <Avatar
+                      spec={profile.avatar}
+                      mood="proud"
+                      size={48}
+                      framed
+                      headwearColor={profile.headwearColor}
+                    />
                     <div>
                       <p className="text-body font-extrabold">{profile.name}</p>
                       <p className="text-micro text-ink-soft">You</p>

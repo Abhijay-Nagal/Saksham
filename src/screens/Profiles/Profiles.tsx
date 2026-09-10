@@ -42,6 +42,7 @@ export function Profiles() {
               framed
               className="anim-bob-soft"
               name={profile.name}
+              headwearColor={profile.headwearColor}
             />
             <span className="rounded-chip border-2 border-ink bg-white px-3 py-0.5 text-[18px] font-extrabold">
               {profile.name}

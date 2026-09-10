@@ -16,6 +16,7 @@ import { Me } from '@/screens/Me/Me'
 import { Credits } from '@/screens/Credits/Credits'
 import { Profiles } from '@/screens/Profiles/Profiles'
 import { Onboarding } from '@/screens/Onboarding/Onboarding'
+import { DevAvatars } from '@/screens/DevAvatars/DevAvatars'
 
 /** `/` sends the player wherever they should be (SCREENS Routes). */
 function StartRedirect() {
@@ -137,7 +138,8 @@ function AppRoutes() {
         <Route path="/community" element={<InShell><Community /></InShell>} />
         <Route path="/me" element={<InShell><Me /></InShell>} />
         <Route path="/credits" element={<InShell><Credits /></InShell>} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="/dev/avatars" element={<DevAvatars />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </>
   )

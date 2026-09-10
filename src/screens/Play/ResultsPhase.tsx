@@ -107,6 +107,7 @@ export function ResultsPhase({
           framed
           className="anim-bob-soft mx-auto mt-4"
           name={profile.name}
+          headwearColor={profile.headwearColor}
         />
       )}
 

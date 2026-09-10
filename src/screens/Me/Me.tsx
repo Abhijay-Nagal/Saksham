@@ -7,6 +7,7 @@ import { sound } from '@/lib/sound'
 import { totalStars, useActiveProfile, useSettings, useStore } from '@/lib/store'
 import { Avatar } from '@/components/avatar/Avatar'
 import { AvatarBuilder } from '@/components/avatar/AvatarBuilder'
+import type { HeadwearColor } from '@/components/avatar/Headwear'
 import { Button } from '@/components/ui/Button'
 import { Chip } from '@/components/ui/Chip'
 import { Panel } from '@/components/ui/Panel'
@@ -61,6 +62,7 @@ export function Me() {
   const updateProfile = useStore((s) => s.updateProfile)
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState<AvatarSpec | null>(null)
+  const [draftColor, setDraftColor] = useState<HeadwearColor>('peacock')
 
   if (!profile) return null
 
@@ -80,11 +82,13 @@ export function Me() {
             framed
             className="anim-bob-soft"
             name={profile.name}
+            headwearColor={profile.headwearColor}
           />
           <Button
             variant="secondary"
             onClick={() => {
               setDraft(profile.avatar)
+              setDraftColor(profile.headwearColor ?? 'peacock')
               setEditing(true)
             }}
           >
@@ -183,14 +187,21 @@ export function Me() {
         title={t('onboarding.makeAvatar')}
         className="md:max-w-[720px]"
       >
-        {draft && <AvatarBuilder spec={draft} onChange={setDraft} />}
+        {draft && (
+          <AvatarBuilder
+            spec={draft}
+            onChange={setDraft}
+            headwearColor={draftColor}
+            onHeadwearColorChange={setDraftColor}
+          />
+        )}
         <Button
           size="lg"
           fullWidth
           className="mt-6 justify-center"
           sprite="check"
           onClick={() => {
-            if (draft) updateProfile({ avatar: draft })
+            if (draft) updateProfile({ avatar: draft, headwearColor: draftColor })
             setEditing(false)
           }}
         >
