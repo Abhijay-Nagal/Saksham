@@ -8,15 +8,15 @@ Budget: **Session 1 covers Phases 0 to 2** (Milestone A: School playable end to 
 
 ## Phase 0: Foundations
 
-- [ ] Scaffold Vite `react-ts` into `_scaffold/` (non-interactive), move its files into the repo root without overwriting `CLAUDE.md`, `docs/`, `content/` or `.claude/`, then delete `_scaffold/`. Run `git init` if needed. Add `.gitignore` for `node_modules` and `dist`.
-- [ ] Install: `npm i react-router zustand motion @dicebear/core @dicebear/styles @fontsource/baloo-2 canvas-confetti` and `npm i -D tailwindcss @tailwindcss/vite @types/canvas-confetti`. Remove the Vite demo assets and CSS.
-- [ ] Config: add `@tailwindcss/vite` to `vite.config.ts`, the alias `@content` for `./content` and `@` for `./src` (in both vite and tsconfig paths), and `resolveJsonModule`. Include `content/` in the tsconfig `include`.
-- [ ] `src/styles/index.css`: tokens and base styles, the calm rules (`html[data-calm] *` pauses animations), and focus-visible. Read: DESIGN §2, §3, §4, §7 (calm rules only).
-- [ ] `src/lib/content.ts`: typed loaders (`getBuilding(id)`, `world`, `help`, `community`, `sprites`) using static imports or `import.meta.glob({ eager: true })` for `content/buildings/*.json`. Add `t(key, vars)` for strings with `{var}` interpolation. Read: `content/types.ts` only.
-- [ ] `src/lib/store.ts`: zustand persist store, profile helpers, and derived selectors (unlocked buildings, recommended building, total stars). TEMP: if there are no profiles, auto-create a "Guest" profile (removed in Phase 4). Read: PRODUCT §4, §5, §6.
-- [ ] `src/lib/sound.ts` and `src/lib/speech.ts`. Read: DESIGN §10, §11.
-- [ ] `scripts/fetch-sprites.mjs`: run it, commit the PNGs, and build the `<Sprite>` component. Read: DESIGN §9.
-- [ ] App shell: HashRouter with every route in SCREENS §Routes as placeholder screens; TopBar, BottomNav, HelpButton; `data-calm` syncing from settings and `prefers-reduced-motion`. Read: DESIGN §5, SCREENS §Routes.
+- [x] Scaffold Vite `react-ts` into `_scaffold/` (non-interactive), move its files into the repo root without overwriting `CLAUDE.md`, `docs/`, `content/` or `.claude/`, then delete `_scaffold/`. Run `git init` if needed. Add `.gitignore` for `node_modules` and `dist`.
+- [x] Install: `npm i react-router zustand motion @dicebear/core @dicebear/styles @fontsource/baloo-2 canvas-confetti` and `npm i -D tailwindcss @tailwindcss/vite @types/canvas-confetti`. Remove the Vite demo assets and CSS.
+- [x] Config: add `@tailwindcss/vite` to `vite.config.ts`, the alias `@content` for `./content` and `@` for `./src` (in both vite and tsconfig paths), and `resolveJsonModule`. Include `content/` in the tsconfig `include`.
+- [x] `src/styles/index.css`: tokens and base styles, the calm rules (`html[data-calm] *` pauses animations), and focus-visible. Read: DESIGN §2, §3, §4, §7 (calm rules only).
+- [x] `src/lib/content.ts`: typed loaders (`getBuilding(id)`, `world`, `help`, `community`, `sprites`) using static imports or `import.meta.glob({ eager: true })` for `content/buildings/*.json`. Add `t(key, vars)` for strings with `{var}` interpolation. Read: `content/types.ts` only.
+- [x] `src/lib/store.ts`: zustand persist store, profile helpers, and derived selectors (unlocked buildings, recommended building, total stars). TEMP: if there are no profiles, auto-create a "Guest" profile (removed in Phase 4). Read: PRODUCT §4, §5, §6.
+- [x] `src/lib/sound.ts` and `src/lib/speech.ts`. Read: DESIGN §10, §11.
+- [x] `scripts/fetch-sprites.mjs`: run it, commit the PNGs, and build the `<Sprite>` component. Read: DESIGN §9.
+- [x] App shell: HashRouter with every route in SCREENS §Routes as placeholder screens; TopBar, BottomNav, HelpButton; `data-calm` syncing from settings and `prefers-reduced-motion`. Read: DESIGN §5, SCREENS §Routes.
 
 Done when: the build passes, every route renders, sprites show, and the shell works at desktop and mobile widths.
 

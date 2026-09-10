@@ -1,0 +1,241 @@
+@import "tailwindcss";
+@import "@fontsource/baloo-2/500.css";
+@import "@fontsource/baloo-2/600.css";
+@import "@fontsource/baloo-2/700.css";
+@import "@fontsource/baloo-2/800.css";
+
+@theme {
+  --font-sans: "Baloo 2", system-ui, sans-serif;
+  --color-paper: #FFF1CF;
+  --color-ink: #2A1F3D;
+  --color-ink-soft: #5B4E6E;
+  --color-marigold: #FFB320;
+  --color-marigold-soft: #FFE3A3;
+  --color-rani: #E2457A;
+  --color-rani-dark: #A8274F;
+  --color-rani-soft: #FDE7EE;
+  --color-peacock: #16708A;
+  --color-peacock-soft: #E3F3F7;
+  --color-leaf: #3E9E4F;
+  --color-leaf-soft: #E4F4E6;
+  --color-sky: #BFE6F2;
+  --color-hill: #8CC57A;
+  --color-hill-far: #A9D9A0;
+  --color-wood: #C98A4B;
+  --color-wood-dark: #8C5A2B;
+  --color-locked: #E9E1CC;
+  --radius-chip: 10px;
+  --radius-btn: 14px;
+  --radius-card: 18px;
+  --radius-tile: 26px;
+  --radius-panel: 28px;
+  --shadow-pop: 0 4px 0 #2A1F3D;
+  --shadow-pop-sm: 0 2px 0 #2A1F3D;
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+}
+
+/* ---------- Base ---------- */
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Optional paper grain, 5% opacity */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  #root {
+    position: relative;
+    z-index: 1;
+    min-height: 100dvh;
+  }
+
+  h1, h2, h3 { font-weight: 800; line-height: 1.15; margin: 0; }
+  p { margin: 0; }
+
+  button { font: inherit; color: inherit; }
+
+  :focus-visible {
+    outline: 3px solid var(--color-peacock);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection { background: var(--color-marigold-soft); }
+}
+
+/* ---------- Sticker style ---------- */
+
+@utility sticker {
+  border: 2.5px solid var(--color-ink);
+  box-shadow: var(--shadow-pop);
+}
+
+@utility sticker-sm {
+  border: 2px solid var(--color-ink);
+  box-shadow: var(--shadow-pop-sm);
+}
+
+/* Buttons physically press down */
+@utility press {
+  transition: transform 150ms var(--ease-spring), box-shadow 150ms var(--ease-spring);
+
+  &:active {
+    transform: translateY(4px);
+    box-shadow: none;
+  }
+}
+
+@utility press-sm {
+  transition: transform 150ms var(--ease-spring), box-shadow 150ms var(--ease-spring);
+
+  &:active {
+    transform: translateY(2px);
+    box-shadow: none;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lift:hover {
+    transform: translateY(-2px) rotate(-1deg);
+  }
+}
+
+/* ---------- Text scale ---------- */
+
+@utility text-display { font-size: 40px; line-height: 44px; font-weight: 800; }
+@utility text-h1 { font-size: 32px; line-height: 1.15; font-weight: 800; }
+@utility text-h2 { font-size: 26px; line-height: 1.2; font-weight: 800; }
+@utility text-dialogue { font-size: 22px; line-height: 1.45; font-weight: 600; }
+@utility text-body { font-size: 19px; line-height: 1.45; font-weight: 500; }
+@utility text-small { font-size: 16px; line-height: 1.45; font-weight: 500; }
+@utility text-micro { font-size: 14px; line-height: 1.4; font-weight: 500; }
+
+@media (max-width: 767px) {
+  .text-display { font-size: 32px; line-height: 36px; }
+  .text-h1 { font-size: 26px; }
+  .text-h2 { font-size: 22px; }
+  .text-dialogue { font-size: 20px; }
+}
+
+/* ---------- Ambient keyframes (CSS, cheap) ---------- */
+
+@keyframes drift {
+  from { transform: translateX(-20vw); }
+  to { transform: translateX(120vw); }
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(-6deg); }
+}
+
+@keyframes bob-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(8deg); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+@keyframes arrow-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-7px) rotate(-3deg); }
+  40% { transform: translateX(7px) rotate(3deg); }
+  60% { transform: translateX(-5px) rotate(-2deg); }
+  80% { transform: translateX(5px) rotate(2deg); }
+}
+
+@keyframes tree-shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(4deg); }
+  50% { transform: rotate(-4deg); }
+  75% { transform: rotate(3deg); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-120%) skewX(-18deg); }
+  100% { transform: translateX(320%) skewX(-18deg); }
+}
+
+@keyframes speaker-bounce {
+  0%, 100% { transform: translateY(0) scaleY(1); }
+  50% { transform: translateY(-6px) scaleY(1.03); }
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0.4); opacity: 0; }
+  70% { transform: scale(1.08); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fall-fade {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  100% { transform: translate(var(--dx, 0px), 90px) rotate(var(--dr, 180deg)); opacity: 0; }
+}
+
+.anim-bob { animation: bob 2.4s ease-in-out infinite; }
+.anim-bob-soft { animation: bob-soft 3s ease-in-out infinite; }
+.anim-spin-slow { animation: spin-slow 12s linear infinite; }
+.anim-sun { animation: spin-slow 30s linear infinite; }
+.anim-sway { animation: sway 3s ease-in-out infinite; transform-origin: top center; }
+.anim-pulse { animation: pulse-soft 2s ease-in-out infinite; }
+.anim-arrow { animation: arrow-bounce 1.1s ease-in-out infinite; }
+.anim-shake { animation: shake 0.5s ease-in-out; }
+.anim-tree-shake { animation: tree-shake 0.5s ease-in-out; transform-origin: bottom center; }
+.anim-speaker { animation: speaker-bounce 350ms ease-in-out infinite alternate; }
+.anim-pop { animation: pop-in 400ms var(--ease-spring) both; }
+
+/* ---------- Calm mode ---------- */
+
+html[data-calm] *,
+html[data-calm] *::before,
+html[data-calm] *::after {
+  animation-play-state: paused !important;
+  animation: none !important;
+  transition-duration: 1ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Direct feedback survives calm mode */
+html[data-calm] .press:active { transform: translateY(4px); }
+
+/* Ambient pausing when the tab is hidden is handled in JS via data-hidden */
+html[data-hidden] * { animation-play-state: paused !important; }
+
+@media print { body::before { display: none; } }
