@@ -6,6 +6,8 @@ import { world } from '@/lib/content'
 import { fx } from '@/lib/fx'
 import { sound } from '@/lib/sound'
 import { Sprite } from '@/components/ui/Sprite'
+import { NIGHT_STARS, SKIES } from './timeOfDay'
+import type { TimeOfDay } from './timeOfDay'
 
 const { width: W, height: H } = world.map
 
@@ -19,12 +21,14 @@ export function pct(x: number, y: number) {
 interface HillsProps {
   far: MotionValue<number>
   near: MotionValue<number>
+  time?: TimeOfDay
 }
 
-export function Hills({ far, near }: HillsProps) {
+export function Hills({ far, near, time = 'day' }: HillsProps) {
+  const filter = SKIES[time].sceneryFilter
   return (
     <>
-      <motion.div className="pointer-events-none absolute inset-0" style={{ y: far }}>
+      <motion.div className="pointer-events-none absolute inset-0" style={{ y: far, filter }}>
         <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" className="size-full" aria-hidden>
           <ellipse cx="-40" cy="420" rx="200" ry="150" fill="#A9D9A0" stroke="#2A1F3D" strokeWidth="3" />
           <ellipse cx="1060" cy="700" rx="230" ry="170" fill="#A9D9A0" stroke="#2A1F3D" strokeWidth="3" />
@@ -33,7 +37,7 @@ export function Hills({ far, near }: HillsProps) {
         </svg>
       </motion.div>
 
-      <motion.div className="pointer-events-none absolute inset-0" style={{ y: near }}>
+      <motion.div className="pointer-events-none absolute inset-0" style={{ y: near, filter }}>
         <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" className="size-full" aria-hidden>
           <ellipse cx="1040" cy="260" rx="160" ry="120" fill="#8CC57A" stroke="#2A1F3D" strokeWidth="3" />
           <ellipse cx="0" cy="700" rx="150" ry="110" fill="#8CC57A" stroke="#2A1F3D" strokeWidth="3" />
@@ -41,7 +45,31 @@ export function Hills({ far, near }: HillsProps) {
           <ellipse cx="60" cy="1400" rx="220" ry="130" fill="#8CC57A" stroke="#2A1F3D" strokeWidth="3" />
         </svg>
       </motion.div>
+
     </>
+  )
+}
+
+/* ---------- Night sky ---------- */
+
+export function NightStars() {
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      {NIGHT_STARS.map((star, i) => (
+        <span
+          key={i}
+          className="absolute rounded-full bg-white"
+          style={{
+            left: `${star.x}%`,
+            top: `${star.y * 0.72}%`,
+            width: star.size,
+            height: star.size,
+            opacity: 0.85,
+            animation: `twinkle 3.2s ease-in-out ${star.delay}s infinite`,
+          }}
+        />
+      ))}
+    </div>
   )
 }
 
@@ -76,8 +104,9 @@ export function TownPath({ draw }: { draw: MotionValue<number> }) {
 
 /* ---------- Ambient: clouds, birds, sun, kites ---------- */
 
-export function Clouds() {
+export function Clouds({ time = 'day' }: { time?: TimeOfDay }) {
   const [puffed, setPuffed] = useState<number | null>(null)
+  const filter = SKIES[time].sceneryFilter
 
   return (
     <>
@@ -101,7 +130,7 @@ export function Clouds() {
         >
           <span
             className={cn('inline-block transition-transform', puffed === i && 'scale-x-135 scale-y-80')}
-            style={{ transitionDuration: '250ms' }}
+            style={{ transitionDuration: '250ms', filter }}
           >
             <Sprite name="cloud" size={0} className="size-[clamp(48px,9cqw,90px)]" />
           </span>
@@ -117,6 +146,7 @@ export function Clouds() {
             top: `${18 + i * 44}%`,
             animation: `fly ${16 + i * 4}s linear infinite`,
             animationDelay: `${-i * 7}s`,
+            filter,
           }}
         >
           <Sprite name="bird" size={0} className="size-[clamp(18px,3cqw,30px)]" />
@@ -126,12 +156,13 @@ export function Clouds() {
   )
 }
 
-export function Sun() {
+export function Sun({ time = 'day' }: { time?: TimeOfDay }) {
   const [pop, setPop] = useState(false)
+  const sprite = SKIES[time].sunSprite
   return (
     <button
       type="button"
-      aria-label="The sun"
+      aria-label={sprite === 'moon' ? 'The moon' : 'The sun'}
       onClick={() => {
         sound.pop()
         setPop(true)
@@ -140,14 +171,15 @@ export function Sun() {
       className="absolute top-6 left-8 z-[4]"
     >
       <span className={cn('anim-sun inline-block', pop && 'scale-125')} style={{ transition: 'transform 300ms var(--ease-spring)' }}>
-        <Sprite name="sun" size={0} className="size-[clamp(42px,7.8cqw,78px)]" />
+        <Sprite name={sprite} size={0} className="size-[clamp(42px,7.8cqw,78px)]" />
       </span>
     </button>
   )
 }
 
-export function Trees() {
+export function Trees({ time = 'day' }: { time?: TimeOfDay }) {
   const [shaking, setShaking] = useState<number | null>(null)
+  const filter = SKIES[time].sceneryFilter
 
   return (
     <>
@@ -165,7 +197,10 @@ export function Trees() {
           className="absolute z-[4] -translate-x-1/2 -translate-y-1/2"
           style={pct(tree.x, tree.y)}
         >
-          <span className={cn('inline-block', shaking === i && 'anim-tree-shake')}>
+          <span
+            className={cn('inline-block', shaking === i && 'anim-tree-shake')}
+            style={{ filter }}
+          >
             <Sprite name={tree.sprite} size={0} className="size-[clamp(36px,6.4cqw,64px)]" />
           </span>
         </button>
@@ -174,8 +209,9 @@ export function Trees() {
   )
 }
 
-export function Kites() {
+export function Kites({ time = 'day' }: { time?: TimeOfDay }) {
   const [looping, setLooping] = useState<number | null>(null)
+  const filter = SKIES[time].sceneryFilter
 
   return (
     <>
@@ -194,6 +230,7 @@ export function Kites() {
         >
           <motion.span
             className={cn('inline-block', looping !== i && 'anim-sway')}
+            style={{ filter }}
             animate={looping === i ? { rotate: 360, y: [0, -40, 0] } : {}}
             transition={{ duration: 0.85, ease: 'easeInOut' }}
           >

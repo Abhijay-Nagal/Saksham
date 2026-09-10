@@ -15,10 +15,12 @@ interface BuildingTileProps {
   onSelect: (spot: MapSpot, el: HTMLElement) => void
   /** Set right after finishing this building — bounce and drop the lock. */
   celebrate?: 'bounce' | 'unlock' | null
+  /** Evening and night light the windows of anything that isn't locked. */
+  lit?: boolean
 }
 
 /** A 96px sticker tile on the town map. States follow DESIGN 6. */
-export function BuildingTile({ spot, state, stars, onSelect, celebrate }: BuildingTileProps) {
+export function BuildingTile({ spot, state, stars, onSelect, celebrate, lit }: BuildingTileProps) {
   const wrapRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const inView = useInView(wrapRef, { once: true, amount: 0.3 })
@@ -88,6 +90,11 @@ export function BuildingTile({ spot, state, stars, onSelect, celebrate }: Buildi
           locked && 'bg-locked opacity-75 grayscale md:hover:scale-100 md:hover:rotate-0',
           shake && 'anim-shake',
         )}
+        style={
+          lit && !locked
+            ? { boxShadow: '0 4px 0 #2A1F3D, 0 0 26px 6px rgba(255,179,32,0.55)' }
+            : undefined
+        }
       >
         <Sprite name={spot.sprite} size={0} className="size-[clamp(34px,5.4cqw,54px)]" />
 

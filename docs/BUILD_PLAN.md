@@ -70,7 +70,7 @@ Done when: all 4 buildings are playable and each unlocks the next.
 
 - [x] Headwear overlays, builder row, and `/dev/avatars`. Read: DESIGN §8 (headwear).
 - [x] Teacher dashboard. Read: SCREENS §Teacher dashboard.
-- [ ] Time-of-day sky (morning, day, evening and night palettes from the clock; night gets stars and glowing windows).
+- [x] Time-of-day sky (morning, day, evening and night palettes from the clock; night gets stars and glowing windows).
 
 ## Session notes
 
@@ -82,3 +82,11 @@ Append at the end of every phase and before stopping. Three to six lines: what's
 - Dev tooling: Playwright chromium lives in the scratchpad (NOT a project dependency) and drives the app for screenshots. Scripts: `shot.mjs`, `loop.mjs`.
 - Puppets are DiceBear heads on an SVG cloth body, sized in `cqh` against the stage (`container-type: size`). The stage is capped at `max-w-[min(1000px,104vh)]` so the whole play screen fits 1366x768.
 - Next: Phase 3 — wire Dhaba, Home and Panchayat, then the Haq Book screen.
+- **Session 2 (Phases 3-7) done. Every phase and every stretch goal is ticked.** All four buildings play; profiles, onboarding, avatar builder, Help Centre, Me, Credits, Haq Book, Community and the teacher dashboard are built; curtain page transitions are in.
+- Verified by driving the real app headless (Playwright, in the scratchpad — NOT a project dependency): the full demo path, all four buildings end to end, 390x844 and 1920x1080, a keyboard pass, and a calm/reduced-motion pass. No console errors anywhere; no horizontal overflow; no tap target under 44px; every `t()` key resolves.
+- The play screen is height-fitted on desktop (`md:h-dvh` + a flex column; the theatre carries `md:aspect-[1.69/1]` so its width follows the space the dialogue and choices leave). This is why the story fits 1366x768 with three choices showing. Don't reintroduce a fixed `max-w` on the stage.
+- The town is a size container; tiles, scenery and Mitthu scale in `cqw`, which is what stops the map crowding on a phone.
+- Stretch: headwear overlays are hand-drawn SVGs calibrated to Big Smile's three-quarter head (crown y 75..170, features centred near x 260). Check any change on `/#/dev/avatars`. `headwearColor` lives on the Profile, not AvatarSpec, because AvatarSpec is a content contract.
+- Time-of-day sky uses a CSS `filter` per layer, not a blend-mode overlay (multiply did not composite over the transformed parallax layers).
+- Still open for the human: the fact check in HANDOFF.md (ages, penalties, helpline numbers), and the two sprites that 404 upstream (`zipper`, `pledge`) which fall back to native emoji.
+

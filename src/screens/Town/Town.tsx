@@ -18,7 +18,18 @@ import { Mitthu } from '@/components/avatar/Mitthu'
 import { BuildingTile } from '@/components/world/BuildingTile'
 import type { TileState } from '@/components/world/BuildingTile'
 import { BuildingSheet } from '@/components/world/BuildingSheet'
-import { Clouds, Hills, Kites, Marigolds, Sun, TownPath, Trees, pct } from '@/components/world/TownScenery'
+import {
+  Clouds,
+  Hills,
+  Kites,
+  Marigolds,
+  NightStars,
+  Sun,
+  TownPath,
+  Trees,
+  pct,
+} from '@/components/world/TownScenery'
+import { SKIES, useTimeOfDay } from '@/components/world/timeOfDay'
 
 const { width: W, height: H } = world.map
 
@@ -36,6 +47,7 @@ export function Town() {
   const profile = useActiveProfile()
   const settings = useSettings()
   const findMarigold = useStore((s) => s.findMarigold)
+  const time = useTimeOfDay()
 
   const [selected, setSelected] = useState<MapSpot | null>(null)
   const [mitthuSays, setMitthuSays] = useState<string | null>(null)
@@ -161,14 +173,19 @@ export function Town() {
         className="relative overflow-hidden rounded-panel bg-sky sticker"
         // A size container, so tiles and scenery scale in cqw with the map
         // rather than staying fixed and crowding each other on a phone.
-        style={{ aspectRatio: `${W} / ${H}`, containerType: 'size' }}
+        style={{
+          aspectRatio: `${W} / ${H}`,
+          containerType: 'size',
+          background: SKIES[time].sky,
+        }}
       >
-        <Hills far={farY} near={nearY} />
-        <Clouds />
-        <Sun />
+        {SKIES[time].stars && <NightStars />}
+        <Hills far={farY} near={nearY} time={time} />
+        <Clouds time={time} />
+        <Sun time={time} />
         <TownPath draw={draw} />
-        <Trees />
-        <Kites />
+        <Trees time={time} />
+        <Kites time={time} />
 
         {world.map.spots.map((spot) => (
           <BuildingTile
@@ -177,6 +194,7 @@ export function Town() {
             state={tileState(spot)}
             stars={progressOf(profile, spot.id).stars}
             onSelect={onSelect}
+            lit={SKIES[time].litWindows}
             celebrate={
               celebrating.justCompleted === spot.id
                 ? 'bounce'
