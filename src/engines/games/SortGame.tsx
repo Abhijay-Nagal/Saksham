@@ -37,6 +37,8 @@ export function SortGame({ game, onFinish }: SortGameProps) {
   const [shake, setShake] = useState(false)
   const { toast } = useToast()
   const binRefs = useRef<Record<string, HTMLElement | null>>({})
+  /** Motion fires a click after a drag; this suppresses the tap-select. */
+  const justDragged = useRef(false)
 
   const item = game.items[index]
   const total = game.items.length
@@ -56,6 +58,7 @@ export function SortGame({ game, onFinish }: SortGameProps) {
 
   function drop(binId: string) {
     if (!item || wrong) return
+    setSelected(false)
 
     if (binId === item.bin) {
       setCorrect((c) => c + 1)
@@ -100,13 +103,30 @@ export function SortGame({ game, onFinish }: SortGameProps) {
             dragSnapToOrigin
             dragElastic={0.22}
             aria-pressed={selected}
-            onDragEnd={(_, info) => {
-              const el = document.elementFromPoint(info.point.x, info.point.y)
-              const bin = el?.closest<HTMLElement>('[data-bin]')?.dataset.bin
-              if (bin) drop(bin)
+            onDragStart={() => {
+              justDragged.current = true
+            }}
+            onDragEnd={(event) => {
+              window.setTimeout(() => {
+                justDragged.current = false
+              }, 120)
+              // Hit-test the bins geometrically. elementFromPoint would return
+              // the dragged card itself, which is under the pointer.
+              const point = event as PointerEvent
+              const x = point.clientX
+              const y = point.clientY
+              if (x === undefined || y === undefined) return
+              for (const [id, el] of Object.entries(binRefs.current)) {
+                if (!el) continue
+                const r = el.getBoundingClientRect()
+                if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) {
+                  drop(id)
+                  return
+                }
+              }
             }}
             onClick={() => {
-              if (wrong) return
+              if (wrong || justDragged.current) return
               sound.tap()
               setSelected((s) => !s)
             }}
