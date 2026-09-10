@@ -159,7 +159,9 @@ export function Town() {
       <div
         ref={mapRef}
         className="relative overflow-hidden rounded-panel bg-sky sticker"
-        style={{ aspectRatio: `${W} / ${H}` }}
+        // A size container, so tiles and scenery scale in cqw with the map
+        // rather than staying fixed and crowding each other on a phone.
+        style={{ aspectRatio: `${W} / ${H}`, containerType: 'size' }}
       >
         <Hills far={farY} near={nearY} />
         <Clouds />
@@ -190,9 +192,15 @@ export function Town() {
         {recommendedSpot && (
           <div
             className="absolute z-[7] -translate-x-1/2 -translate-y-1/2"
-            style={pct(recommendedSpot.x - 110, recommendedSpot.y - 80)}
+            style={pct(recommendedSpot.x - 135, recommendedSpot.y - 95)}
           >
-            <Mitthu size={62} says={mitthuSays} onClick={onMitthu} hop={mitthuHop} bubbleSide="right" />
+            <Mitthu
+              spriteClassName="size-[clamp(38px,6.2cqw,62px)]"
+              says={mitthuSays}
+              onClick={onMitthu}
+              hop={mitthuHop}
+              bubbleSide="right"
+            />
           </div>
         )}
       </div>

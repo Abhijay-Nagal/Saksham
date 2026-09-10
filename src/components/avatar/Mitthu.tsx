@@ -12,6 +12,8 @@ interface MitthuProps {
   hop?: boolean
   onClick?: () => void
   label?: string
+  /** Overrides `size` with a CSS class, so the town can scale him in cqw. */
+  spriteClassName?: string
 }
 
 /**
@@ -26,6 +28,7 @@ export function Mitthu({
   hop,
   onClick,
   label = 'Mitthu the parrot',
+  spriteClassName,
 }: MitthuProps) {
   const bird = (
     <motion.div
@@ -33,7 +36,12 @@ export function Mitthu({
       transition={{ duration: 0.5, ease: 'easeOut' }}
       className={cn(!hop && 'anim-bob')}
     >
-      <Sprite name="parrot" size={size} label={onClick ? undefined : label} />
+      <Sprite
+        name="parrot"
+        size={spriteClassName ? 0 : size}
+        className={spriteClassName}
+        label={onClick ? undefined : label}
+      />
     </motion.div>
   )
 

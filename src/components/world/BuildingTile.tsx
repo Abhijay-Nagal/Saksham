@@ -39,7 +39,7 @@ export function BuildingTile({ spot, state, stars, onSelect, celebrate }: Buildi
     <motion.div
       ref={wrapRef}
       data-building={spot.id}
-      className="absolute z-[5] w-[130px] text-center"
+      className="absolute z-[5] w-[clamp(84px,13cqw,130px)] text-center"
       // Motion owns the transform, so the -50% centring lives here, not in a class.
       style={{ ...pct(spot.x, spot.y), x: '-50%', y: '-50%' }}
       initial={{ scale: 0 }}
@@ -55,7 +55,7 @@ export function BuildingTile({ spot, state, stars, onSelect, celebrate }: Buildi
       }
     >
       {stars > 0 && (
-        <div className="absolute -top-5 left-1/2 -translate-x-1/2 text-[17px] whitespace-nowrap">
+        <div className="absolute -top-[3%] left-1/2 -translate-x-1/2 text-[clamp(11px,1.7cqw,17px)] whitespace-nowrap">
           {'⭐'.repeat(stars)}
         </div>
       )}
@@ -78,7 +78,7 @@ export function BuildingTile({ spot, state, stars, onSelect, celebrate }: Buildi
           if (buttonRef.current) onSelect(spot, buttonRef.current)
         }}
         className={cn(
-          'relative mx-auto grid size-24 place-items-center rounded-tile sticker',
+          'relative mx-auto grid size-[clamp(62px,9.6cqw,96px)] place-items-center rounded-tile sticker',
           'transition-transform duration-200 ease-spring',
           'md:hover:scale-108 md:hover:-rotate-6',
           state === 'current' && 'bg-marigold anim-pulse',
@@ -89,7 +89,7 @@ export function BuildingTile({ spot, state, stars, onSelect, celebrate }: Buildi
           shake && 'anim-shake',
         )}
       >
-        <Sprite name={spot.sprite} size={54} />
+        <Sprite name={spot.sprite} size={0} className="size-[clamp(34px,5.4cqw,54px)]" />
 
         {state === 'done' && (
           <span
@@ -116,7 +116,7 @@ export function BuildingTile({ spot, state, stars, onSelect, celebrate }: Buildi
         )}
       </button>
 
-      <span className="mt-2 inline-block rounded-chip border-2 border-ink bg-white px-2.5 text-[16px] font-extrabold">
+      <span className="mt-1.5 inline-block rounded-chip border-2 border-ink bg-white px-2 text-[clamp(12px,1.6cqw,16px)] font-extrabold">
         {spot.title}
       </span>
 

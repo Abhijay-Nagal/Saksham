@@ -103,7 +103,7 @@ export function Clouds() {
             className={cn('inline-block transition-transform', puffed === i && 'scale-x-135 scale-y-80')}
             style={{ transitionDuration: '250ms' }}
           >
-            <Sprite name="cloud" size={90} />
+            <Sprite name="cloud" size={0} className="size-[clamp(48px,9cqw,90px)]" />
           </span>
         </button>
       ))}
@@ -119,7 +119,7 @@ export function Clouds() {
             animationDelay: `${-i * 7}s`,
           }}
         >
-          <Sprite name="bird" size={30} />
+          <Sprite name="bird" size={0} className="size-[clamp(18px,3cqw,30px)]" />
         </div>
       ))}
     </>
@@ -140,7 +140,7 @@ export function Sun() {
       className="absolute top-6 left-8 z-[4]"
     >
       <span className={cn('anim-sun inline-block', pop && 'scale-125')} style={{ transition: 'transform 300ms var(--ease-spring)' }}>
-        <Sprite name="sun" size={78} />
+        <Sprite name="sun" size={0} className="size-[clamp(42px,7.8cqw,78px)]" />
       </span>
     </button>
   )
@@ -166,7 +166,7 @@ export function Trees() {
           style={pct(tree.x, tree.y)}
         >
           <span className={cn('inline-block', shaking === i && 'anim-tree-shake')}>
-            <Sprite name={tree.sprite} size={64} />
+            <Sprite name={tree.sprite} size={0} className="size-[clamp(36px,6.4cqw,64px)]" />
           </span>
         </button>
       ))}
@@ -197,7 +197,7 @@ export function Kites() {
             animate={looping === i ? { rotate: 360, y: [0, -40, 0] } : {}}
             transition={{ duration: 0.85, ease: 'easeInOut' }}
           >
-            <Sprite name="kite" size={52} />
+            <Sprite name="kite" size={0} className="size-[clamp(30px,5.2cqw,52px)]" />
           </motion.span>
         </button>
       ))}
@@ -234,7 +234,7 @@ export function Marigolds({ found, onFind }: MarigoldsProps) {
             className="absolute z-[6] -translate-x-1/2 -translate-y-1/2 opacity-90 transition-transform duration-200 hover:scale-130 hover:rotate-12"
             style={pct(m.x, m.y)}
           >
-            <Sprite name="marigold" size={24} />
+            <Sprite name="marigold" size={0} className="size-[clamp(16px,2.4cqw,24px)]" />
           </button>
         )
       })}

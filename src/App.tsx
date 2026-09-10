@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { HashRouter, Navigate, Route, Routes, useLocation } from 'react-router'
 import { ToastProvider } from '@/components/ui/Toast'
 import { Shell } from '@/components/shell/Shell'
+import { CurtainTransition } from '@/components/shell/CurtainTransition'
 import { useActiveProfile, useSettings, useStore } from '@/lib/store'
 import { sound } from '@/lib/sound'
 import { speech } from '@/lib/speech'
@@ -123,19 +124,22 @@ function AppRoutes() {
   useScrollReset()
 
   return (
-    <Routes>
-      <Route path="/" element={<StartRedirect />} />
-      <Route path="/profiles" element={<Profiles />} />
-      <Route path="/onboarding" element={<Onboarding />} />
-      <Route path="/play/:buildingId" element={<RequireProfile><Play /></RequireProfile>} />
-      <Route path="/help" element={<Help />} />
-      <Route path="/town" element={<InShell><Town /></InShell>} />
-      <Route path="/book" element={<InShell><Book /></InShell>} />
-      <Route path="/community" element={<InShell><Community /></InShell>} />
-      <Route path="/me" element={<InShell><Me /></InShell>} />
-      <Route path="/credits" element={<InShell><Credits /></InShell>} />
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    <>
+      <CurtainTransition />
+      <Routes>
+        <Route path="/" element={<StartRedirect />} />
+        <Route path="/profiles" element={<Profiles />} />
+        <Route path="/onboarding" element={<Onboarding />} />
+        <Route path="/play/:buildingId" element={<RequireProfile><Play /></RequireProfile>} />
+        <Route path="/help" element={<Help />} />
+        <Route path="/town" element={<InShell><Town /></InShell>} />
+        <Route path="/book" element={<InShell><Book /></InShell>} />
+        <Route path="/community" element={<InShell><Community /></InShell>} />
+        <Route path="/me" element={<InShell><Me /></InShell>} />
+        <Route path="/credits" element={<InShell><Credits /></InShell>} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </>
   )
 }
 

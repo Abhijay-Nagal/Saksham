@@ -91,22 +91,23 @@ export function TopBar() {
             tone="marigold"
           />
           <Pill sprite="marigold" value={marigolds} label="Marigolds found" className="marigold-pill hidden sm:inline-flex" />
-          <Button
-            variant="help"
-            onClick={() => navigate('/help')}
-            sprite="handshake"
-            className="hidden md:inline-flex"
-          >
-            {t('nav.help')}
-          </Button>
-          <Button
-            variant="help"
-            onClick={() => navigate('/help')}
-            aria-label={t('nav.help')}
-            className="px-3 md:hidden"
-          >
-            <Sprite name="handshake" size={24} />
-          </Button>
+          {/* Wrapped in spans: `hidden` on the Button itself loses to the
+              `inline-flex` in its own class list, so both would show. */}
+          <span className="hidden md:inline-flex">
+            <Button variant="help" onClick={() => navigate('/help')} sprite="handshake">
+              {t('nav.help')}
+            </Button>
+          </span>
+          <span className="inline-flex md:hidden">
+            <Button
+              variant="help"
+              onClick={() => navigate('/help')}
+              aria-label={t('nav.help')}
+              className="px-3"
+            >
+              <Sprite name="handshake" size={24} />
+            </Button>
+          </span>
         </div>
       </div>
     </header>
