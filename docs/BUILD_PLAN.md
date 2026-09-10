@@ -60,11 +60,11 @@ Done when: all 4 buildings are playable and each unlocks the next.
 
 ## Phase 6: Polish and demo (MILESTONE B)
 
-- [ ] Curtain page transitions. Read: DESIGN §7 (page transitions).
-- [ ] Walk the demo path (PRODUCT §8) and fix every rough edge at 1366×768, then check 1920×1080 and 390×844.
-- [ ] Calm motion and reduced motion pass. Keyboard pass (tab through the demo path).
-- [ ] Performance: town ambient count and pausing when hidden; no console errors; `npm run build` is clean.
-- [ ] Add `README.md` with how to run and deploy (`npm run build`, then deploy `dist/` to Vercel or any static host; HashRouter needs no rewrites).
+- [x] Curtain page transitions. Read: DESIGN §7 (page transitions).
+- [x] Walk the demo path (PRODUCT §8) and fix every rough edge at 1366×768, then check 1920×1080 and 390×844.
+- [x] Calm motion and reduced motion pass. Keyboard pass (tab through the demo path).
+- [x] Performance: town ambient count and pausing when hidden; no console errors; `npm run build` is clean.
+- [x] Add `README.md` with how to run and deploy (`npm run build`, then deploy `dist/` to Vercel or any static host; HashRouter needs no rewrites).
 
 ## Phase 7: Stretch (in order, stop anytime)
 
