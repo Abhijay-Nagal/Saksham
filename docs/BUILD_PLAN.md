@@ -42,8 +42,8 @@ Done when: School plays from the town through to results and back, and stars and
 ## Phase 3: All buildings
 
 - [x] `src/engines/games/SortGame` (drag plus the tap alternative). Read: SCREENS §Play: sort, DESIGN §12.
-- [ ] Wire Dhaba, Home and Panchayat. This should be content only; if one needs code changes, fix the engine, not the content. Check the Home gentle tone. Read: PRODUCT §7 (gentle).
-- [ ] Haq Book screen. Read: SCREENS §Haq Book.
+- [x] Wire Dhaba, Home and Panchayat. This should be content only; if one needs code changes, fix the engine, not the content. Check the Home gentle tone. Read: PRODUCT §7 (gentle).
+- [x] Haq Book screen. Read: SCREENS §Haq Book.
 
 Done when: all 4 buildings are playable and each unlocks the next.
 
