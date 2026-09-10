@@ -17,9 +17,9 @@ export function Choices({ choices, onChoose }: ChoicesProps) {
   const [picked, setPicked] = useState<number | null>(null)
 
   return (
-    <div className="mt-4">
-      <p className="text-small mb-2 font-bold text-ink-soft">{t('story.whatShould')}</p>
-      <div className="flex flex-col gap-3">
+    <div className="mt-3">
+      <p className="text-small mb-1.5 font-bold text-ink-soft">{t('story.whatShould')}</p>
+      <div className="flex flex-col gap-2.5">
         {choices.map((choice, i) => (
           <motion.div
             key={choice.to}
@@ -35,7 +35,7 @@ export function Choices({ choices, onChoose }: ChoicesProps) {
           >
             <Button
               variant="secondary"
-              size="lg"
+              size="md"
               fullWidth
               align="left"
               sprite={choice.sprite}

@@ -178,9 +178,9 @@ export function Onboarding() {
                 >
                   <Avatar spec={spec} mood="proud" size={190} framed name={name.trim()} />
                 </motion.div>
-                <h1 className="text-display">Namaste, {name.trim()}!</h1>
+                <h1 className="text-display">{t('onboarding.greeting', { name: name.trim() })}</h1>
                 <p className="text-body max-w-[46ch] text-ink-soft">
-                  {world.mascotName} is waiting for you in town.
+                  {t('onboarding.waiting', { mascot: world.mascotName })}
                 </p>
               </div>
             )}
@@ -195,12 +195,12 @@ export function Onboarding() {
           onClick={() => setStep((s) => Math.max(0, s - 1))}
           className={cn(step === 0 && 'invisible')}
         >
-          ← Back
+          ← {t('common.back')}
         </Button>
 
         {step < STEPS - 1 ? (
           <Button size="lg" onClick={next} disabled={!canContinue} sprite="star">
-            Next
+            {t('common.next')}
           </Button>
         ) : (
           <Button size="lg" onClick={finish} sprite="party">

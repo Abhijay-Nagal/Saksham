@@ -83,18 +83,18 @@ export function StoryPhase({ building, onFinish }: StoryPhaseProps) {
   const showRetry = node.end === 'retry' && typed
 
   return (
-    // The stage is width-driven but must leave room for the dialogue box, so
-    // it is also capped against viewport height.
-    <div className="mx-auto max-w-[min(1000px,104vh)]">
-      <Theatre
-        scene={state.scene}
-        cast={onStage}
-        speaker={node.speaker}
-        talking={!typed}
-        open={curtainOpen}
-      />
+    <div className="mx-auto flex w-full max-w-[1000px] flex-col md:min-h-0 md:flex-1">
+      <div className="flex justify-center md:min-h-0 md:flex-1">
+        <Theatre
+          scene={state.scene}
+          cast={onStage}
+          speaker={node.speaker}
+          talking={!typed}
+          open={curtainOpen}
+        />
+      </div>
 
-      <div className="mx-auto mt-5 max-w-[1000px]">
+      <div className="mx-auto mt-4 w-full max-w-[1000px] shrink-0">
         <DialogueBox
           key={node.id}
           speakerName={speakerName}

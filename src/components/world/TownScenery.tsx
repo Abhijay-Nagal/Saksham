@@ -231,7 +231,8 @@ export function Marigolds({ found, onFind }: MarigoldsProps) {
               const el = refs.current[i]
               if (el) onFind(i, el)
             }}
-            className="absolute z-[6] -translate-x-1/2 -translate-y-1/2 opacity-90 transition-transform duration-200 hover:scale-130 hover:rotate-12"
+            // A 48px hit area around a deliberately small 24px flower.
+            className="absolute z-[6] grid size-12 -translate-x-1/2 -translate-y-1/2 place-items-center opacity-90 transition-transform duration-200 hover:scale-130 hover:rotate-12"
             style={pct(m.x, m.y)}
           >
             <Sprite name="marigold" size={0} className="size-[clamp(16px,2.4cqw,24px)]" />

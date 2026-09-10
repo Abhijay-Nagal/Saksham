@@ -88,7 +88,7 @@ export function Me() {
               setEditing(true)
             }}
           >
-            Edit avatar
+            {t('me.editAvatar')}
           </Button>
         </div>
 
@@ -109,10 +109,11 @@ export function Me() {
 
           <div className="flex flex-wrap gap-3">
             <span className="text-body flex items-center gap-2 rounded-chip bg-marigold px-3 py-1 font-bold sticker-sm">
-              <Sprite name="star" size={22} /> {stars} stars
+              <Sprite name="star" size={22} /> {t('me.starsCount', { n: stars })}
             </span>
             <span className="text-body flex items-center gap-2 rounded-chip bg-white px-3 py-1 font-bold sticker-sm">
-              <Sprite name="books" size={22} /> {profile.cards.length} / {allBuildings.length} cards
+              <Sprite name="books" size={22} />{' '}
+              {t('me.cardsCount', { n: profile.cards.length, total: allBuildings.length })}
             </span>
             <span className="text-body flex items-center gap-2 rounded-chip bg-white px-3 py-1 font-bold sticker-sm">
               <Sprite name="marigold" size={22} /> {profile.marigolds.length} /{' '}
@@ -171,7 +172,7 @@ export function Me() {
         <Button variant="secondary" sprite="friends" onClick={() => navigate('/profiles')}>
           {t('me.switchPlayer')}
         </Button>
-        <Link to="/credits" className="text-body font-bold text-peacock underline">
+        <Link to="/credits" className="text-body inline-flex min-h-12 items-center font-bold text-peacock underline">
           {t('me.credits')}
         </Link>
       </div>
@@ -193,7 +194,7 @@ export function Me() {
             setEditing(false)
           }}
         >
-          Save
+          {t('common.save')}
         </Button>
       </Sheet>
     </div>

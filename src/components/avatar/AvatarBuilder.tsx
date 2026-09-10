@@ -92,7 +92,7 @@ export function AvatarBuilder({ spec, onChange }: AvatarBuilderProps) {
 
       <div className="flex flex-col gap-5">
         <fieldset>
-          <legend className="text-small mb-2 font-extrabold text-ink-soft">Skin</legend>
+          <legend className="text-small mb-2 font-extrabold text-ink-soft">{t('onboarding.skin')}</legend>
           <div className="flex flex-wrap gap-2">
             {skins.map((skin) => (
               <Swatch
@@ -107,7 +107,7 @@ export function AvatarBuilder({ spec, onChange }: AvatarBuilderProps) {
         </fieldset>
 
         <fieldset>
-          <legend className="text-small mb-2 font-extrabold text-ink-soft">Hair</legend>
+          <legend className="text-small mb-2 font-extrabold text-ink-soft">{t('onboarding.hair')}</legend>
           <div className="flex flex-wrap gap-2">
             {hairPreviews.map(({ hair, spec: preview }) => (
               <button
@@ -131,7 +131,7 @@ export function AvatarBuilder({ spec, onChange }: AvatarBuilderProps) {
         </fieldset>
 
         <fieldset>
-          <legend className="text-small mb-2 font-extrabold text-ink-soft">Hair colour</legend>
+          <legend className="text-small mb-2 font-extrabold text-ink-soft">{t('onboarding.hairColour')}</legend>
           <div className="flex flex-wrap gap-2">
             {hairColors.map((hairColor) => (
               <Swatch
@@ -151,7 +151,7 @@ export function AvatarBuilder({ spec, onChange }: AvatarBuilderProps) {
             aria-pressed={spec.accessory === 'glasses'}
             onClick={() => set({ accessory: spec.accessory === 'glasses' ? undefined : 'glasses' })}
           >
-            👓 Glasses
+            👓 {t('onboarding.glasses')}
           </Button>
           <Button variant="secondary" sprite="sparkles" onClick={() => onChange(randomSpec())}>
             {t('onboarding.surprise')}

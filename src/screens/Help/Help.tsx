@@ -42,7 +42,7 @@ export function Help() {
                 href={`tel:${line.number}`}
                 className="mt-4 inline-flex min-h-12 items-center gap-2 rounded-btn border-[2.5px] border-ink bg-peacock px-5 font-bold text-white"
               >
-                📞 Call {line.number}
+                📞 {t('help.call', { number: line.number })}
               </a>
             </div>
           ))}
@@ -57,7 +57,7 @@ export function Help() {
             >
               <a
                 href={`tel:${line.number}`}
-                className="text-[22px] font-extrabold text-peacock underline"
+                className="inline-flex min-h-12 items-center text-[22px] font-extrabold text-peacock underline"
               >
                 {line.number}
               </a>

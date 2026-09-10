@@ -49,7 +49,7 @@ export function TopBar() {
           onPointerLeave={endPress}
           onClick={() => navigate('/town')}
           aria-label={world.appName}
-          className="flex shrink-0 items-center gap-2 rounded-btn px-1 py-1"
+          className="flex min-h-12 shrink-0 items-center gap-2 rounded-btn px-1"
         >
           <Sprite name="parrot" size={34} className="anim-bob" />
           <span className="text-h2 hidden font-extrabold tracking-tight sm:block">

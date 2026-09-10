@@ -65,7 +65,7 @@ export function DialogueBox({
   return (
     <div
       className={cn(
-        'relative rounded-panel p-5 pt-6 sticker',
+        'relative rounded-panel px-5 pt-5 pb-3 sticker',
         variant === 'mitthu' ? 'bg-marigold-soft' : 'bg-white',
       )}
     >
@@ -91,12 +91,17 @@ export function DialogueBox({
         className="block w-full cursor-pointer text-left"
         aria-label={done ? t('story.tapToContinue') : 'Show the whole line'}
       >
-        <p
-          aria-live="polite"
-          className="text-dialogue min-h-[3.6em] max-w-[60ch] text-ink"
-        >
-          {text.slice(0, shown)}
-          {!done && <span className="opacity-40">▍</span>}
+        {/* The full line is rendered invisibly to reserve exactly its own
+            height, so the box never jumps as the text types and never leaves
+            dead space on a short line. */}
+        <p data-dialogue className="text-dialogue relative max-w-[60ch] text-ink">
+          <span aria-hidden className="invisible">
+            {text}
+          </span>
+          <span aria-live="polite" className="absolute inset-0">
+            {text.slice(0, shown)}
+            {!done && <span className="opacity-40">▍</span>}
+          </span>
         </p>
       </button>
 

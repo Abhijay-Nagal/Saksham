@@ -23,7 +23,7 @@ export function Book() {
       <div className="mb-1 flex flex-wrap items-baseline gap-x-4 gap-y-1">
         <h1 className="text-h1">{t('haqBook.title')}</h1>
         <p className="text-body font-bold text-ink-soft">
-          {ownedCount} / {cards.length} cards
+          {t('haqBook.count', { n: ownedCount, total: cards.length })}
         </p>
       </div>
 
@@ -74,7 +74,7 @@ export function Book() {
           >
             <Sprite name={teaser.sprite} size={44} className="opacity-40 grayscale" />
             <p className="text-small font-bold text-ink-soft">{teaser.title}</p>
-            <p className="text-micro text-ink-soft">Coming soon</p>
+            <p className="text-micro text-ink-soft">{t('common.comingSoon')}</p>
           </div>
         ))}
       </div>

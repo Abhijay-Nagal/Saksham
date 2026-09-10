@@ -22,7 +22,13 @@
     "askAge": "How old are you?",
     "young": "8 to 11",
     "teen": "12 to 16",
-    "ready": "Let's go to town!"
+    "ready": "Let's go to town!",
+    "greeting": "Namaste, {name}!",
+    "waiting": "{mascot} is waiting for you in town.",
+    "skin": "Skin",
+    "hair": "Hair",
+    "hairColour": "Hair colour",
+    "glasses": "Glasses"
   },
   "town": {
     "welcome": "Welcome back, {name}!",
@@ -87,7 +93,8 @@
   "haqBook": {
     "title": "Your Haq Book",
     "empty": "Finish a building to collect your first Haq Card.",
-    "lockedCard": "Locked"
+    "lockedCard": "Locked",
+    "count": "{n} / {total} cards"
   },
   "community": {
     "title": "Community",
@@ -116,7 +123,10 @@
     "narration": "Read stories aloud",
     "calmMotion": "Calm motion",
     "switchPlayer": "Switch player",
-    "credits": "Credits"
+    "credits": "Credits",
+    "editAvatar": "Edit avatar",
+    "starsCount": "{n} stars",
+    "cardsCount": "{n} / {total} cards"
   },
   "demo": {
     "on": "Demo mode on: all buildings unlocked."
@@ -131,5 +141,20 @@
     "leaveBody": "Your progress in this story will not be saved.",
     "leaveStay": "Keep playing",
     "leaveGo": "Leave"
+  },
+  "credits": {
+    "title": "Assets",
+    "built": "Built for Smart India Hackathon (SIH1281)",
+    "sources": "Legal sources",
+    "sourcesNote": "Every Haq Card cites the law it comes from."
+  },
+  "help": {
+    "call": "Call {number}"
+  },
+  "common": {
+    "next": "Next",
+    "back": "Back",
+    "save": "Save",
+    "comingSoon": "Coming soon"
   }
 }

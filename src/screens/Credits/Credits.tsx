@@ -1,4 +1,4 @@
-import { allBuildings, world } from '@/lib/content'
+import { allBuildings, t, world } from '@/lib/content'
 import { Panel } from '@/components/ui/Panel'
 import { Sprite } from '@/components/ui/Sprite'
 
@@ -19,13 +19,13 @@ export function Credits() {
         <div>
           <h1 className="text-h1">{world.appName}</h1>
           <p className="text-body text-ink-soft">
-            Built for Smart India Hackathon (SIH1281)
+            {t('credits.built')}
           </p>
         </div>
       </div>
 
       <Panel className="mt-6">
-        <h2 className="text-h2">Assets</h2>
+        <h2 className="text-h2">{t('credits.title')}</h2>
         <ul className="mt-3 flex flex-col gap-3">
           {ASSETS.map((asset) => (
             <li key={asset.name}>
@@ -37,9 +37,9 @@ export function Credits() {
       </Panel>
 
       <Panel className="mt-4 mb-10">
-        <h2 className="text-h2">Legal sources</h2>
+        <h2 className="text-h2">{t('credits.sources')}</h2>
         <p className="text-small mt-1 text-ink-soft">
-          Every Haq Card cites the law it comes from.
+          {t('credits.sourcesNote')}
         </p>
         <ul className="mt-3 flex flex-col gap-3">
           {allBuildings.map((building) => (
