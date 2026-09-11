@@ -6,8 +6,8 @@ import { markSplashDone } from '@/lib/splash'
 import { useStore } from '@/lib/store'
 
 /** How long the splash holds after Mitthu lands, and its hard ceiling. */
-const HOLD_MS = 650
-const MAX_MS = 3200
+const HOLD_MS = 1700
+const MAX_MS = 4400
 const CALM_MS = 900
 
 function isCalm() {
