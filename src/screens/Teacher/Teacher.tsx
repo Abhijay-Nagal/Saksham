@@ -44,7 +44,7 @@ export function Teacher() {
       </p>
 
       {/* Heatmap */}
-      <div className="overflow-x-auto">
+      <div className="relative overflow-x-auto">
         <table className="w-full min-w-[560px] border-separate border-spacing-1">
           <caption className="sr-only">Stars earned per student per building</caption>
           <thead>

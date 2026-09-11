@@ -3,6 +3,7 @@ import { HashRouter, Navigate, Route, Routes, useLocation } from 'react-router'
 import { ToastProvider } from '@/components/ui/Toast'
 import { Shell } from '@/components/shell/Shell'
 import { CurtainTransition } from '@/components/shell/CurtainTransition'
+import { Splash } from '@/components/shell/Splash'
 import { useActiveProfile, useSettings, useStore } from '@/lib/store'
 import { sound } from '@/lib/sound'
 import { speech } from '@/lib/speech'
@@ -128,6 +129,7 @@ function AppRoutes() {
   return (
     <>
       <CurtainTransition />
+      <Splash />
       <Routes>
         <Route path="/" element={<StartRedirect />} />
         <Route path="/profiles" element={<Profiles />} />
@@ -139,7 +141,7 @@ function AppRoutes() {
         <Route path="/community" element={<InShell><Community /></InShell>} />
         <Route path="/me" element={<InShell><Me /></InShell>} />
         <Route path="/credits" element={<InShell><Credits /></InShell>} />
-          <Route path="/teacher" element={<InShell><Teacher /></InShell>} />
+        <Route path="/teacher" element={<InShell><Teacher /></InShell>} />
         <Route path="/dev/avatars" element={<DevAvatars />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

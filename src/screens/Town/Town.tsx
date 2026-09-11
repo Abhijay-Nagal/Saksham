@@ -14,10 +14,10 @@ import {
   useStore,
 } from '@/lib/store'
 import { useToast } from '@/components/ui/Toast'
-import { Mitthu } from '@/components/avatar/Mitthu'
 import { BuildingTile } from '@/components/world/BuildingTile'
 import type { TileState } from '@/components/world/BuildingTile'
 import { BuildingSheet } from '@/components/world/BuildingSheet'
+import { TownMitthu } from '@/components/world/TownMitthu'
 import {
   Clouds,
   Hills,
@@ -27,7 +27,6 @@ import {
   Sun,
   TownPath,
   Trees,
-  pct,
 } from '@/components/world/TownScenery'
 import { SKIES, useTimeOfDay } from '@/components/world/timeOfDay'
 
@@ -50,8 +49,6 @@ export function Town() {
   const time = useTimeOfDay()
 
   const [selected, setSelected] = useState<MapSpot | null>(null)
-  const [mitthuSays, setMitthuSays] = useState<string | null>(null)
-  const [mitthuHop, setMitthuHop] = useState(false)
 
   const open = unlockedBuildings(profile, settings.demo)
   const recommended = recommendedBuilding(profile, settings.demo)
@@ -145,17 +142,17 @@ export function Town() {
     }
   }
 
-  function onMitthu() {
-    sound.pop()
-    setMitthuHop(true)
-    const fact = world.mitthuFacts[Math.floor(Math.random() * world.mitthuFacts.length)]
-    setMitthuSays(fact)
-    window.setTimeout(() => setMitthuHop(false), 520)
-    window.setTimeout(() => setMitthuSays(null), 3200)
-  }
-
   const recommendedSpot = world.map.spots.find((s) => s.id === recommended)
   const recommendedTitle = recommendedSpot?.title ?? ''
+
+  // Mitthu perches up and to the left of the recommended building (or the
+  // first one once everything is done). After a finished building he starts
+  // there and flies over to the next.
+  const perchBy = (spot: MapSpot) => ({ x: spot.x - 135, y: spot.y - 95 })
+  const homeSpot = recommendedSpot ?? world.map.spots[0]
+  const home = perchBy(homeSpot)
+  const startSpot = world.map.spots.find((s) => s.id === celebration.justCompleted)
+  const [mitthuStart] = useState(() => (startSpot ? perchBy(startSpot) : null))
 
   return (
     <div className="mx-auto max-w-[1000px]">
@@ -170,7 +167,10 @@ export function Town() {
 
       <div
         ref={mapRef}
-        className="relative overflow-hidden rounded-panel bg-sky sticker"
+        // overflow-clip, not hidden: a hidden box can still be scrolled by
+        // focus or scrollIntoView (a drifting cloud, Mitthu at the edge), which
+        // slid the whole scene sideways. Clip can't scroll at all.
+        className="relative overflow-clip rounded-panel bg-sky sticker"
         // A size container, so tiles and scenery scale in cqw with the map
         // rather than staying fixed and crowding each other on a phone.
         style={{
@@ -207,20 +207,11 @@ export function Town() {
 
         <Marigolds found={profile?.marigolds ?? []} onFind={onMarigold} />
 
-        {recommendedSpot && (
-          <div
-            className="absolute z-[7] -translate-x-1/2 -translate-y-1/2"
-            style={pct(recommendedSpot.x - 135, recommendedSpot.y - 95)}
-          >
-            <Mitthu
-              spriteClassName="size-[clamp(38px,6.2cqw,62px)]"
-              says={mitthuSays}
-              onClick={onMitthu}
-              hop={mitthuHop}
-              bubbleSide="right"
-            />
-          </div>
-        )}
+        <TownMitthu
+          home={home}
+          start={mitthuStart}
+          paused={!!selected}
+        />
       </div>
 
       <BuildingSheet

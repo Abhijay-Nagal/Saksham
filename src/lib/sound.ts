@@ -9,13 +9,16 @@
 import { useStore } from './store'
 
 let ctx: AudioContext | null = null
+/** No context until the first gesture: creating one earlier only logs a
+    browser warning and stays suspended (e.g. Mitthu landing on page load). */
+let gestured = false
 /** Gentle-tone buildings play at half gain. */
 let gainScale = 1
 
 type Ctor = typeof AudioContext
 
 function getCtx(): AudioContext | null {
-  if (typeof window === 'undefined') return null
+  if (typeof window === 'undefined' || !gestured) return null
   if (!ctx) {
     const Ctor: Ctor | undefined =
       window.AudioContext ?? (window as unknown as { webkitAudioContext?: Ctor }).webkitAudioContext
@@ -93,6 +96,7 @@ function noise(duration: number, gain = 0.09, centre = 1200) {
 
 /** Call from the first user gesture so the context is running when we need it. */
 export function unlock() {
+  gestured = true
   getCtx()
 }
 

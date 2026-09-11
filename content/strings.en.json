@@ -41,7 +41,9 @@
     "nextUp": "Mitthu thinks you should visit the {building} next.",
     "locked": "Finish the {building} to unlock this.",
     "marigoldFound": "You found a hidden marigold!",
-    "allMarigolds": "Badge unlocked: Sharp Eyes!"
+    "allMarigolds": "Badge unlocked: Sharp Eyes!",
+    "callMitthu": "Call {mascot} back",
+    "mitthuAway": "{mascot} is exploring the town"
   },
   "building": {
     "play": "Play",
@@ -55,7 +57,21 @@
     "readAloud": "Read aloud",
     "whatShould": "Choose what happens",
     "skip": "Skip",
-    "tryAgain": "Try again"
+    "tryAgain": "Try again",
+    "showWholeLine": "Show the whole line"
+  },
+  "speech": {
+    "stop": "Stop reading",
+    "pause": "Pause",
+    "resume": "Keep reading",
+    "restart": "Read from the start"
+  },
+  "splash": {
+    "tagline": "Learn your rights, one story at a time."
+  },
+  "mascot": {
+    "label": "{mascot} the parrot",
+    "tapHint": "Tap {mascot}"
   },
   "card": {
     "newCard": "New card!",

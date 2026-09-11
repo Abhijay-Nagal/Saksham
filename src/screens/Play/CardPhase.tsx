@@ -31,7 +31,11 @@ export function CardPhase({ card, band, onContinue }: CardPhaseProps) {
   }, [card.id, collectCard])
 
   return (
-    <div className="fixed inset-0 z-40 flex flex-col items-center justify-center overflow-y-auto bg-ink/70 px-4 py-8">
+    // The overlay scrolls; the inner column is at least as tall as the screen
+    // and centres itself, so a zoomed-in or short screen scrolls instead of
+    // cutting off the top (which plain justify-center on the scroller would).
+    <div className="fixed inset-0 z-40 overflow-y-auto overscroll-contain bg-ink/70">
+      <div className="relative flex min-h-full flex-col items-center justify-center overflow-x-hidden px-4 pt-20 pb-10">
       {/* Sunburst */}
       <div
         aria-hidden
@@ -88,6 +92,7 @@ export function CardPhase({ card, band, onContinue }: CardPhaseProps) {
       >
         {t('card.continue')}
       </Button>
+      </div>
     </div>
   )
 }

@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/Button'
 import { Panel } from '@/components/ui/Panel'
 import { ProgressBar } from '@/components/ui/ProgressBar'
 import { Sprite } from '@/components/ui/Sprite'
+import { MitthuBird } from '@/components/avatar/MitthuBird'
 
 export interface GameResult {
   /** correct on the first attempt / total, 0..1 */
@@ -94,7 +95,7 @@ export function QuizGame({ game, band, onFinish }: QuizGameProps) {
   if (phase === 'offer') {
     return (
       <div className="mx-auto max-w-[700px] text-center">
-        <Sprite name="parrot" size={92} className="anim-bob mx-auto" />
+        <MitthuBird size={104} className="mx-auto" />
         <h2 className="text-h1 mt-3">{t('quiz.hintRound')}</h2>
         <p className="text-body mt-2 text-ink-soft">
           {t('quiz.score', { n: correct, total: questions.length })}
@@ -133,7 +134,7 @@ export function QuizGame({ game, band, onFinish }: QuizGameProps) {
 
       {inHint && (
         <Panel tone="marigold-soft" className="mt-4 flex items-start gap-3 p-4">
-          <Sprite name="parrot" size={34} className="shrink-0" />
+          <MitthuBird size={44} className="-mt-1" />
           <p className="text-body font-semibold">{current.explain}</p>
         </Panel>
       )}

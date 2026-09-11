@@ -6,6 +6,7 @@ import { totalStars, useStore } from '@/lib/store'
 import { Avatar } from '@/components/avatar/Avatar'
 import { Mitthu } from '@/components/avatar/Mitthu'
 import { Sprite } from '@/components/ui/Sprite'
+import { FloatingHelp } from '@/components/shell/FloatingHelp'
 
 export function Profiles() {
   const navigate = useNavigate()
@@ -14,6 +15,7 @@ export function Profiles() {
 
   return (
     <div className="mx-auto flex min-h-dvh max-w-[900px] flex-col items-center justify-center px-4 py-10">
+      <FloatingHelp />
       <div className="mb-2 flex items-center gap-3">
         <Mitthu size={64} />
         <h1 className="text-display">{t('profiles.title')}</h1>

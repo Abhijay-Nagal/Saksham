@@ -6,6 +6,7 @@ import { totalStars, useActiveProfile, useSettings, useStore } from '@/lib/store
 import { Sprite } from '@/components/ui/Sprite'
 import { Pill } from '@/components/ui/Pill'
 import { Button } from '@/components/ui/Button'
+import { Logo } from '@/components/brand/Logo'
 import { useToast } from '@/components/ui/Toast'
 
 const TABS = [
@@ -51,10 +52,7 @@ export function TopBar() {
           aria-label={world.appName}
           className="flex min-h-12 shrink-0 items-center gap-2 rounded-btn px-1"
         >
-          <Sprite name="parrot" size={34} className="anim-bob" />
-          <span className="text-h2 hidden font-extrabold tracking-tight sm:block">
-            {world.appName}
-          </span>
+          <Logo size={40} />
         </button>
 
         <nav aria-label="Main" className="mx-auto hidden items-center gap-1 md:flex">
@@ -66,7 +64,7 @@ export function TopBar() {
                 to={tab.to}
                 id={tab.to === '/book' ? 'book-tab' : undefined}
                 className={cn(
-                  'flex min-h-12 items-center gap-2 rounded-btn px-4 font-bold transition-colors',
+                  'flex min-h-12 items-center gap-2 rounded-btn px-3 font-bold whitespace-nowrap transition-colors lg:px-4',
                   active ? 'bg-marigold text-ink sticker-sm' : 'text-ink-soft hover:bg-white',
                 )}
               >
@@ -77,7 +75,7 @@ export function TopBar() {
           })}
         </nav>
 
-        <div className="ml-auto flex items-center gap-2">
+        <div className="ml-auto flex shrink-0 items-center gap-2">
           {settings.demo && (
             <span className="rounded-chip bg-rani px-2 py-1 text-[14px] font-bold text-white sticker-sm">
               Demo
@@ -90,11 +88,11 @@ export function TopBar() {
             className="star-pill"
             tone="marigold"
           />
-          <Pill sprite="marigold" value={marigolds} label="Marigolds found" className="marigold-pill hidden sm:inline-flex" />
+          <Pill sprite="marigold" value={marigolds} label="Marigolds found" className="marigold-pill hidden sm:inline-flex md:hidden lg:inline-flex" />
           {/* Wrapped in spans: `hidden` on the Button itself loses to the
               `inline-flex` in its own class list, so both would show. */}
           <span className="hidden md:inline-flex">
-            <Button variant="help" onClick={() => navigate('/help')} sprite="handshake">
+            <Button variant="help" onClick={() => navigate('/help')} sprite="handshake" className="whitespace-nowrap">
               {t('nav.help')}
             </Button>
           </span>

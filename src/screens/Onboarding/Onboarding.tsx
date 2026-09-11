@@ -11,6 +11,9 @@ import { Avatar } from '@/components/avatar/Avatar'
 import { AvatarBuilder, randomSpec } from '@/components/avatar/AvatarBuilder'
 import type { HeadwearColor } from '@/components/avatar/Headwear'
 import { Mitthu } from '@/components/avatar/Mitthu'
+import { MitthuArrival } from '@/components/avatar/MitthuArrival'
+import { useSplashDone } from '@/lib/splash'
+import { FloatingHelp } from '@/components/shell/FloatingHelp'
 import { Button } from '@/components/ui/Button'
 import { Panel } from '@/components/ui/Panel'
 import { Sprite } from '@/components/ui/Sprite'
@@ -28,6 +31,8 @@ export function Onboarding() {
   const [spec, setSpec] = useState<AvatarSpec>(() => randomSpec())
   const [band, setBand] = useState<AgeBand | null>(null)
   const [headwearColor, setHeadwearColor] = useState<HeadwearColor>('peacock')
+  const [mitthuLanded, setMitthuLanded] = useState(false)
+  const splashDone = useSplashDone()
   const readyRef = useRef<HTMLDivElement>(null)
 
   // The last step is a small celebration.
@@ -60,6 +65,7 @@ export function Onboarding() {
 
   return (
     <div className="mx-auto flex min-h-dvh max-w-[900px] flex-col px-4 py-6">
+      <FloatingHelp />
       {/* Progress dots */}
       <div className="mb-6 flex justify-center gap-2" aria-label={`Step ${step + 1} of ${STEPS}`}>
         {Array.from({ length: STEPS }, (_, i) => (
@@ -86,16 +92,20 @@ export function Onboarding() {
           >
             {step === 0 && (
               <div className="flex flex-col items-center gap-5 text-center">
+                {splashDone ? (
+                  <MitthuArrival size={150} onLanded={() => setMitthuLanded(true)} />
+                ) : (
+                  <div aria-hidden style={{ height: 150 * 1.1 }} />
+                )}
                 <motion.div
-                  initial={{ x: -180, opacity: 0, rotate: -20 }}
-                  animate={{ x: 0, opacity: 1, rotate: 0 }}
-                  transition={{ type: 'spring', stiffness: 180, damping: 18, delay: 0.15 }}
+                  initial={{ opacity: 0, y: 14, scale: 0.96 }}
+                  animate={mitthuLanded ? { opacity: 1, y: 0, scale: 1 } : {}}
+                  transition={{ type: 'spring', stiffness: 360, damping: 26 }}
                 >
-                  <Sprite name="parrot" size={128} className="anim-bob" />
+                  <Panel className="max-w-[52ch]">
+                    <p className="text-dialogue">{t('onboarding.mitthuHello')}</p>
+                  </Panel>
                 </motion.div>
-                <Panel className="max-w-[52ch]">
-                  <p className="text-dialogue">{t('onboarding.mitthuHello')}</p>
-                </Panel>
               </div>
             )}
 

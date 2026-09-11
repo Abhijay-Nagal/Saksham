@@ -1,5 +1,5 @@
 import { cn } from '@/lib/cn'
-import { Sprite } from './Sprite'
+import { MitthuBird } from '@/components/avatar/MitthuBird'
 
 interface ProgressBarProps {
   /** 0..1 */
@@ -36,7 +36,7 @@ export function ProgressBar({
         aria-valuemax={100}
         aria-valuenow={Math.round(pct)}
         aria-label={label}
-        className={cn('relative h-5 rounded-full bg-white sticker-sm', mitthu && 'mt-6')}
+        className={cn('relative h-5 rounded-full bg-white sticker-sm', mitthu && 'mt-8')}
       >
         <div
           className={cn(
@@ -47,10 +47,10 @@ export function ProgressBar({
         />
         {mitthu && (
           <div
-            className="absolute -top-6 transition-[left] duration-500 ease-spring"
-            style={{ left: `clamp(0px, calc(${pct}% - 16px), calc(100% - 32px))` }}
+            className="absolute -top-8 transition-[left] duration-500 ease-spring"
+            style={{ left: `clamp(0px, calc(${pct}% - 20px), calc(100% - 40px))` }}
           >
-            <Sprite name="parrot" size={32} className="anim-bob" />
+            <MitthuBird size={40} flip />
           </div>
         )}
       </div>

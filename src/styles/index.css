@@ -223,6 +223,113 @@
   100% { transform: translate(var(--dx, 0px), 90px) rotate(var(--dr, 180deg)); opacity: 0; }
 }
 
+@keyframes eq {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+
+/* ---------- Mitthu (components/avatar/MitthuBird) ----------
+   Periods are deliberately co-prime-ish so the blink, tilt, stretch and hop
+   drift against each other and the bird never loops visibly. */
+
+@keyframes mb-blink {
+  0%, 42% { transform: scaleY(1); }
+  44% { transform: scaleY(0.08); }
+  46%, 86% { transform: scaleY(1); }
+  88% { transform: scaleY(0.08); }
+  90% { transform: scaleY(1); }
+  92% { transform: scaleY(0.08); }
+  94%, 100% { transform: scaleY(1); }
+}
+
+@keyframes mb-lid {
+  0%, 43% { opacity: 0; }
+  43.5%, 45.5% { opacity: 1; }
+  46%, 87% { opacity: 0; }
+  87.5%, 89.5% { opacity: 1; }
+  90%, 91% { opacity: 0; }
+  91.5%, 93.5% { opacity: 1; }
+  94%, 100% { opacity: 0; }
+}
+
+@keyframes mb-breathe {
+  0%, 100% { transform: scale(1, 1); }
+  50% { transform: scale(1.015, 1.03); }
+}
+
+@keyframes mb-hop {
+  0%, 84%, 100% { transform: translateY(0) scale(1, 1); }
+  86% { transform: translateY(0) scale(1.06, 0.92); }
+  89% { transform: translateY(-9px) scale(0.96, 1.05); }
+  92% { transform: translateY(0) scale(1.05, 0.94); }
+  94% { transform: translateY(-3px) scale(1, 1); }
+  96% { transform: translateY(0) scale(1, 1); }
+}
+
+@keyframes mb-tilt {
+  0%, 52% { transform: rotate(0deg); }
+  57%, 70% { transform: rotate(-10deg); }
+  75% { transform: rotate(5deg); }
+  80%, 100% { transform: rotate(0deg); }
+}
+
+@keyframes mb-stretch {
+  0%, 66% { transform: rotate(0deg); }
+  70% { transform: rotate(-118deg); }
+  73% { transform: rotate(-102deg); }
+  76% { transform: rotate(-120deg); }
+  79% { transform: rotate(-104deg); }
+  83%, 100% { transform: rotate(0deg); }
+}
+
+@keyframes mb-stretch-far {
+  0%, 66% { transform: rotate(0deg); }
+  70% { transform: rotate(-140deg); }
+  73% { transform: rotate(-124deg); }
+  76% { transform: rotate(-142deg); }
+  79% { transform: rotate(-126deg); }
+  83%, 100% { transform: rotate(0deg); }
+}
+
+@keyframes mb-tail {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(6deg); }
+}
+
+@keyframes mb-flap {
+  from { transform: rotate(14deg); }
+  to { transform: rotate(-114deg); }
+}
+
+@keyframes mb-flap-far {
+  from { transform: rotate(8deg); }
+  to { transform: rotate(-134deg); }
+}
+
+@keyframes mb-glide {
+  from { transform: translateY(2px); }
+  to { transform: translateY(-2px); }
+}
+
+.mb-perch .mb-root { animation: mb-hop 9.3s ease-in-out var(--mb-phase, 0s) infinite; }
+.mb-perch .mb-breathe { animation: mb-breathe 3.1s ease-in-out var(--mb-phase, 0s) infinite; }
+.mb-perch .mb-blink,
+.mb-flying .mb-blink { animation: mb-blink 5.3s linear var(--mb-phase, 0s) infinite; }
+.mb-perch .mb-lid,
+.mb-flying .mb-lid { animation: mb-lid 5.3s steps(1, end) var(--mb-phase, 0s) infinite; }
+.mb-perch .mb-head { animation: mb-tilt 7.7s ease-in-out var(--mb-phase, 0s) infinite; }
+.mb-perch .mb-wing { animation: mb-stretch 12.1s ease-in-out var(--mb-phase, 0s) infinite; }
+.mb-perch .mb-wing-far { animation: mb-stretch-far 12.1s ease-in-out var(--mb-phase, 0s) infinite; }
+.mb-perch .mb-tail { animation: mb-tail 3.7s ease-in-out var(--mb-phase, 0s) infinite; }
+
+.mb-flying .mb-root { transform: rotate(-12deg); }
+.mb-flying .mb-breathe { animation: mb-glide 0.26s ease-in-out infinite alternate; }
+.mb-flying .mb-wing { animation: mb-flap 0.26s ease-in-out infinite alternate; }
+.mb-flying .mb-wing-far { animation: mb-flap-far 0.26s ease-in-out infinite alternate; }
+.mb-flying .mb-feet { opacity: 0; }
+.mb-flying .mb-tail { transform: rotate(-12deg); }
+
+.anim-eq { height: 100%; transform-origin: bottom; animation: eq 0.9s ease-in-out infinite; }
 .anim-bob { animation: bob 2.4s ease-in-out infinite; }
 .anim-bob-soft { animation: bob-soft 3s ease-in-out infinite; }
 .anim-spin-slow { animation: spin-slow 12s linear infinite; }

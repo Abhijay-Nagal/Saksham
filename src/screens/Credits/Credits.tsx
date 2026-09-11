@@ -1,6 +1,6 @@
 import { allBuildings, t, world } from '@/lib/content'
 import { Panel } from '@/components/ui/Panel'
-import { Sprite } from '@/components/ui/Sprite'
+import { LogoMark } from '@/components/brand/Logo'
 
 const ASSETS = [
   {
@@ -15,7 +15,7 @@ export function Credits() {
   return (
     <div className="mx-auto max-w-[760px]">
       <div className="flex items-center gap-3">
-        <Sprite name="parrot" size={56} className="anim-bob" />
+        <LogoMark size={64} className="mt-3" />
         <div>
           <h1 className="text-h1">{world.appName}</h1>
           <p className="text-body text-ink-soft">

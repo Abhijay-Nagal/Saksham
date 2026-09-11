@@ -3,8 +3,8 @@ import { cn } from '@/lib/cn'
 import { t } from '@/lib/content'
 import { speech } from '@/lib/speech'
 import { useSettings } from '@/lib/store'
-import { IconButton } from '@/components/ui/IconButton'
-import { Sprite } from '@/components/ui/Sprite'
+import { MitthuBird } from '@/components/avatar/MitthuBird'
+import { SpeechControls } from '@/components/ui/SpeechControls'
 
 interface DialogueBoxProps {
   /** Nameplate text; empty for the narrator. */
@@ -34,6 +34,12 @@ export function DialogueBox({
   const settings = useSettings()
   const typedRef = useRef(onTyped)
   typedRef.current = onTyped
+  const timer = useRef<number | null>(null)
+
+  const stopTyping = () => {
+    if (timer.current !== null) window.clearInterval(timer.current)
+    timer.current = null
+  }
 
   // Typewriter. Calm mode shows the whole line at once.
   useEffect(() => {
@@ -43,12 +49,12 @@ export function DialogueBox({
       return
     }
     let i = 0
-    const id = window.setInterval(() => {
+    timer.current = window.setInterval(() => {
       i += 1
       setShown(i)
-      if (i >= text.length) window.clearInterval(id)
+      if (i >= text.length) stopTyping()
     }, CHAR_MS)
-    return () => window.clearInterval(id)
+    return stopTyping
   }, [text])
 
   useEffect(() => {
@@ -62,34 +68,39 @@ export function DialogueBox({
     return () => speech.cancel()
   }, [text, settings.narration])
 
+  // The first tap finishes the line at once (the typewriter must stop, or it
+  // would carry on overwriting it); the next tap continues.
+  function handleTap() {
+    if (!done) {
+      stopTyping()
+      setShown(text.length)
+    } else {
+      onTap()
+    }
+  }
+
   return (
+    // The whole panel is the tap target. The inner <button> keeps it reachable
+    // by keyboard; its click bubbles up here, so it needs no handler of its own.
     <div
+      onClick={handleTap}
       className={cn(
-        'relative rounded-panel px-5 pt-5 pb-3 sticker',
+        'relative cursor-pointer rounded-panel px-5 pt-5 pb-3 sticker select-none',
         variant === 'mitthu' ? 'bg-marigold-soft' : 'bg-white',
       )}
     >
       {/* Nameplate */}
       {variant !== 'narrator' && (
-        <span
-          className={cn(
-            'absolute -top-3.5 left-5 inline-flex items-center gap-1.5 rounded-chip border-2 border-ink px-2.5 py-0.5 text-[16px] font-extrabold',
-            variant === 'mitthu' ? 'bg-marigold' : 'bg-marigold',
-          )}
-        >
-          {variant === 'mitthu' && <Sprite name="parrot" size={20} />}
+        <span className="absolute -top-3.5 left-5 inline-flex items-center gap-1.5 rounded-chip border-2 border-ink bg-marigold px-2.5 py-0.5 text-[16px] font-extrabold">
+          {variant === 'mitthu' && <MitthuBird size={22} still />}
           {speakerName}
         </span>
       )}
 
       <button
         type="button"
-        onClick={() => {
-          if (!done) setShown(text.length)
-          else onTap()
-        }}
         className="block w-full cursor-pointer text-left"
-        aria-label={done ? t('story.tapToContinue') : 'Show the whole line'}
+        aria-label={done ? t('story.tapToContinue') : t('story.showWholeLine')}
       >
         {/* The full line is rendered invisibly to reserve exactly its own
             height, so the box never jumps as the text types and never leaves
@@ -105,15 +116,8 @@ export function DialogueBox({
         </p>
       </button>
 
-      <div className="mt-2 flex items-center justify-between gap-3">
-        <IconButton
-          aria-label={t('story.readAloud')}
-          onClick={() => speech.speak(text)}
-          variant="white"
-          className="size-11"
-        >
-          <Sprite name="speaker" size={22} />
-        </IconButton>
+      <div className="mt-2 flex min-h-12 items-center justify-between gap-3">
+        <SpeechControls text={text} />
 
         {done && showContinue && (
           <span className="text-small animate-pulse font-bold text-ink-soft">

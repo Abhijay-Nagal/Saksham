@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'motion/react'
 import type { CastMember, Mood } from '@content/types'
 import { cn } from '@/lib/cn'
-import { Sprite } from '@/components/ui/Sprite'
+import { MitthuBird } from '@/components/avatar/MitthuBird'
 import { Backdrop } from './Backdrop'
 import { Puppet } from './Puppet'
 import type { Scene } from './useStory'
@@ -50,7 +50,7 @@ export function Theatre({ scene, cast, speaker, talking, open }: TheatreProps) {
 
       {/* Stage. `container-type: size` lets the puppets scale in cqh units. */}
       <div
-        className="relative mx-4 aspect-4/5 overflow-hidden md:mx-9 md:aspect-auto md:min-h-0 md:flex-1"
+        className="relative mx-4 aspect-square overflow-hidden md:mx-9 md:aspect-auto md:min-h-0 md:flex-1"
         style={{ containerType: 'size' }}
       >
         <Backdrop bg={scene.bg} props={scene.props} />
@@ -97,7 +97,7 @@ export function Theatre({ scene, cast, speaker, talking, open }: TheatreProps) {
               transition={{ type: 'spring', stiffness: 320, damping: 22 }}
               className="absolute right-4 bottom-[8%] z-20"
             >
-              <Sprite name="parrot" size={92} className="anim-bob" />
+              <MitthuBird size={0} className="size-[clamp(64px,30cqh,120px)]" />
             </motion.div>
           )}
         </AnimatePresence>

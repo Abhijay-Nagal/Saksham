@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { Building } from '@content/types'
 import { t, world } from '@/lib/content'
+import { fx } from '@/lib/fx'
 import { sound } from '@/lib/sound'
 import { Button } from '@/components/ui/Button'
 import { Theatre } from './Theatre'
@@ -82,9 +83,28 @@ export function StoryPhase({ building, onFinish }: StoryPhaseProps) {
   const showChoices = !!node.choices && typed
   const showRetry = node.end === 'retry' && typed
 
+  // On a short screen the choices or the retry button can land below the
+  // fold; bring them up so the player sees there is something to pick.
+  const actionsRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    if (!showChoices && !showRetry) return
+    const id = window.setTimeout(() => {
+      const el = actionsRef.current
+      if (!el) return
+      const r = el.getBoundingClientRect()
+      if (r.bottom > window.innerHeight) {
+        el.scrollIntoView({ behavior: fx.isCalm() ? 'auto' : 'smooth', block: 'end' })
+      }
+    }, 350)
+    return () => window.clearTimeout(id)
+  }, [showChoices, showRetry, node.id])
+
   return (
-    <div className="mx-auto flex w-full max-w-[1000px] flex-col md:min-h-0 md:flex-1">
-      <div className="flex justify-center md:min-h-0 md:flex-1">
+    // No min-h-0 on the column: it may not shrink below the dialogue and
+    // choices, so on a short or zoomed screen the page scrolls instead of
+    // squashing them. The theatre shrinks, but never below 200px.
+    <div className="mx-auto flex w-full max-w-[1000px] flex-col md:flex-1">
+      <div className="flex justify-center md:min-h-[200px] md:flex-1">
         <Theatre
           scene={state.scene}
           cast={onStage}
@@ -94,7 +114,7 @@ export function StoryPhase({ building, onFinish }: StoryPhaseProps) {
         />
       </div>
 
-      <div className="mx-auto mt-4 w-full max-w-[1000px] shrink-0">
+      <div ref={actionsRef} className="mx-auto mt-4 w-full max-w-[1000px] shrink-0 scroll-mb-4">
         <DialogueBox
           key={node.id}
           speakerName={speakerName}

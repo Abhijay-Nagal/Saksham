@@ -6,7 +6,7 @@ import { t } from '@/lib/content'
 import { sound } from '@/lib/sound'
 import { speech } from '@/lib/speech'
 import { Sprite } from './Sprite'
-import { IconButton } from './IconButton'
+import { SpeechControls } from './SpeechControls'
 
 const FILLS: Record<CardData['color'], string> = {
   peacock: 'bg-peacock text-white',
@@ -36,10 +36,12 @@ interface CardProps {
  * sweep; the back carries the band text, "If it happens", the law chip and the
  * source line.
  *
- * The flip target is a full-size button *behind* the two faces. The faces are
- * pointer-events:none so taps fall through to it, and only the genuinely
- * interactive bits on the back opt back in. That keeps links and buttons out
- * of a button, which would be invalid.
+ * The flip target is a full-size button *behind* the two faces. The front is
+ * pointer-events:none so taps fall through to it. The back opts back in once
+ * it is showing, because it scrolls: a long card has to take the wheel and
+ * touch drags. A tap on the back flips it too; its own links and buttons stop
+ * the tap from bubbling. That keeps links and buttons out of a button, which
+ * would be invalid.
  */
 export function Card({
   card,
@@ -62,6 +64,7 @@ export function Card({
 
   function toggle() {
     sound.pop()
+    speech.cancel()
     const next = !isFlipped
     onFlip?.(next)
     if (flipped === undefined) setOwnFlipped(next)
@@ -122,7 +125,13 @@ export function Card({
 
           {/* Back */}
           <div
-            className="absolute inset-0 flex flex-col gap-2 overflow-y-auto rounded-card bg-white p-4 text-left sticker"
+            data-card-back
+            onClick={isFlipped ? toggle : undefined}
+            className={cn(
+              'absolute inset-0 flex cursor-pointer flex-col gap-2 overflow-y-auto overscroll-contain rounded-card bg-white p-4 text-left sticker',
+              '[scrollbar-width:thin] [scrollbar-color:var(--color-ink-soft)_transparent]',
+              isFlipped ? 'pointer-events-auto' : 'pointer-events-none',
+            )}
             style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
           >
             <h3 className="text-[20px] font-extrabold">{card.title}</h3>
@@ -131,7 +140,8 @@ export function Card({
             {band === 'young' && !tellMore && (
               <button
                 type="button"
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation()
                   sound.tap()
                   setTellMore(true)
                 }}
@@ -147,6 +157,7 @@ export function Card({
               {interactiveBack && (
                 <Link
                   to="/help"
+                  onClick={(e) => e.stopPropagation()}
                   className="pointer-events-auto inline-block pt-1 text-[15px] font-bold text-peacock underline"
                 >
                   {t('card.needHelp')}
@@ -161,16 +172,9 @@ export function Card({
 
       {interactiveBack && (
         <div className="mt-3 flex items-center justify-center gap-3">
-          <IconButton
-            aria-label={t('story.readAloud')}
-            onClick={() =>
-              speech.speak(
-                isFlipped ? `${card.title}. ${bodyText}. ${card.ifItHappens}` : card.title,
-              )
-            }
-          >
-            <Sprite name="speaker" size={22} />
-          </IconButton>
+          <SpeechControls
+            text={isFlipped ? `${card.title}. ${bodyText}. ${card.ifItHappens}` : card.title}
+          />
           {!isFlipped && showFlipHint && (
             <span className="text-small font-bold text-ink-soft">{t('card.flip')}</span>
           )}

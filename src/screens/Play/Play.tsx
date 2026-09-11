@@ -78,7 +78,15 @@ export function Play() {
   const stepIndex = STEPS.findIndex((s) => s.id === phase)
 
   return (
-    <div className="flex min-h-dvh flex-col px-3 pt-3 pb-10 md:h-dvh md:overflow-hidden md:pb-4">
+    // Only the story is fitted to the screen height on desktop (the theatre
+    // takes whatever the dialogue leaves). Every other phase is a normal page
+    // that scrolls, so zooming in never hides the buttons at the bottom.
+    <div
+      className={cn(
+        'flex min-h-dvh flex-col px-3 pt-3 pb-10',
+        phase === 'story' && 'md:h-dvh md:overflow-y-auto md:pb-4',
+      )}
+    >
       {/* Play header */}
       <header className="relative z-50 mx-auto mb-3 flex w-full max-w-[1000px] shrink-0 items-center gap-3">
         <IconButton aria-label={t('play.exit')} onClick={() => setConfirmExit(true)}>
