@@ -11,7 +11,6 @@ import { Sprite } from '@/components/ui/Sprite'
 /** Cell colour by stars (SCREENS Teacher dashboard). */
 const STAR_FILL = ['bg-locked', 'bg-rani-soft', 'bg-marigold-soft', 'bg-leaf-soft']
 
-const dash = community.teacherDashboard
 const COLUMNS = world.buildingOrder
 
 function titleOf(id: string): string {
@@ -19,6 +18,8 @@ function titleOf(id: string): string {
 }
 
 export function Teacher() {
+  // Read at render, not module load, so it follows the language setting.
+  const dash = community.teacherDashboard
   const students = dash.students as unknown as ({ name: string } & Record<string, number>)[]
 
   const average = (buildingId: string) =>
@@ -35,22 +36,21 @@ export function Teacher() {
       <div className="mb-3 flex flex-wrap items-center gap-3">
         <h1 className="text-h1">{dash.className}</h1>
         <span className="text-micro rounded-chip bg-white px-2 py-0.5 font-bold text-ink-soft sticker-sm">
-          Sample class
+          {t('teacher.sampleClass')}
         </span>
       </div>
       <p className="text-body mb-5 max-w-[62ch] text-ink-soft">
-        Stars per building. Nobody is ranked against anybody — this is here to
-        show a teacher where the class needs another go.
+        {t('teacher.intro')}
       </p>
 
       {/* Heatmap */}
       <div className="relative overflow-x-auto">
         <table className="w-full min-w-[560px] border-separate border-spacing-1">
-          <caption className="sr-only">Stars earned per student per building</caption>
+          <caption className="sr-only">{t('teacher.caption')}</caption>
           <thead>
             <tr>
               <th scope="col" className="text-small px-2 py-1 text-left font-extrabold">
-                Student
+                {t('teacher.student')}
               </th>
               {COLUMNS.map((id) => (
                 <th key={id} scope="col" className="text-small px-2 py-1 font-extrabold">
@@ -80,7 +80,7 @@ export function Teacher() {
                           STAR_FILL[stars],
                         )}
                       >
-                        <span className="sr-only">{stars} stars</span>
+                        <span className="sr-only">{t('teacher.starsCell', { n: stars })}</span>
                         <span aria-hidden>{stars === 0 ? '–' : '★'.repeat(stars)}</span>
                       </td>
                     )
@@ -96,7 +96,7 @@ export function Teacher() {
       </div>
 
       {/* Class average per building */}
-      <h2 className="text-h2 mt-8 mb-3">Class average stars</h2>
+      <h2 className="text-h2 mt-8 mb-3">{t('teacher.average')}</h2>
       <Panel className="flex flex-col gap-3">
         {COLUMNS.map((id) => {
           const avg = average(id)
@@ -120,7 +120,7 @@ export function Teacher() {
       {/* Common mistakes */}
       {mistakes.length > 0 && (
         <>
-          <h2 className="text-h2 mt-8 mb-3">Worth revisiting</h2>
+          <h2 className="text-h2 mt-8 mb-3">{t('teacher.revisit')}</h2>
           <div className="grid gap-3 sm:grid-cols-2">
             {mistakes.map((mistake, i) => (
               <Panel key={i} tone="marigold-soft" className="flex items-start gap-3">
@@ -136,7 +136,7 @@ export function Teacher() {
       )}
 
       <p className="text-small mt-8 mb-10 text-ink-soft">
-        {allBuildings.length} buildings · {t('community.sample')} data for the prototype.
+        {t('teacher.footer', { n: allBuildings.length })}
       </p>
     </div>
   )

@@ -2,7 +2,8 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { AgeBand, AvatarSpec } from '@content/types'
 import type { HeadwearColor } from '@/components/avatar/Headwear'
-import { world } from './content'
+import { setContentLanguage, world } from './content'
+import type { Lang } from './content'
 
 export type Stars = 0 | 1 | 2 | 3
 
@@ -40,6 +41,8 @@ export interface Settings {
   narration: boolean
   calmMotion: boolean
   demo: boolean
+  /** Device-wide, like the others. Changing it remounts the app. */
+  language: Lang
 }
 
 /** What a finished play-through reports back to the store. */
@@ -164,7 +167,7 @@ export const useStore = create<AppState>()(
     (set, get) => ({
       profiles: [],
       activeProfileId: null,
-      settings: { sound: true, narration: false, calmMotion: false, demo: false },
+      settings: { sound: true, narration: false, calmMotion: false, demo: false, language: 'en' },
 
       createProfile: ({ name, avatar, band, headwearColor }) => {
         const id = newId()
@@ -287,9 +290,32 @@ export const useStore = create<AppState>()(
 
       toggleDemo: () => set((s) => ({ settings: { ...s.settings, demo: !s.settings.demo } })),
     }),
-    { name: 'saksham-v1' },
+    {
+      name: 'saksham-v1',
+      // Saved settings from before `language` existed replace the defaults
+      // wholesale in a shallow merge; merge them key by key instead.
+      merge: (persisted, current) => {
+        const saved = (persisted ?? {}) as Partial<AppState>
+        return {
+          ...current,
+          ...saved,
+          settings: { ...current.settings, ...(saved.settings ?? {}) },
+        }
+      },
+    },
   ),
 )
+
+// Keep the content language in step with the setting: once for the saved
+// value (localStorage hydrates synchronously at creation), then on changes.
+// This subscription is registered before any component's, so content has
+// switched by the time React re-renders.
+setContentLanguage(useStore.getState().settings.language)
+useStore.subscribe((state, prev) => {
+  if (state.settings.language !== prev.settings.language) {
+    setContentLanguage(state.settings.language)
+  }
+})
 
 /* ---------- Hooks ---------- */
 

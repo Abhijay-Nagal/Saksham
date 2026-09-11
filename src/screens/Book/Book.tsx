@@ -8,9 +8,10 @@ import { Sheet } from '@/components/ui/Sheet'
 import { Sprite } from '@/components/ui/Sprite'
 
 /** The two "coming soon" town teasers get silhouettes in the album too. */
-const TEASERS = world.map.spots.filter((s) => s.status === 'locked-teaser')
 
 export function Book() {
+  // Read at render, not module load, so it follows the language setting.
+  const TEASERS = world.map.spots.filter((s) => s.status === 'locked-teaser')
   const profile = useActiveProfile()
   const [open, setOpen] = useState<CardData | null>(null)
 

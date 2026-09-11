@@ -135,7 +135,8 @@
     "questionsPrivate": "Only you can see these. They stay on this device.",
     "answered": "Already answered",
     "starsTogether": "{n} / {total} stars together",
-    "yourShare": "Your {n} stars are part of this. Everyone helps."
+    "yourShare": "Your {n} stars are part of this. Everyone helps.",
+    "you": "You"
   },
   "me": {
     "title": "Me",
@@ -149,10 +150,18 @@
     "editAvatar": "Edit avatar",
     "starsCount": "{n} stars",
     "cardsCount": "{n} / {total} cards",
-    "forTeachers": "For teachers"
+    "forTeachers": "For teachers",
+    "language": "Language"
+  },
+  "lang": {
+    "toggle": "हिंदी",
+    "toggleLabel": "Switch to Hindi",
+    "en": "English",
+    "hi": "हिंदी"
   },
   "demo": {
-    "on": "Demo mode on: all buildings unlocked."
+    "on": "Demo mode on: all buildings unlocked.",
+    "chip": "Demo"
   },
   "play": {
     "exit": "Leave the story",
@@ -173,6 +182,16 @@
   },
   "help": {
     "call": "Call {number}"
+  },
+  "teacher": {
+    "sampleClass": "Sample class",
+    "intro": "Stars per building. Nobody is ranked against anybody — this is here to show a teacher where the class needs another go.",
+    "caption": "Stars earned per student per building",
+    "student": "Student",
+    "average": "Class average stars",
+    "revisit": "Worth revisiting",
+    "footer": "{n} buildings · Sample data for the prototype.",
+    "starsCell": "{n} stars"
   },
   "common": {
     "next": "Next",

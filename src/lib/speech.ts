@@ -7,8 +7,10 @@
  */
 
 import { useSyncExternalStore } from 'react'
+import { currentLang } from './content'
+import type { Lang } from './content'
 
-let cached: SpeechSynthesisVoice | null = null
+const cached: Partial<Record<Lang, SpeechSynthesisVoice | null>> = {}
 let listening = false
 
 export type SpeechStatus = 'idle' | 'speaking' | 'paused'
@@ -40,28 +42,43 @@ export function isAvailable(): boolean {
   return synth() !== null && typeof window.SpeechSynthesisUtterance === 'function'
 }
 
-function pickVoice(): SpeechSynthesisVoice | null {
+/** BCP 47 tags to prefer, most specific first, per app language. */
+const PREFERRED: Record<Lang, string[]> = {
+  en: ['en-IN', 'en'],
+  hi: ['hi-IN', 'hi'],
+}
+
+function pickVoice(lang: Lang): SpeechSynthesisVoice | null {
   const s = synth()
   if (!s) return null
   const voices = s.getVoices()
   if (!voices.length) return null
 
-  cached =
-    voices.find((v) => v.lang === 'en-IN') ??
-    voices.find((v) => v.lang.replace('_', '-').startsWith('en-IN')) ??
-    voices.find((v) => v.lang.toLowerCase().startsWith('en')) ??
-    voices[0]
-  return cached
+  const norm = (v: SpeechSynthesisVoice) => v.lang.replace('_', '-').toLowerCase()
+  let found: SpeechSynthesisVoice | undefined
+  for (const tag of PREFERRED[lang]) {
+    found = voices.find((v) => norm(v) === tag.toLowerCase()) ??
+      voices.find((v) => norm(v).startsWith(tag.toLowerCase()))
+    if (found) break
+  }
+  // English may fall back to any voice; Hindi must not be read by an English
+  // voice, so it goes out with just a `lang` tag and the browser decides.
+  cached[lang] = found ?? (lang === 'en' ? voices[0] : null)
+  return cached[lang] ?? null
 }
 
 /** Warm the voice list up early; harmless to call more than once. */
 export function prime() {
   const s = synth()
   if (!s) return
-  pickVoice()
+  pickVoice('en')
+  pickVoice('hi')
   if (!listening) {
     listening = true
-    s.addEventListener('voiceschanged', () => pickVoice())
+    s.addEventListener('voiceschanged', () => {
+      pickVoice('en')
+      pickVoice('hi')
+    })
   }
 }
 
@@ -81,10 +98,13 @@ export function speak(text: string, onEnd?: () => void) {
   const mine = ++generation
 
   const u = new SpeechSynthesisUtterance(text)
-  const voice = cached ?? pickVoice()
+  const lang = currentLang()
+  const voice = cached[lang] ?? pickVoice(lang)
   if (voice) {
     u.voice = voice
     u.lang = voice.lang
+  } else {
+    u.lang = PREFERRED[lang][0]
   }
   u.rate = 0.95
   u.pitch = 1.05

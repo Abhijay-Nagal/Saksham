@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router'
 import { help, t } from '@/lib/content'
 import { Button } from '@/components/ui/Button'
 import { Panel } from '@/components/ui/Panel'
+import { LanguageToggle } from '@/components/ui/LanguageToggle'
 
 /**
  * The Help Centre. Safety-critical, so it is deliberately plain: no ambient
@@ -19,7 +20,8 @@ export function Help() {
   return (
     <div className="min-h-dvh bg-peacock-soft">
       <div className="mx-auto max-w-[860px] px-4 py-6 md:px-6">
-        <div className="flex justify-end">
+        <div className="flex items-center justify-end gap-2">
+          <LanguageToggle silent />
           <Button variant="ghost" silent onClick={() => navigate('/town')}>
             {help.hideLabel} ✕
           </Button>

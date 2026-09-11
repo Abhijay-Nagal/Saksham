@@ -129,7 +129,6 @@ function AppRoutes() {
   return (
     <>
       <CurtainTransition />
-      <Splash />
       <Routes>
         <Route path="/" element={<StartRedirect />} />
         <Route path="/profiles" element={<Profiles />} />
@@ -149,11 +148,22 @@ function AppRoutes() {
   )
 }
 
+/**
+ * Content and `t()` switch language outside React (lib/content), so a change
+ * remounts every route to re-read them. The splash sits outside the remount
+ * so switching language doesn't replay it.
+ */
+function LanguageRoot() {
+  const language = useSettings().language
+  return <AppRoutes key={language} />
+}
+
 export function App() {
   return (
     <HashRouter>
       <ToastProvider>
-        <AppRoutes />
+        <LanguageRoot />
+        <Splash />
       </ToastProvider>
     </HashRouter>
   )

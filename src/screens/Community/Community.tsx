@@ -142,7 +142,7 @@ function PledgeWall() {
                     />
                     <div>
                       <p className="text-body font-extrabold">{profile.name}</p>
-                      <p className="text-micro text-ink-soft">You</p>
+                      <p className="text-micro text-ink-soft">{t('community.you')}</p>
                     </div>
                   </div>
                   <p className="text-body mt-3 flex gap-2">

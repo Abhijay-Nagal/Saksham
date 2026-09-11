@@ -155,6 +155,35 @@ export function Me() {
       {/* Settings */}
       <h2 className="text-h2 mt-8 mb-3">{t('me.settings')}</h2>
       <div className="flex flex-col gap-3">
+        <div
+          role="radiogroup"
+          aria-label={t('me.language')}
+          className="flex min-h-14 flex-wrap items-center justify-between gap-3 rounded-card bg-white px-4 py-2 sticker"
+        >
+          <span className="text-body font-bold">{t('me.language')}</span>
+          <span className="flex gap-2">
+            {(['en', 'hi'] as const).map((code) => (
+              <button
+                key={code}
+                type="button"
+                role="radio"
+                lang={code}
+                aria-checked={settings.language === code}
+                onClick={() => {
+                  if (settings.language === code) return
+                  sound.tap()
+                  setSettings({ language: code })
+                }}
+                className={cn(
+                  'min-h-11 rounded-btn px-4 text-[18px] font-extrabold sticker-sm press-sm',
+                  settings.language === code ? 'bg-marigold' : 'bg-paper',
+                )}
+              >
+                {t(`lang.${code}`)}
+              </button>
+            ))}
+          </span>
+        </div>
         <Toggle
           label={t('me.sound')}
           checked={settings.sound}

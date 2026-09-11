@@ -7,6 +7,7 @@ import { Sprite } from '@/components/ui/Sprite'
 import { Pill } from '@/components/ui/Pill'
 import { Button } from '@/components/ui/Button'
 import { Logo } from '@/components/brand/Logo'
+import { LanguageToggle } from '@/components/ui/LanguageToggle'
 import { useToast } from '@/components/ui/Toast'
 
 const TABS = [
@@ -78,9 +79,17 @@ export function TopBar() {
         <div className="ml-auto flex shrink-0 items-center gap-2">
           {settings.demo && (
             <span className="rounded-chip bg-rani px-2 py-1 text-[14px] font-bold text-white sticker-sm">
-              Demo
+              {t('demo.chip')}
             </span>
           )}
+          {/* Word shown where there's room; glyph only on phones and 768-1280px.
+              Wrapped for the same reason as the help buttons below. */}
+          <span className="inline-flex xl:hidden">
+            <LanguageToggle compact />
+          </span>
+          <span className="hidden xl:inline-flex">
+            <LanguageToggle />
+          </span>
           <Pill
             sprite="star"
             value={stars}

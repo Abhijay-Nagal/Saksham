@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { cn } from '@/lib/cn'
 import { t } from '@/lib/content'
 import { speech } from '@/lib/speech'
@@ -21,6 +21,18 @@ interface DialogueBoxProps {
 
 const CHAR_MS = 28
 
+/**
+ * Split into user-perceived characters. Devanagari clusters (क्ष, कि) span
+ * several code units; typing by code unit would flash broken half-letters.
+ */
+function graphemes(text: string): string[] {
+  if (typeof Intl !== 'undefined' && 'Segmenter' in Intl) {
+    const seg = new Intl.Segmenter(undefined, { granularity: 'grapheme' })
+    return Array.from(seg.segment(text), (s) => s.segment)
+  }
+  return Array.from(text)
+}
+
 export function DialogueBox({
   speakerName,
   variant,
@@ -29,8 +41,9 @@ export function DialogueBox({
   onTap,
   showContinue,
 }: DialogueBoxProps) {
+  const chars = useMemo(() => graphemes(text), [text])
   const [shown, setShown] = useState(0)
-  const done = shown >= text.length
+  const done = shown >= chars.length
   const settings = useSettings()
   const typedRef = useRef(onTyped)
   typedRef.current = onTyped
@@ -45,17 +58,17 @@ export function DialogueBox({
   useEffect(() => {
     setShown(0)
     if (document.documentElement.hasAttribute('data-calm')) {
-      setShown(text.length)
+      setShown(chars.length)
       return
     }
     let i = 0
     timer.current = window.setInterval(() => {
       i += 1
       setShown(i)
-      if (i >= text.length) stopTyping()
+      if (i >= chars.length) stopTyping()
     }, CHAR_MS)
     return stopTyping
-  }, [text])
+  }, [chars])
 
   useEffect(() => {
     typedRef.current(done)
@@ -73,7 +86,7 @@ export function DialogueBox({
   function handleTap() {
     if (!done) {
       stopTyping()
-      setShown(text.length)
+      setShown(chars.length)
     } else {
       onTap()
     }
@@ -110,7 +123,7 @@ export function DialogueBox({
             {text}
           </span>
           <span aria-live="polite" className="absolute inset-0">
-            {text.slice(0, shown)}
+            {done ? text : chars.slice(0, shown).join('')}
             {!done && <span className="opacity-40">▍</span>}
           </span>
         </p>

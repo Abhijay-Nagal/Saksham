@@ -67,7 +67,7 @@ export function Onboarding() {
     <div className="mx-auto flex min-h-dvh max-w-[900px] flex-col px-4 py-6">
       <FloatingHelp />
       {/* Progress dots */}
-      <div className="mb-6 flex justify-center gap-2" aria-label={`Step ${step + 1} of ${STEPS}`}>
+      <div className="mb-6 flex min-h-12 items-center justify-start gap-2 pl-1 sm:justify-center sm:pl-0" aria-label={`Step ${step + 1} of ${STEPS}`}>
         {Array.from({ length: STEPS }, (_, i) => (
           <span
             key={i}
